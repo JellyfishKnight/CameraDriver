@@ -176,10 +176,6 @@ driver_pkg/include/Driver/MindVision/CMakeFiles/MindVision.dir/MindVision.cpp.o:
   /usr/include/c++/9/istream \
   /usr/include/c++/9/bits/istream.tcc \
   /home/wjy/CameraDriverWS/src/driver_pkg/include/Driver/BaseDriver/BaseDriver.h \
-  /home/wjy/CameraDriverWS/src/driver_pkg/include/Driver/MindVision/MindVision.h \
-  /usr/include/CameraApi.h \
-  /usr/include/CameraDefine.h \
-  /usr/include/CameraStatus.h \
   /usr/include/opencv4/opencv2/core/core.hpp \
   /usr/include/opencv4/opencv2/core.hpp \
   /usr/include/opencv4/opencv2/core/cvdef.h \
@@ -284,10 +280,10 @@ driver_pkg/include/Driver/MindVision/CMakeFiles/MindVision.dir/MindVision.cpp.o:
   /usr/include/c++/9/bits/unique_lock.h \
   /usr/include/opencv4/opencv2/core/optim.hpp \
   /usr/include/opencv4/opencv2/core/ovx.hpp \
-  /usr/include/opencv4/opencv2/highgui/highgui.hpp \
-  /usr/include/opencv4/opencv2/highgui.hpp \
-  /usr/include/opencv4/opencv2/imgcodecs.hpp \
-  /usr/include/opencv4/opencv2/videoio.hpp \
+  /home/wjy/CameraDriverWS/src/driver_pkg/include/Driver/MindVision/MindVision.h \
+  /home/wjy/CameraDriverWS/src/driver_pkg/include/Driver/MindVision/lib/CameraApi.h \
+  /usr/include/CameraDefine.h \
+  /usr/include/CameraStatus.h \
   /usr/include/opencv4/opencv2/imgproc/imgproc.hpp \
   /usr/include/opencv4/opencv2/imgproc.hpp \
   /usr/include/opencv4/opencv2/imgproc/imgproc_c.h \
@@ -1280,6 +1276,9 @@ driver_pkg/include/Driver/MindVision/CMakeFiles/MindVision.dir/MindVision.cpp.o:
   /opt/ros/noetic/include/ros/this_node.h \
   /opt/ros/noetic/include/ros/param.h \
   /opt/ros/noetic/include/ros/topic.h \
+  /usr/include/opencv4/opencv2/highgui.hpp \
+  /usr/include/opencv4/opencv2/imgcodecs.hpp \
+  /usr/include/opencv4/opencv2/videoio.hpp \
   /opt/ros/noetic/include/cv_bridge/cv_bridge.h \
   /opt/ros/noetic/include/sensor_msgs/Image.h \
   /opt/ros/noetic/include/ros/message_operations.h \
@@ -1295,6 +1294,8 @@ driver_pkg/include/Driver/MindVision/CMakeFiles/MindVision.dir/MindVision.cpp.o:
 /opt/ros/noetic/include/std_msgs/Header.h:
 
 /opt/ros/noetic/include/cv_bridge/cv_bridge.h:
+
+/usr/include/opencv4/opencv2/imgcodecs.hpp:
 
 /opt/ros/noetic/include/ros/master.h:
 
@@ -1573,6 +1574,10 @@ driver_pkg/include/Driver/MindVision/CMakeFiles/MindVision.dir/MindVision.cpp.o:
 /usr/include/boost/predef/compiler/digitalmars.h:
 
 /usr/include/boost/predef/compiler/diab.h:
+
+/usr/include/opencv4/opencv2/videoio.hpp:
+
+/usr/include/boost/predef/compiler/compaq.h:
 
 /usr/include/boost/predef/compiler/clang.h:
 
@@ -1856,7 +1861,7 @@ driver_pkg/include/Driver/MindVision/CMakeFiles/MindVision.dir/MindVision.cpp.o:
 
 /usr/include/boost/type_traits/is_copy_constructible.hpp:
 
-/usr/include/c++/9/bits/stl_deque.h:
+/usr/include/boost/mpl/aux_/preprocessor/enum.hpp:
 
 /usr/include/boost/range/concepts.hpp:
 
@@ -1936,8 +1941,6 @@ driver_pkg/include/Driver/MindVision/CMakeFiles/MindVision.dir/MindVision.cpp.o:
 
 /usr/include/boost/mpl/aux_/na.hpp:
 
-/usr/include/opencv4/opencv2/highgui/highgui.hpp:
-
 /usr/include/boost/type_traits/detail/has_binary_operator.hpp:
 
 /usr/include/boost/iterator/detail/config_def.hpp:
@@ -1974,6 +1977,10 @@ driver_pkg/include/Driver/MindVision/CMakeFiles/MindVision.dir/MindVision.cpp.o:
 
 /usr/include/boost/smart_ptr/make_shared_array.hpp:
 
+/usr/include/boost/predef/detail/test.h:
+
+/usr/include/boost/type_traits/is_lvalue_reference.hpp:
+
 /usr/include/c++/9/variant:
 
 /usr/include/boost/mpl/aux_/has_size.hpp:
@@ -1981,6 +1988,8 @@ driver_pkg/include/Driver/MindVision/CMakeFiles/MindVision.dir/MindVision.cpp.o:
 /usr/include/boost/preprocessor/inc.hpp:
 
 /usr/include/boost/config/detail/suffix.hpp:
+
+/usr/include/boost/mpl/O1_size_fwd.hpp:
 
 /opt/ros/noetic/include/ros/message_operations.h:
 
@@ -2034,13 +2043,9 @@ driver_pkg/include/Driver/MindVision/CMakeFiles/MindVision.dir/MindVision.cpp.o:
 
 /usr/include/boost/mpl/aux_/O1_size_impl.hpp:
 
-/usr/include/opencv4/opencv2/imgcodecs.hpp:
+/home/wjy/CameraDriverWS/src/driver_pkg/include/Driver/MindVision/lib/CameraApi.h:
 
-/usr/include/boost/predef/detail/test.h:
-
-/usr/include/boost/type_traits/is_lvalue_reference.hpp:
-
-/usr/include/x86_64-linux-gnu/bits/endian.h:
+/usr/include/boost/mpl/aux_/at_impl.hpp:
 
 /opt/ros/noetic/include/ros/steady_timer_options.h:
 
@@ -2125,6 +2130,20 @@ driver_pkg/include/Driver/MindVision/CMakeFiles/MindVision.dir/MindVision.cpp.o:
 /usr/include/c++/9/ext/aligned_buffer.h:
 
 /usr/include/c++/9/bits/shared_ptr.h:
+
+/home/wjy/CameraDriverWS/src/driver_pkg/include/Driver/MindVision/MindVision.h:
+
+/usr/include/boost/type_traits/is_const.hpp:
+
+/usr/include/opencv4/opencv2/core/cvstd.hpp:
+
+/usr/include/c++/9/bits/stl_function.h:
+
+/usr/include/boost/range/difference_type.hpp:
+
+/usr/include/boost/mpl/aux_/config/overload_resolution.hpp:
+
+/usr/include/boost/mpl/aux_/nested_type_wknd.hpp:
 
 /usr/include/boost/cstdint.hpp:
 
@@ -2232,26 +2251,6 @@ driver_pkg/include/Driver/MindVision/CMakeFiles/MindVision.dir/MindVision.cpp.o:
 
 /usr/include/opencv4/opencv2/core/base.hpp:
 
-/usr/include/opencv4/opencv2/core/version.hpp:
-
-/usr/include/c++/9/bits/stl_relops.h:
-
-/usr/include/boost/mpl/begin_end.hpp:
-
-/opt/ros/noetic/include/ros/param.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/clock_t.h:
-
-/usr/include/boost/detail/call_traits.hpp:
-
-/usr/include/c++/9/bits/stl_vector.h:
-
-/usr/include/c++/9/array:
-
-/usr/include/c++/9/ostream:
-
-/usr/include/boost/mpl/vector/aux_/preprocessed/typeof_based/vector10.hpp:
-
 /usr/include/boost/mpl/integral_c_tag.hpp:
 
 /usr/include/x86_64-linux-gnu/bits/types/clockid_t.h:
@@ -2277,6 +2276,14 @@ driver_pkg/include/Driver/MindVision/CMakeFiles/MindVision.dir/MindVision.cpp.o:
 /usr/include/x86_64-linux-gnu/bits/types/struct_tm.h:
 
 /usr/include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h:
+
+/usr/include/c++/9/bits/functional_hash.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h:
+
+/opt/ros/noetic/include/ros/param.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/clock_t.h:
 
 /usr/include/boost/predef/version_number.h:
 
@@ -2316,6 +2323,16 @@ driver_pkg/include/Driver/MindVision/CMakeFiles/MindVision.dir/MindVision.cpp.o:
 
 /usr/include/c++/9/bits/stl_multiset.h:
 
+/usr/include/boost/detail/call_traits.hpp:
+
+/usr/include/c++/9/bits/stl_vector.h:
+
+/usr/include/c++/9/array:
+
+/usr/include/c++/9/ostream:
+
+/usr/include/boost/mpl/vector/aux_/preprocessed/typeof_based/vector10.hpp:
+
 /usr/include/c++/9/string_view:
 
 /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h:
@@ -2341,10 +2358,6 @@ driver_pkg/include/Driver/MindVision/CMakeFiles/MindVision.dir/MindVision.cpp.o:
 /usr/include/boost/preprocessor/logical/and.hpp:
 
 /usr/include/c++/9/bits/predefined_ops.h:
-
-/usr/include/c++/9/bitset:
-
-/usr/include/boost/math/tools/real_cast.hpp:
 
 /usr/include/stdint.h:
 
@@ -2394,8 +2407,6 @@ driver_pkg/include/Driver/MindVision/CMakeFiles/MindVision.dir/MindVision.cpp.o:
 
 /usr/include/c++/9/bits/stl_pair.h:
 
-/usr/include/CameraApi.h:
-
 /opt/ros/noetic/include/ros/subscription_callback_helper.h:
 
 /usr/include/boost/mpl/numeric_cast.hpp:
@@ -2440,6 +2451,10 @@ driver_pkg/include/Driver/MindVision/CMakeFiles/MindVision.dir/MindVision.cpp.o:
 
 /usr/include/opencv4/opencv2/core/vsx_utils.hpp:
 
+/usr/include/boost/math/tools/real_cast.hpp:
+
+/usr/include/c++/9/bitset:
+
 /usr/include/boost/mpl/aux_/config/lambda.hpp:
 
 /usr/include/c++/9/bits/functexcept.h:
@@ -2481,6 +2496,8 @@ driver_pkg/include/Driver/MindVision/CMakeFiles/MindVision.dir/MindVision.cpp.o:
 /usr/include/c++/9/backward/auto_ptr.h:
 
 /usr/include/x86_64-linux-gnu/bits/wctype-wchar.h:
+
+/usr/include/x86_64-linux-gnu/bits/endian.h:
 
 /usr/include/boost/preprocessor/repetition/repeat.hpp:
 
@@ -2602,12 +2619,6 @@ driver_pkg/include/Driver/MindVision/CMakeFiles/MindVision.dir/MindVision.cpp.o:
 
 /usr/include/c++/9/bits/postypes.h:
 
-/usr/include/boost/predef/compiler/compaq.h:
-
-/usr/include/opencv4/opencv2/videoio.hpp:
-
-/usr/include/boost/mpl/aux_/has_tag.hpp:
-
 /usr/include/x86_64-linux-gnu/c++/9/bits/time_members.h:
 
 /usr/include/c++/9/cwchar:
@@ -2624,9 +2635,9 @@ driver_pkg/include/Driver/MindVision/CMakeFiles/MindVision.dir/MindVision.cpp.o:
 
 /usr/include/pthread.h:
 
-/usr/include/boost/predef/library/c/vms.h:
-
 /usr/include/opencv4/opencv2/highgui.hpp:
+
+/usr/include/boost/predef/library/c/vms.h:
 
 /usr/include/boost/throw_exception.hpp:
 
@@ -2796,6 +2807,16 @@ driver_pkg/include/Driver/MindVision/CMakeFiles/MindVision.dir/MindVision.cpp.o:
 
 /usr/include/boost/mpl/aux_/preprocessed/gcc/template_arity.hpp:
 
+/usr/include/boost/mpl/aux_/has_type.hpp:
+
+/usr/include/boost/preprocessor/detail/auto_rec.hpp:
+
+/usr/include/x86_64-linux-gnu/bits/types/wint_t.h:
+
+/usr/include/opencv4/opencv2/core/optim.hpp:
+
+/usr/include/boost/type_traits/is_array.hpp:
+
 /usr/include/boost/iterator/distance.hpp:
 
 /usr/include/boost/date_time/c_time.hpp:
@@ -2807,34 +2828,6 @@ driver_pkg/include/Driver/MindVision/CMakeFiles/MindVision.dir/MindVision.cpp.o:
 /usr/include/c++/9/limits:
 
 /usr/include/boost/mpl/begin_end_fwd.hpp:
-
-/usr/include/opencv4/opencv2/core/cvstd.hpp:
-
-/usr/include/c++/9/bits/stl_function.h:
-
-/usr/include/boost/thread/thread_time.hpp:
-
-/usr/include/c++/9/utility:
-
-/usr/include/boost/mpl/aux_/config/gcc.hpp:
-
-/usr/include/c++/9/bits/unique_ptr.h:
-
-/usr/include/boost/range/difference_type.hpp:
-
-/usr/include/boost/mpl/aux_/config/overload_resolution.hpp:
-
-/usr/include/boost/mpl/aux_/nested_type_wknd.hpp:
-
-/usr/include/x86_64-linux-gnu/bits/types/wint_t.h:
-
-/usr/include/opencv4/opencv2/core/optim.hpp:
-
-/usr/include/boost/mpl/aux_/has_type.hpp:
-
-/usr/include/boost/preprocessor/detail/auto_rec.hpp:
-
-/usr/include/boost/type_traits/is_array.hpp:
 
 /usr/include/boost/core/swap.hpp:
 
@@ -2986,10 +2979,6 @@ driver_pkg/include/Driver/MindVision/CMakeFiles/MindVision.dir/MindVision.cpp.o:
 
 /usr/include/x86_64-linux-gnu/bits/environments.h:
 
-/usr/include/boost/type_traits/has_trivial_copy.hpp:
-
-/usr/include/c++/9/bits/exception_defines.h:
-
 /usr/lib/llvm-10/lib/clang/10.0.0/include/emmintrin.h:
 
 /usr/include/c++/9/functional:
@@ -3050,10 +3039,6 @@ driver_pkg/include/Driver/MindVision/CMakeFiles/MindVision.dir/MindVision.cpp.o:
 
 /usr/include/boost/mpl/front_fwd.hpp:
 
-/usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h:
-
-/usr/include/c++/9/bits/functional_hash.h:
-
 /usr/include/boost/type_traits/integral_constant.hpp:
 
 /usr/include/ctype.h:
@@ -3096,19 +3081,25 @@ driver_pkg/include/Driver/MindVision/CMakeFiles/MindVision.dir/MindVision.cpp.o:
 
 /usr/include/c++/9/istream:
 
-/home/wjy/CameraDriverWS/src/driver_pkg/include/Driver/MindVision/MindVision.h:
-
-/usr/include/boost/type_traits/is_const.hpp:
-
 /usr/include/boost/mpl/aux_/nttp_decl.hpp:
 
 /usr/lib/llvm-10/lib/clang/10.0.0/include/xmmintrin.h:
 
 /usr/include/c++/9/bits/list.tcc:
 
-/usr/include/boost/mpl/O1_size_fwd.hpp:
+/usr/include/boost/thread/thread_time.hpp:
 
-/usr/include/boost/mpl/aux_/preprocessor/enum.hpp:
+/usr/include/c++/9/bits/unique_ptr.h:
+
+/usr/include/boost/mpl/aux_/config/gcc.hpp:
+
+/usr/include/c++/9/utility:
+
+/usr/include/c++/9/bits/stl_relops.h:
+
+/usr/include/boost/mpl/begin_end.hpp:
+
+/usr/include/opencv4/opencv2/core/version.hpp:
 
 /usr/include/boost/mpl/limits/arity.hpp:
 
@@ -3247,6 +3238,8 @@ driver_pkg/include/Driver/MindVision/CMakeFiles/MindVision.dir/MindVision.cpp.o:
 /usr/include/boost/mpl/contains.hpp:
 
 /usr/include/boost/mpl/contains_fwd.hpp:
+
+/usr/include/boost/mpl/aux_/has_tag.hpp:
 
 /usr/include/boost/iterator/reverse_iterator.hpp:
 
@@ -3512,15 +3505,13 @@ driver_pkg/include/Driver/MindVision/CMakeFiles/MindVision.dir/MindVision.cpp.o:
 
 /usr/include/boost/type_traits/has_right_shift.hpp:
 
-/usr/include/boost/math/special_functions/round.hpp:
-
 /usr/include/boost/preprocessor/tuple/eat.hpp:
+
+/usr/include/boost/math/special_functions/round.hpp:
 
 /usr/include/boost/mpl/prior.hpp:
 
 /usr/include/boost/mpl/vector/aux_/size.hpp:
-
-/usr/include/boost/mpl/aux_/at_impl.hpp:
 
 /usr/include/boost/mpl/advance.hpp:
 
@@ -3857,3 +3848,9 @@ driver_pkg/include/Driver/MindVision/CMakeFiles/MindVision.dir/MindVision.cpp.o:
 /usr/include/boost/detail/container_fwd.hpp:
 
 /usr/include/c++/9/deque:
+
+/usr/include/c++/9/bits/stl_deque.h:
+
+/usr/include/c++/9/bits/exception_defines.h:
+
+/usr/include/boost/type_traits/has_trivial_copy.hpp:

@@ -4,7 +4,6 @@
 
 #include "CameraApi.h"
 #include <opencv2/core/core.hpp>
-#include <opencv2/highgui/highgui.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
 #include <opencv2/imgproc/imgproc_c.h>
 #include <iostream>
@@ -34,9 +33,13 @@ protected:
     void setCameraData() override;                    
 
 public:
-    MindVision() ;
+    MindVision() = default;
 
-    ~MindVision();
+    ~MindVision() {
+        delete pbyBuffer;
+        delete ilpImage;
+        delete g_pRgBuffer;
+    }
     /**
      * @brief 初始化
      * 
@@ -44,11 +47,27 @@ public:
      * @return false 初始化失败
      */
     bool init() override;
-
-    void work() ;
-
-    void transport();
-
+    /**
+     * @brief 启动相机
+     * 
+     * @return true 启动成功
+     * @return false 启动失败
+     */
+    bool start() override;
+    /**
+     * @brief 关闭相机
+     * 
+     * @return true 关闭成功
+     * @return false 关闭失败
+     */
+    bool stop() override;
+    /**
+     * @brief 将相机的数据转化为Mat
+     * 
+     * @return true 转化成功
+     * @return false 转化失败
+     */
+    bool grab(cv::Mat& src) override;
 };
 
 #endif //MINDVISION_H

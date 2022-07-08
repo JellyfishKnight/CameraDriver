@@ -177,10 +177,6 @@ driver_pkg/include/Driver/MindVision/CMakeFiles/MindVision.dir/MindVision.cpp.o
  /usr/include/c++/9/istream
  /usr/include/c++/9/bits/istream.tcc
  /home/wjy/CameraDriverWS/src/driver_pkg/include/Driver/BaseDriver/BaseDriver.h
- /home/wjy/CameraDriverWS/src/driver_pkg/include/Driver/MindVision/MindVision.h
- /usr/include/CameraApi.h
- /usr/include/CameraDefine.h
- /usr/include/CameraStatus.h
  /usr/include/opencv4/opencv2/core/core.hpp
  /usr/include/opencv4/opencv2/core.hpp
  /usr/include/opencv4/opencv2/core/cvdef.h
@@ -285,10 +281,10 @@ driver_pkg/include/Driver/MindVision/CMakeFiles/MindVision.dir/MindVision.cpp.o
  /usr/include/c++/9/bits/unique_lock.h
  /usr/include/opencv4/opencv2/core/optim.hpp
  /usr/include/opencv4/opencv2/core/ovx.hpp
- /usr/include/opencv4/opencv2/highgui/highgui.hpp
- /usr/include/opencv4/opencv2/highgui.hpp
- /usr/include/opencv4/opencv2/imgcodecs.hpp
- /usr/include/opencv4/opencv2/videoio.hpp
+ /home/wjy/CameraDriverWS/src/driver_pkg/include/Driver/MindVision/MindVision.h
+ /home/wjy/CameraDriverWS/src/driver_pkg/include/Driver/MindVision/lib/CameraApi.h
+ /usr/include/CameraDefine.h
+ /usr/include/CameraStatus.h
  /usr/include/opencv4/opencv2/imgproc/imgproc.hpp
  /usr/include/opencv4/opencv2/imgproc.hpp
  /usr/include/opencv4/opencv2/imgproc/imgproc_c.h
@@ -1281,6 +1277,9 @@ driver_pkg/include/Driver/MindVision/CMakeFiles/MindVision.dir/MindVision.cpp.o
  /opt/ros/noetic/include/ros/this_node.h
  /opt/ros/noetic/include/ros/param.h
  /opt/ros/noetic/include/ros/topic.h
+ /usr/include/opencv4/opencv2/highgui.hpp
+ /usr/include/opencv4/opencv2/imgcodecs.hpp
+ /usr/include/opencv4/opencv2/videoio.hpp
  /opt/ros/noetic/include/cv_bridge/cv_bridge.h
  /opt/ros/noetic/include/sensor_msgs/Image.h
  /opt/ros/noetic/include/ros/message_operations.h

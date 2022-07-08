@@ -63,5 +63,42 @@ void MindVision::setCameraData() {
     } else {
         CameraSetExposureTime(hCamera, 8000);
     }
+    /* 让SDK进入工作模式，开始接收来自相机发送的图像
+        数据。如果当前相机是触发模式，则需要接收到
+        触发帧以后才会更新图像。    */
     CameraPlay(hCamera);
+}
+
+bool MindVision::start() {
+    if (CameraPlay(hCamera) == 0) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+bool MindVision::stop() {
+    if (CameraPause(hCamera) == 0) {
+        //释放缓存
+        CameraReleaseImageBuffer(hCamera, pbyBuffer);
+        return true;
+    } else {
+        return false;
+    }
+}
+
+bool MindVision::grab(Mat& src) {
+    double st = getTickCount();
+    if (CameraGetImageBuffer(hCamera, &FrameInfo, &pbyBuffer, 1000) == 0) {
+        CameraImageProcess(hCamera, pbyBuffer, g_pRgBuffer, &FrameInfo);
+        src = Mat(
+            cvSize(FrameInfo.iWidth, FrameInfo.iHeight),
+            FrameInfo.uiMediaType == CAMERA_MEDIA_TYPE_MONO8 ? CV_8UC1 : CV_8UC3,
+            g_pRgBuffer
+        );
+        CameraReleaseImageBuffer(hCamera, pbyBuffer);
+        return true;
+    } else {
+        return false;
+    }
 }
