@@ -20,6 +20,15 @@ BUILD_GMOCK:BOOL=ON
 //Build dynamically-linked binaries
 BUILD_SHARED_LIBS:BOOL=ON
 
+//Value Computed by CMake
+BaseDriver_BINARY_DIR:STATIC=/home/wjy/CameraDriverWS/build/driver_pkg/include/Driver/BaseDriver
+
+//Value Computed by CMake
+BaseDriver_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+BaseDriver_SOURCE_DIR:STATIC=/home/wjy/CameraDriverWS/src/driver_pkg/include/Driver/BaseDriver
+
 //List of ';' separated packages to exclude
 CATKIN_BLACKLIST_PACKAGES:STRING=
 
@@ -360,13 +369,13 @@ MindVisionClass_IS_TOP_LEVEL:STATIC=OFF
 MindVisionClass_SOURCE_DIR:STATIC=/home/wjy/CameraDriverWS/src/MindVision_pkg/include/MindVisionClass
 
 //Value Computed by CMake
-MindVision_BINARY_DIR:STATIC=/home/wjy/CameraDriverWS/build/MindVision_pkg/include/MindVisionClass
+MindVision_BINARY_DIR:STATIC=/home/wjy/CameraDriverWS/build/driver_pkg/include/Driver/MindVision
 
 //Value Computed by CMake
 MindVision_IS_TOP_LEVEL:STATIC=OFF
 
 //Value Computed by CMake
-MindVision_SOURCE_DIR:STATIC=/home/wjy/CameraDriverWS/src/MindVision_pkg/include/MindVisionClass
+MindVision_SOURCE_DIR:STATIC=/home/wjy/CameraDriverWS/src/driver_pkg/include/Driver/MindVision
 
 //Value Computed by CMake
 MindVision_pkg_BINARY_DIR:STATIC=/home/wjy/CameraDriverWS/build/MindVision_pkg
@@ -439,6 +448,15 @@ cv_bridge_DIR:PATH=/opt/ros/noetic/share/cv_bridge/cmake
 
 //The directory containing a CMake configuration file for cv_brige.
 cv_brige_DIR:PATH=cv_brige_DIR-NOTFOUND
+
+//Value Computed by CMake
+driver_pkg_BINARY_DIR:STATIC=/home/wjy/CameraDriverWS/build/driver_pkg
+
+//Value Computed by CMake
+driver_pkg_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+driver_pkg_SOURCE_DIR:STATIC=/home/wjy/CameraDriverWS/src/driver_pkg
 
 //The directory containing a CMake configuration file for geometry_msgs.
 geometry_msgs_DIR:PATH=/opt/ros/noetic/share/geometry_msgs/cmake
@@ -682,7 +700,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=6
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=7
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP

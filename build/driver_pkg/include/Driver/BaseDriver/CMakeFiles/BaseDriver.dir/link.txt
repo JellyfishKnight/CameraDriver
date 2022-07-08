@@ -1,0 +1,1 @@
+/usr/bin/c++ -fPIC -O2 -g -DNDEBUG -shared -Wl,-soname,libBaseDriver.so -o /home/wjy/CameraDriverWS/devel/lib/libBaseDriver.so CMakeFiles/BaseDriver.dir/BaseDriver.cpp.o 

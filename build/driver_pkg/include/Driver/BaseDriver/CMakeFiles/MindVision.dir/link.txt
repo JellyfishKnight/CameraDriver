@@ -1,0 +1,1 @@
+/usr/bin/c++ -fPIC -O2 -g -DNDEBUG -shared -Wl,-soname,libMindVision.so -o /home/wjy/CameraDriverWS/devel/lib/libMindVision.so CMakeFiles/MindVision.dir/MindVision.cpp.o 
