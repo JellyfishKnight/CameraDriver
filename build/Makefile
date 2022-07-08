@@ -652,6 +652,19 @@ MindVision/fast:
 	$(MAKE) $(MAKESILENT) -f driver_pkg/include/Driver/MindVision/CMakeFiles/MindVision.dir/build.make driver_pkg/include/Driver/MindVision/CMakeFiles/MindVision.dir/build
 .PHONY : MindVision/fast
 
+#=============================================================================
+# Target rules for targets named receive_pkg_node
+
+# Build rule for target.
+receive_pkg_node: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 receive_pkg_node
+.PHONY : receive_pkg_node
+
+# fast build rule for target.
+receive_pkg_node/fast:
+	$(MAKE) $(MAKESILENT) -f receive_pkg/CMakeFiles/receive_pkg_node.dir/build.make receive_pkg/CMakeFiles/receive_pkg_node.dir/build
+.PHONY : receive_pkg_node/fast
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -702,6 +715,7 @@ help:
 	@echo "... gmock_main"
 	@echo "... gtest"
 	@echo "... gtest_main"
+	@echo "... receive_pkg_node"
 .PHONY : help
 
 

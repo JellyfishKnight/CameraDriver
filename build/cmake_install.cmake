@@ -137,6 +137,7 @@ if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
   include("/home/wjy/CameraDriverWS/build/gtest/cmake_install.cmake")
   include("/home/wjy/CameraDriverWS/build/driver_pkg/cmake_install.cmake")
+  include("/home/wjy/CameraDriverWS/build/receive_pkg/cmake_install.cmake")
 
 endif()
 

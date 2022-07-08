@@ -15,7 +15,7 @@ bool MindVision::init() {
     //语言设置
     CameraSdkInit(1);
     //枚举设备,建立设备列表
-    if (CameraEnumerateDevice(&CameraEnumList,&CameraCounts) != 0) {
+    if (CameraEnumerateDevice(&CameraEnumList,&CameraCounts) != CAMERA_STATUS_SUCCESS) {
         //函数返回值为0则表示枚举失败
         cout << "Camera enumerate devices failed!" << endl;
         return false;

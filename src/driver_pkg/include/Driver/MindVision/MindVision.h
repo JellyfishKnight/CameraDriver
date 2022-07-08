@@ -35,11 +35,7 @@ protected:
 public:
     MindVision() = default;
 
-    ~MindVision() {
-        delete pbyBuffer;
-        delete ilpImage;
-        delete g_pRgBuffer;
-    }
+    ~MindVision() = default;
     /**
      * @brief 初始化
      * 

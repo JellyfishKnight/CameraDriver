@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>recieve_pkg</name>
+  <name>receive_pkg</name>
   <version>0.0.0</version>
-  <description>The recieve_pkg package</description>
+  <description>The receive_pkg package</description>
 
   <!-- One maintainer tag required, multiple allowed, one person per tag -->
   <!-- Example:  -->

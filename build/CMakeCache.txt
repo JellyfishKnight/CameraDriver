@@ -353,6 +353,15 @@ GTest_DIR:PATH=GTest_DIR-NOTFOUND
 // may want to turn this OFF.)
 INSTALL_GTEST:BOOL=OFF
 
+//Value Computed by CMake
+ImageReceiver_BINARY_DIR:STATIC=/home/wjy/CameraDriverWS/build/receive_pkg/include/ImageReceiver
+
+//Value Computed by CMake
+ImageReceiver_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+ImageReceiver_SOURCE_DIR:STATIC=/home/wjy/CameraDriverWS/src/receive_pkg/include/ImageReceiver
+
 //lsb_release executable was found
 LSB_FOUND:BOOL=TRUE
 
@@ -388,6 +397,9 @@ MindVision_pkg_SOURCE_DIR:STATIC=/home/wjy/CameraDriverWS/src/MindVision_pkg
 
 //Path to a program.
 NOSETESTS:FILEPATH=/usr/bin/nosetests3
+
+//The directory containing a CMake configuration file for OPENCV.
+OPENCV_DIR:PATH=OPENCV_DIR-NOTFOUND
 
 //The directory containing a CMake configuration file for OpenCV.
 OpenCV_DIR:PATH=/usr/local/lib/cmake/opencv4
@@ -517,10 +529,19 @@ gtest_hide_internal_symbols:BOOL=OFF
 gtest_main_LIB_DEPENDS:STATIC=general;gtest;
 
 //Path to a library.
-lib:FILEPATH=/opt/ros/noetic/lib/libcv_bridge.so
+lib:FILEPATH=/opt/ros/noetic/lib/libxmlrpcpp.so
 
 //The directory containing a CMake configuration file for message_runtime.
 message_runtime_DIR:PATH=/opt/ros/noetic/share/message_runtime/cmake
+
+//Value Computed by CMake
+receive_pkg_BINARY_DIR:STATIC=/home/wjy/CameraDriverWS/build/receive_pkg
+
+//Value Computed by CMake
+receive_pkg_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+receive_pkg_SOURCE_DIR:STATIC=/home/wjy/CameraDriverWS/src/receive_pkg
 
 //The directory containing a CMake configuration file for rosconsole.
 rosconsole_DIR:PATH=/opt/ros/noetic/share/rosconsole/cmake
@@ -700,7 +721,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=7
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=8
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP

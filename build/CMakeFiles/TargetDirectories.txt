@@ -84,3 +84,11 @@
 /home/wjy/CameraDriverWS/build/driver_pkg/include/Driver/MindVision/CMakeFiles/install.dir
 /home/wjy/CameraDriverWS/build/driver_pkg/include/Driver/MindVision/CMakeFiles/install/local.dir
 /home/wjy/CameraDriverWS/build/driver_pkg/include/Driver/MindVision/CMakeFiles/install/strip.dir
+/home/wjy/CameraDriverWS/build/receive_pkg/CMakeFiles/receive_pkg_node.dir
+/home/wjy/CameraDriverWS/build/receive_pkg/CMakeFiles/test.dir
+/home/wjy/CameraDriverWS/build/receive_pkg/CMakeFiles/edit_cache.dir
+/home/wjy/CameraDriverWS/build/receive_pkg/CMakeFiles/rebuild_cache.dir
+/home/wjy/CameraDriverWS/build/receive_pkg/CMakeFiles/list_install_components.dir
+/home/wjy/CameraDriverWS/build/receive_pkg/CMakeFiles/install.dir
+/home/wjy/CameraDriverWS/build/receive_pkg/CMakeFiles/install/local.dir
+/home/wjy/CameraDriverWS/build/receive_pkg/CMakeFiles/install/strip.dir

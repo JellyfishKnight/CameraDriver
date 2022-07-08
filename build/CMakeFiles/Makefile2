@@ -65,11 +65,13 @@ CMAKE_BINARY_DIR = /home/wjy/CameraDriverWS/build
 # The main recursive "all" target.
 all: gtest/all
 all: driver_pkg/all
+all: receive_pkg/all
 .PHONY : all
 
 # The main recursive "preinstall" target.
 preinstall: gtest/preinstall
 preinstall: driver_pkg/preinstall
+preinstall: receive_pkg/preinstall
 .PHONY : preinstall
 
 # The main recursive "clean" target.
@@ -80,6 +82,7 @@ clean: CMakeFiles/clean_test_results.dir/clean
 clean: CMakeFiles/doxygen.dir/clean
 clean: gtest/clean
 clean: driver_pkg/clean
+clean: receive_pkg/clean
 .PHONY : clean
 
 #=============================================================================
@@ -204,6 +207,21 @@ gtest/googletest/preinstall:
 gtest/googletest/clean: gtest/googletest/CMakeFiles/gtest.dir/clean
 gtest/googletest/clean: gtest/googletest/CMakeFiles/gtest_main.dir/clean
 .PHONY : gtest/googletest/clean
+
+#=============================================================================
+# Directory level rules for directory receive_pkg
+
+# Recursive "all" directory target.
+receive_pkg/all: receive_pkg/CMakeFiles/receive_pkg_node.dir/all
+.PHONY : receive_pkg/all
+
+# Recursive "preinstall" directory target.
+receive_pkg/preinstall:
+.PHONY : receive_pkg/preinstall
+
+# Recursive "clean" directory target.
+receive_pkg/clean: receive_pkg/CMakeFiles/receive_pkg_node.dir/clean
+.PHONY : receive_pkg/clean
 
 #=============================================================================
 # Target rules for target CMakeFiles/download_extra_data.dir
@@ -1168,6 +1186,32 @@ MindVision: driver_pkg/include/Driver/MindVision/CMakeFiles/MindVision.dir/rule
 driver_pkg/include/Driver/MindVision/CMakeFiles/MindVision.dir/clean:
 	$(MAKE) $(MAKESILENT) -f driver_pkg/include/Driver/MindVision/CMakeFiles/MindVision.dir/build.make driver_pkg/include/Driver/MindVision/CMakeFiles/MindVision.dir/clean
 .PHONY : driver_pkg/include/Driver/MindVision/CMakeFiles/MindVision.dir/clean
+
+#=============================================================================
+# Target rules for target receive_pkg/CMakeFiles/receive_pkg_node.dir
+
+# All Build rule for target.
+receive_pkg/CMakeFiles/receive_pkg_node.dir/all:
+	$(MAKE) $(MAKESILENT) -f receive_pkg/CMakeFiles/receive_pkg_node.dir/build.make receive_pkg/CMakeFiles/receive_pkg_node.dir/depend
+	$(MAKE) $(MAKESILENT) -f receive_pkg/CMakeFiles/receive_pkg_node.dir/build.make receive_pkg/CMakeFiles/receive_pkg_node.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/wjy/CameraDriverWS/build/CMakeFiles --progress-num=15,16 "Built target receive_pkg_node"
+.PHONY : receive_pkg/CMakeFiles/receive_pkg_node.dir/all
+
+# Build rule for subdir invocation for target.
+receive_pkg/CMakeFiles/receive_pkg_node.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/wjy/CameraDriverWS/build/CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 receive_pkg/CMakeFiles/receive_pkg_node.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/wjy/CameraDriverWS/build/CMakeFiles 0
+.PHONY : receive_pkg/CMakeFiles/receive_pkg_node.dir/rule
+
+# Convenience name for target.
+receive_pkg_node: receive_pkg/CMakeFiles/receive_pkg_node.dir/rule
+.PHONY : receive_pkg_node
+
+# clean rule for target.
+receive_pkg/CMakeFiles/receive_pkg_node.dir/clean:
+	$(MAKE) $(MAKESILENT) -f receive_pkg/CMakeFiles/receive_pkg_node.dir/build.make receive_pkg/CMakeFiles/receive_pkg_node.dir/clean
+.PHONY : receive_pkg/CMakeFiles/receive_pkg_node.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.
