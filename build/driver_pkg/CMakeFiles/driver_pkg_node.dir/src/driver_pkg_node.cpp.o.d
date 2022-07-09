@@ -166,19 +166,14 @@ driver_pkg/CMakeFiles/driver_pkg_node.dir/src/driver_pkg_node.cpp.o: \
   /home/wjy/CameraDriverWS/src/driver_pkg/include/Driver/MindVision/lib/CameraApi.h \
   /home/wjy/CameraDriverWS/src/driver_pkg/include/Driver/MindVision/lib/CameraDefine.h \
   /home/wjy/CameraDriverWS/src/driver_pkg/include/Driver/MindVision/lib/CameraStatus.h \
-  /usr/include/opencv4/opencv2/core/core.hpp \
-  /usr/include/opencv4/opencv2/core.hpp \
-  /usr/include/opencv4/opencv2/core/cvdef.h \
-  /usr/lib/llvm-10/lib/clang/10.0.0/include/limits.h \
-  /usr/include/limits.h /usr/include/x86_64-linux-gnu/bits/posix1_lim.h \
-  /usr/include/x86_64-linux-gnu/bits/local_lim.h \
-  /usr/include/linux/limits.h \
-  /usr/include/x86_64-linux-gnu/bits/posix2_lim.h \
-  /usr/include/x86_64-linux-gnu/bits/xopen_lim.h \
-  /usr/include/x86_64-linux-gnu/bits/uio_lim.h \
-  /usr/include/opencv4/opencv2/core/hal/interface.h \
+  /usr/local/include/opencv4/opencv2/core/core.hpp \
+  /usr/local/include/opencv4/opencv2/core.hpp \
+  /usr/local/include/opencv4/opencv2/core/cvdef.h \
+  /usr/local/include/opencv4/opencv2/core/version.hpp \
+  /usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/limits \
+  /usr/local/include/opencv4/opencv2/core/hal/interface.h \
   /usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/cstddef \
-  /usr/include/opencv4/opencv2/core/cv_cpu_dispatch.h \
+  /usr/local/include/opencv4/opencv2/core/cv_cpu_dispatch.h \
   /usr/lib/llvm-10/lib/clang/10.0.0/include/emmintrin.h \
   /usr/lib/llvm-10/lib/clang/10.0.0/include/xmmintrin.h \
   /usr/lib/llvm-10/lib/clang/10.0.0/include/mmintrin.h \
@@ -187,10 +182,16 @@ driver_pkg/CMakeFiles/driver_pkg_node.dir/src/driver_pkg_node.cpp.o: \
   /usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/array \
   /usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/utility \
   /usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/bits/stl_relops.h \
-  /usr/include/opencv4/opencv2/core/version.hpp \
-  /usr/include/opencv4/opencv2/core/base.hpp \
-  /usr/include/opencv4/opencv2/opencv_modules.hpp \
+  /usr/local/include/opencv4/opencv2/core/base.hpp \
+  /usr/local/include/opencv4/opencv2/opencv_modules.hpp \
   /usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/climits \
+  /usr/lib/llvm-10/lib/clang/10.0.0/include/limits.h \
+  /usr/include/limits.h /usr/include/x86_64-linux-gnu/bits/posix1_lim.h \
+  /usr/include/x86_64-linux-gnu/bits/local_lim.h \
+  /usr/include/linux/limits.h \
+  /usr/include/x86_64-linux-gnu/bits/posix2_lim.h \
+  /usr/include/x86_64-linux-gnu/bits/xopen_lim.h \
+  /usr/include/x86_64-linux-gnu/bits/uio_lim.h \
   /usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/algorithm \
   /usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/bits/stl_algo.h \
   /usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/bits/algorithmfwd.h \
@@ -198,8 +199,7 @@ driver_pkg/CMakeFiles/driver_pkg_node.dir/src/driver_pkg_node.cpp.o: \
   /usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/bits/stl_tempbuf.h \
   /usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/bits/stl_construct.h \
   /usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/bits/uniform_int_dist.h \
-  /usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/limits \
-  /usr/include/opencv4/opencv2/core/cvstd.hpp \
+  /usr/local/include/opencv4/opencv2/core/cvstd.hpp \
   /usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/cstring \
   /usr/include/string.h /usr/include/strings.h \
   /usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/cmath \
@@ -213,7 +213,7 @@ driver_pkg/CMakeFiles/driver_pkg_node.dir/src/driver_pkg_node.cpp.o: \
   /usr/include/x86_64-linux-gnu/bits/mathcalls-narrow.h \
   /usr/include/x86_64-linux-gnu/bits/iscanonical.h \
   /usr/include/x86_64-linux-gnu/bits/mathinline.h \
-  /usr/include/opencv4/opencv2/core/cvstd_wrapper.hpp \
+  /usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp \
   /usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/memory \
   /usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/bits/stl_uninitialized.h \
   /usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/bits/stl_raw_storage_iter.h \
@@ -231,30 +231,31 @@ driver_pkg/CMakeFiles/driver_pkg_node.dir/src/driver_pkg_node.cpp.o: \
   /usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/bits/atomic_base.h \
   /usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/bits/atomic_lockfree_defines.h \
   /usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/backward/auto_ptr.h \
-  /usr/include/opencv4/opencv2/core/neon_utils.hpp \
-  /usr/include/opencv4/opencv2/core/vsx_utils.hpp /usr/include/assert.h \
-  /usr/include/opencv4/opencv2/core/check.hpp \
-  /usr/include/opencv4/opencv2/core/traits.hpp \
-  /usr/include/opencv4/opencv2/core/matx.hpp \
-  /usr/include/opencv4/opencv2/core/saturate.hpp \
-  /usr/include/opencv4/opencv2/core/fast_math.hpp \
-  /usr/include/opencv4/opencv2/core/types.hpp \
+  /usr/local/include/opencv4/opencv2/core/neon_utils.hpp \
+  /usr/local/include/opencv4/opencv2/core/vsx_utils.hpp \
+  /usr/include/assert.h \
+  /usr/local/include/opencv4/opencv2/core/check.hpp \
+  /usr/local/include/opencv4/opencv2/core/traits.hpp \
+  /usr/local/include/opencv4/opencv2/core/matx.hpp \
+  /usr/local/include/opencv4/opencv2/core/saturate.hpp \
+  /usr/local/include/opencv4/opencv2/core/fast_math.hpp \
+  /usr/local/include/opencv4/opencv2/core/types.hpp \
   /usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/cfloat \
   /usr/lib/llvm-10/lib/clang/10.0.0/include/float.h \
   /usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/vector \
   /usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/bits/stl_vector.h \
   /usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/bits/stl_bvector.h \
   /usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/bits/vector.tcc \
-  /usr/include/opencv4/opencv2/core/mat.hpp \
-  /usr/include/opencv4/opencv2/core/bufferpool.hpp \
-  /usr/include/opencv4/opencv2/core/mat.inl.hpp \
-  /usr/include/opencv4/opencv2/core/persistence.hpp \
-  /usr/include/opencv4/opencv2/core/operations.hpp \
-  /usr/include/opencv4/opencv2/core/cvstd.inl.hpp \
+  /usr/local/include/opencv4/opencv2/core/mat.hpp \
+  /usr/local/include/opencv4/opencv2/core/bufferpool.hpp \
+  /usr/local/include/opencv4/opencv2/core/mat.inl.hpp \
+  /usr/local/include/opencv4/opencv2/core/persistence.hpp \
+  /usr/local/include/opencv4/opencv2/core/operations.hpp \
+  /usr/local/include/opencv4/opencv2/core/cvstd.inl.hpp \
   /usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/complex \
   /usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/sstream \
   /usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/bits/sstream.tcc \
-  /usr/include/opencv4/opencv2/core/utility.hpp \
+  /usr/local/include/opencv4/opencv2/core/utility.hpp \
   /usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/functional \
   /usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/bits/std_function.h \
   /usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/mutex \
@@ -264,14 +265,15 @@ driver_pkg/CMakeFiles/driver_pkg_node.dir/src/driver_pkg_node.cpp.o: \
   /usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/bits/parse_numbers.h \
   /usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/bits/std_mutex.h \
   /usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/bits/unique_lock.h \
-  /usr/include/opencv4/opencv2/core/optim.hpp \
-  /usr/include/opencv4/opencv2/core/ovx.hpp \
-  /usr/include/opencv4/opencv2/imgproc/imgproc.hpp \
-  /usr/include/opencv4/opencv2/imgproc.hpp \
-  /usr/include/opencv4/opencv2/imgproc/imgproc_c.h \
-  /usr/include/opencv4/opencv2/imgproc/types_c.h \
-  /usr/include/opencv4/opencv2/core/core_c.h \
-  /usr/include/opencv4/opencv2/core/types_c.h \
+  /usr/local/include/opencv4/opencv2/core/optim.hpp \
+  /usr/local/include/opencv4/opencv2/core/ovx.hpp \
+  /usr/local/include/opencv4/opencv2/imgproc/imgproc.hpp \
+  /usr/local/include/opencv4/opencv2/imgproc.hpp \
+  /usr/local/include/opencv4/opencv2/./imgproc/segmentation.hpp \
+  /usr/local/include/opencv4/opencv2/imgproc/imgproc_c.h \
+  /usr/local/include/opencv4/opencv2/imgproc/types_c.h \
+  /usr/local/include/opencv4/opencv2/core/core_c.h \
+  /usr/local/include/opencv4/opencv2/core/types_c.h \
   /home/wjy/CameraDriverWS/src/driver_pkg/include/Driver/BaseDriver/BaseDriver.h \
   /opt/ros/noetic/include/ros/ros.h /opt/ros/noetic/include/ros/time.h \
   /opt/ros/noetic/include/ros/platform.h \
@@ -1217,13 +1219,13 @@ driver_pkg/CMakeFiles/driver_pkg_node.dir/src/driver_pkg_node.cpp.o: \
   /opt/ros/noetic/include/ros/this_node.h \
   /opt/ros/noetic/include/ros/param.h \
   /opt/ros/noetic/include/ros/topic.h \
-  /opt/ros/noetic/include/cv_bridge/cv_bridge.h \
+  /home/wjy/CameraDriverWS/src/vision_opencv/cv_bridge/include/cv_bridge/cv_bridge.h \
   /opt/ros/noetic/include/sensor_msgs/Image.h \
   /opt/ros/noetic/include/ros/message_operations.h \
   /opt/ros/noetic/include/std_msgs/Header.h \
   /opt/ros/noetic/include/sensor_msgs/CompressedImage.h \
   /opt/ros/noetic/include/sensor_msgs/image_encodings.h \
-  /usr/include/opencv4/opencv2/highgui/highgui.hpp \
-  /usr/include/opencv4/opencv2/highgui.hpp \
-  /usr/include/opencv4/opencv2/imgcodecs.hpp \
-  /usr/include/opencv4/opencv2/videoio.hpp
+  /usr/local/include/opencv4/opencv2/highgui/highgui.hpp \
+  /usr/local/include/opencv4/opencv2/highgui.hpp \
+  /usr/local/include/opencv4/opencv2/imgcodecs.hpp \
+  /usr/local/include/opencv4/opencv2/videoio.hpp

@@ -1,2 +1,2 @@
-driver_pkg:receive_pkg
--DCMAKE_BUILD_TYPE=RelWithDebInfo -DCATKIN_DEVEL_PREFIX=/home/wjy/CameraDriverWS/devel -DCMAKE_INSTALL_PREFIX=/home/wjy/CameraDriverWS/install -G Unix Makefiles
+driver_pkg:receive_pkg:vision_opencv/cv_bridge:vision_opencv/image_geometry:vision_opencv/opencv_tests:vision_opencv/vision_opencv
+-DCATKIN_DEVEL_PREFIX=/home/wjy/CameraDriverWS/devel -DCMAKE_INSTALL_PREFIX=/home/wjy/CameraDriverWS/install -G Unix Makefiles

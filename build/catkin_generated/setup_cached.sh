@@ -7,4 +7,5 @@
 # new environment variables
 
 # modified environment variables
+export PKG_CONFIG_PATH='/home/wjy/CameraDriverWS/devel/lib/pkgconfig:/opt/ros/noetic/lib/pkgconfig:/usr/local/lib/pkgconfig'
 export PWD='/home/wjy/CameraDriverWS/build'

@@ -1,8 +1,0 @@
-prefix=/home/wjy/CameraDriverWS/devel
-
-Name: MindVision_pkg
-Description: Description of MindVision_pkg
-Version: 0.0.0
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: 
