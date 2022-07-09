@@ -25,7 +25,6 @@ bool MindVision::init() {
     if (CameraCounts == 0) {
         return false;
     }
-    cout << CameraCounts << endl;
     //相机初始化
     if (CameraInit(&CameraEnumList, -1, -1, &hCamera) != CAMERA_STATUS_SUCCESS) {
     //初始化失败    
@@ -38,15 +37,9 @@ bool MindVision::init() {
         //设置相机参数
         setCameraData();
         //是否为黑白相机
-        if (Capability.sIspCapacity.bMonoSensor) {
-            //调整通道数
-            channel = 1;
-            //设置图像处理的输出格式
-            CameraSetIspOutFormat(hCamera, CAMERA_MEDIA_TYPE_MONO8);
-        } else {
-            channel = 3;
-            CameraSetIspOutFormat(hCamera, CAMERA_MEDIA_TYPE_BGR8);
-        }
+        channel = 3;
+        //设置图像处理的输出格式
+        CameraSetIspOutFormat(hCamera, CAMERA_MEDIA_TYPE_BGR8);
         return true;
     }
 }

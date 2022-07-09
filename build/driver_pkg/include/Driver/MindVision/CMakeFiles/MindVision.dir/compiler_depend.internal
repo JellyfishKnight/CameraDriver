@@ -1281,7 +1281,7 @@ driver_pkg/include/Driver/MindVision/CMakeFiles/MindVision.dir/MindVision.cpp.o
  /usr/local/include/opencv4/opencv2/highgui.hpp
  /usr/local/include/opencv4/opencv2/imgcodecs.hpp
  /usr/local/include/opencv4/opencv2/videoio.hpp
- /home/wjy/CameraDriverWS/src/vision_opencv/cv_bridge/include/cv_bridge/cv_bridge.h
+ /home/wjy/CameraDriverWS/src/cv_bridge/include/cv_bridge/cv_bridge.h
  /opt/ros/noetic/include/sensor_msgs/Image.h
  /opt/ros/noetic/include/ros/message_operations.h
  /opt/ros/noetic/include/std_msgs/Header.h

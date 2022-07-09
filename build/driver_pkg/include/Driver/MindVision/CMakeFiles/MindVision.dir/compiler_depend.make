@@ -1280,7 +1280,7 @@ driver_pkg/include/Driver/MindVision/CMakeFiles/MindVision.dir/MindVision.cpp.o:
   /usr/local/include/opencv4/opencv2/highgui.hpp \
   /usr/local/include/opencv4/opencv2/imgcodecs.hpp \
   /usr/local/include/opencv4/opencv2/videoio.hpp \
-  /home/wjy/CameraDriverWS/src/vision_opencv/cv_bridge/include/cv_bridge/cv_bridge.h \
+  /home/wjy/CameraDriverWS/src/cv_bridge/include/cv_bridge/cv_bridge.h \
   /opt/ros/noetic/include/sensor_msgs/Image.h \
   /opt/ros/noetic/include/ros/message_operations.h \
   /opt/ros/noetic/include/std_msgs/Header.h \
@@ -1485,8 +1485,6 @@ driver_pkg/include/Driver/MindVision/CMakeFiles/MindVision.dir/MindVision.cpp.o:
 /usr/include/boost/predef/platform/mingw.h:
 
 /usr/include/boost/predef/platform/cloudabi.h:
-
-/home/wjy/CameraDriverWS/src/vision_opencv/cv_bridge/include/cv_bridge/cv_bridge.h:
 
 /usr/include/boost/predef/platform/android.h:
 
@@ -3555,6 +3553,8 @@ driver_pkg/include/Driver/MindVision/CMakeFiles/MindVision.dir/MindVision.cpp.o:
 /usr/include/boost/mpl/equal_to.hpp:
 
 /usr/include/boost/mpl/aux_/preprocessed/gcc/equal_to.hpp:
+
+/home/wjy/CameraDriverWS/src/cv_bridge/include/cv_bridge/cv_bridge.h:
 
 /usr/include/boost/preprocessor/control/deduce_d.hpp:
 

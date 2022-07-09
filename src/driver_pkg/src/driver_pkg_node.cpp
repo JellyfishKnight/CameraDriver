@@ -24,13 +24,13 @@ int main(int argc, char *argv[])
                 cout << "Grab failed!" << endl;
                 return -1;
             }
-            cout << "Sending" << endl;
             msg = cv_bridge::CvImage(std_msgs::Header(), "bgr8", msgPicture).toImageMsg();
-            publisher.publish(*msg);
+            publisher.publish(msg);
         }
     } else {
         cout << "Initialize or start failed" << endl;
         return -1;
     }
+    cv::waitKey(0);
     return 0;
 }
