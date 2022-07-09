@@ -11,13 +11,16 @@
 using namespace cv;
 using namespace ros;
 
-void MVReceiver::callBack(const sensor_msgs::Image::ConstPtr& imgInfo) {
+void MVReceiver::callBack(const sensor_msgs::Image::ConstPtr &imgInfo) {
+    //接收message
     cv_bridge::CvImagePtr cvPtr = cv_bridge::toCvCopy(*imgInfo, sensor_msgs::image_encodings::TYPE_8UC3);
+    //将接收到的数据转化为Mat
     Mat cvImg = cvPtr->image;
-    imshow("sss",cvImg);
+    imshow("sss", cvImg);
     waitKey(1);
 }
 
 void MVReceiver::subscribe() {
-    subscriber = nodeHandle.subscribe("Driver_Node" ,1 ,callBack);
+    //订阅话题
+    subscriber = nodeHandle.subscribe("Driver_Node", 1, callBack);
 }

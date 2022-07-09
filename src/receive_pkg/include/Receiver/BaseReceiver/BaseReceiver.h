@@ -11,7 +11,7 @@
 
 using namespace cv;
 
-class BaseReceiver {
+class BaseReceiver {                //Ðé»ùÀà
 public:
     virtual void subscribe() = 0;
 };
