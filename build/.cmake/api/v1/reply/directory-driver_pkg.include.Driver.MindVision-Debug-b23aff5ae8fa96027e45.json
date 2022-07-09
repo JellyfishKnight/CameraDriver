@@ -1,0 +1,14 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : [],
+		"files" : [],
+		"nodes" : []
+	},
+	"installers" : [],
+	"paths" : 
+	{
+		"build" : "driver_pkg/include/Driver/MindVision",
+		"source" : "driver_pkg/include/Driver/MindVision"
+	}
+}

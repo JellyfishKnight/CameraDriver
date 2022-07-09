@@ -119,16 +119,19 @@ catkin_package(
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
 include_directories(
-  include
-  ${catkin_INCLUDE_DIRS}
-  ${OpenCV_INCLUDE_DIRS}
+        include
+        ${catkin_INCLUDE_DIRS}
+        ${OpenCV_INCLUDE_DIRS}
+        ${PROJECT_SOURCE_DIR}/include/Receiver/BaseReceiver
+        ${PROJECT_SOURCE_DIR}/include/Receiver/MVReceiver
 )
 
 ## Declare a C++ library
 # add_library(${PROJECT_NAME}
 #   src/${PROJECT_NAME}/recieve_pkg.cpp
 # )
-
+add_subdirectory(./include/Receiver/BaseReceiver)
+add_subdirectory(./include/Receiver/MVReceiver)
 
 ## Add cmake target dependencies of the library
 ## as an example, code may need to be generated before libraries
@@ -155,11 +158,13 @@ add_executable(${PROJECT_NAME}_node src/receive_pkg_node.cpp)
 # target_link_libraries(${PROJECT_NAME}_node
 #   ${catkin_LIBRARIES}
 # )
+set(TargetClass BaseReceiver MVReceiver)
 
-
-target_link_libraries(${PROJECT_NAME}_node
-  ${catkin_LIBRARIES}
-  ${OpenCV_LIBS}
+target_link_libraries(
+        ${PROJECT_NAME}_node
+        ${catkin_LIBRARIES}
+        ${OpenCV_LIBS}
+        ${TargetClass}
 )
 #############
 ## Install ##

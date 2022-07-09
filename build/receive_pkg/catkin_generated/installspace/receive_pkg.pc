@@ -1,4 +1,4 @@
-prefix=/home/wjy/CameraDriverWS/install
+prefix=/usr/local
 
 Name: receive_pkg
 Description: Description of receive_pkg

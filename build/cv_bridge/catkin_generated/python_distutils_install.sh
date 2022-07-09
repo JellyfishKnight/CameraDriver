@@ -16,13 +16,13 @@ echo_and_run() { echo "+ $@" ; "$@" ; }
 echo_and_run cd "/home/wjy/CameraDriverWS/src/cv_bridge"
 
 # ensure that Python install destination exists
-echo_and_run mkdir -p "$DESTDIR/home/wjy/CameraDriverWS/install/lib/python3/dist-packages"
+echo_and_run mkdir -p "$DESTDIR/usr/local/lib/python3/dist-packages"
 
 # Note that PYTHONPATH is pulled from the environment to support installing
 # into one location when some dependencies were installed in another
 # location, #123.
 echo_and_run /usr/bin/env \
-    PYTHONPATH="/home/wjy/CameraDriverWS/install/lib/python3/dist-packages:/home/wjy/CameraDriverWS/build/lib/python3/dist-packages:$PYTHONPATH" \
+    PYTHONPATH="/usr/local/lib/python3/dist-packages:/home/wjy/CameraDriverWS/build/lib/python3/dist-packages:$PYTHONPATH" \
     CATKIN_BINARY_DIR="/home/wjy/CameraDriverWS/build" \
     "/usr/bin/python3" \
     "/home/wjy/CameraDriverWS/src/cv_bridge/setup.py" \
@@ -30,4 +30,4 @@ echo_and_run /usr/bin/env \
     build --build-base "/home/wjy/CameraDriverWS/build/cv_bridge" \
     install \
     --root="${DESTDIR-/}" \
-    --install-layout=deb --prefix="/home/wjy/CameraDriverWS/install" --install-scripts="/home/wjy/CameraDriverWS/install/bin"
+    --install-layout=deb --prefix="/usr/local" --install-scripts="/usr/local/bin"

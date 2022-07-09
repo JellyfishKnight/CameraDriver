@@ -1,0 +1,77 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"_install",
+			"install"
+		],
+		"files" : 
+		[
+			"/opt/ros/noetic/share/catkin/cmake/custom_install.cmake",
+			"cv_bridge/src/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 1
+			},
+			{
+				"command" : 1,
+				"file" : 1,
+				"line" : 7,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 13,
+				"parent" : 1
+			},
+			{
+				"command" : 1,
+				"file" : 1,
+				"line" : 65,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 13,
+				"parent" : 3
+			}
+		]
+	},
+	"installers" : 
+	[
+		{
+			"backtrace" : 2,
+			"component" : "Unspecified",
+			"destination" : "lib",
+			"paths" : 
+			[
+				"devel/lib/libcv_bridge.so"
+			],
+			"targetId" : "cv_bridge::@ad0d2294440df4485c0d",
+			"targetIndex" : 13,
+			"type" : "target"
+		},
+		{
+			"backtrace" : 4,
+			"component" : "Unspecified",
+			"destination" : "lib/python3/dist-packages/cv_bridge/boost",
+			"paths" : 
+			[
+				"devel/lib/python3/dist-packages/cv_bridge/boost/cv_bridge_boost.so"
+			],
+			"targetId" : "cv_bridge_boost::@ad0d2294440df4485c0d",
+			"targetIndex" : 15,
+			"type" : "target"
+		}
+	],
+	"paths" : 
+	{
+		"build" : "cv_bridge/src",
+		"source" : "cv_bridge/src"
+	}
+}

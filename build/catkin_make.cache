@@ -1,2 +1,0 @@
-cv_bridge:driver_pkg:receive_pkg
--DCMAKE_BUILD_TYPE=RelWithDebInfo -DCATKIN_DEVEL_PREFIX=/home/wjy/CameraDriverWS/devel -DCMAKE_INSTALL_PREFIX=/home/wjy/CameraDriverWS/install -G Unix Makefiles

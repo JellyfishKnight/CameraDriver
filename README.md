@@ -48,6 +48,8 @@
    ```bash
    $ roslaunch driver_pkg CameraTest.launch
    ```
-   
+   <hr>
+  
+   **现在可以 source /devel/setup.bash 或者 source /devel/setup.zsh 后直接使用命令行打开clion运行程序**
    
 

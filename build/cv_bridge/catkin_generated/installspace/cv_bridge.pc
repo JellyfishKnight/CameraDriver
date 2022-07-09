@@ -1,4 +1,4 @@
-prefix=/home/wjy/CameraDriverWS/install
+prefix=/usr/local
 
 Name: cv_bridge
 Description: Description of cv_bridge

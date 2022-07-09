@@ -1,0 +1,14 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : [],
+		"files" : [],
+		"nodes" : []
+	},
+	"installers" : [],
+	"paths" : 
+	{
+		"build" : "receive_pkg/include/Receiver/MVReceiver",
+		"source" : "receive_pkg/include/Receiver/MVReceiver"
+	}
+}

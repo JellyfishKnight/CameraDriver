@@ -68,13 +68,13 @@ set(driver_pkg_CONFIG_INCLUDED TRUE)
 # set variables for source/devel/install prefixes
 if("FALSE" STREQUAL "TRUE")
   set(driver_pkg_SOURCE_PREFIX /home/wjy/CameraDriverWS/src/driver_pkg)
-  set(driver_pkg_DEVEL_PREFIX /home/wjy/CameraDriverWS/devel)
+  set(driver_pkg_DEVEL_PREFIX /home/wjy/CameraDriverWS/build/devel)
   set(driver_pkg_INSTALL_PREFIX "")
   set(driver_pkg_PREFIX ${driver_pkg_DEVEL_PREFIX})
 else()
   set(driver_pkg_SOURCE_PREFIX "")
   set(driver_pkg_DEVEL_PREFIX "")
-  set(driver_pkg_INSTALL_PREFIX /home/wjy/CameraDriverWS/install)
+  set(driver_pkg_INSTALL_PREFIX /usr/local)
   set(driver_pkg_PREFIX ${driver_pkg_INSTALL_PREFIX})
 endif()
 
@@ -154,7 +154,7 @@ foreach(library ${libraries})
     set(lib_path "")
     set(lib "${library}-NOTFOUND")
     # since the path where the library is found is returned we have to iterate over the paths manually
-    foreach(path /home/wjy/CameraDriverWS/install/lib;/home/wjy/CameraDriverWS/devel/lib;/opt/ros/noetic/lib)
+    foreach(path /usr/local/lib;/home/wjy/CameraDriverWS/devel/lib;/opt/ros/noetic/lib)
       find_library(lib ${library}
         PATHS ${path}
         NO_DEFAULT_PATH NO_CMAKE_FIND_ROOT_PATH)
