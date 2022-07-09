@@ -15,7 +15,8 @@ bool MindVision::init() {
     //语言设置
     CameraSdkInit(1);
     //枚举设备,建立设备列表
-    if (CameraEnumerateDevice(&CameraEnumList,&CameraCounts) != CAMERA_STATUS_SUCCESS) {
+    CameraEnumerateDevice(&CameraEnumList,&CameraCounts);
+    if (CameraCounts == 0) {
         //函数返回值为0则表示枚举失败
         cout << "Camera enumerate devices failed!" << endl;
         return false;
@@ -24,15 +25,16 @@ bool MindVision::init() {
     if (CameraCounts == 0) {
         return false;
     }
+    cout << CameraCounts << endl;
     //相机初始化
-    if (CameraInit(&CameraEnumList, -1, -1, &hCamera) != 0) {
+    if (CameraInit(&CameraEnumList, -1, -1, &hCamera) != CAMERA_STATUS_SUCCESS) {
     //初始化失败    
         cout << "Camera init failed!" << endl;
         return false;
     } else {
         //获得相机的特性描述结构体
         CameraGetCapability(hCamera, &Capability);
-        g_pRgBuffer = new unsigned char[Capability.sResolutionRange.iHeightMax * Capability.sResolutionRange.iWidthMax * 3 / sizeof(unsigned char)];
+        g_pRgBuffer = (unsigned char*)malloc(Capability.sResolutionRange.iHeightMax * Capability.sResolutionRange.iWidthMax * 3);
         //设置相机参数
         setCameraData();
         //是否为黑白相机

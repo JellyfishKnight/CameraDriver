@@ -4476,6 +4476,530 @@ MVSDK_API CameraSdkStatus CameraGetCorrectDeadPixel(
 	BOOL* pbEnable
 	);
 
+/// @ingroup API_UNDISTORT
+/// \~chinese
+/// \brief 设置校正参数
+/// \param [in] hCamera 相机的句柄。
+/// \param [in] width 图片宽度
+/// \param [in] height 图片高度
+/// \param [in] cameraMatrix 内参(fx, fy, cx, cy)
+/// \param [in] distCoeffs 畸变系数(k1,k2,p1,p2,k3)
+/// \return 成功返回 CAMERA_STATUS_SUCCESS(0)。否则返回非0值的错误码, 请参考 CameraStatus.h 中错误码的定义。
+/// \~english
+/// \brief Set undistort parameters
+/// \param [in] hCamera Camera handle.
+/// \param [in] width image width
+/// \param [in] height image height
+/// \param [in] cameraMatrix internal matrix(fx, fy, cx, cy)
+/// \param [in] distCoeffs distortion coefficient (k1, k2, p1, p2, k3)
+/// \return Returns CAMERA_STATUS_SUCCESS(0) successfully. Otherwise, it returns a non-zero error code. Please refer to the definition of the error code in CameraStatus.h.
+MVSDK_API CameraSdkStatus CameraSetUndistortParams(
+	CameraHandle	hCamera,
+	int				width,
+	int				height,
+	double			cameraMatrix[4],
+	double			distCoeffs[5]
+	);
+
+/// @ingroup API_UNDISTORT
+/// \~chinese
+/// \brief 获取校正参数
+/// \param [in] hCamera 相机的句柄。
+/// \param [out] width 图片宽度
+/// \param [out] height 图片高度
+/// \param [out] cameraMatrix 内参(fx, fy, cx, cy)
+/// \param [out] distCoeffs 畸变系数(k1,k2,p1,p2,k3)
+/// \return 成功返回 CAMERA_STATUS_SUCCESS(0)。否则返回非0值的错误码, 请参考 CameraStatus.h 中错误码的定义。
+/// \~english
+/// \brief Get undistort parameters
+/// \param [in] hCamera Camera handle.
+/// \param [out] width image width
+/// \param [out] height image height
+/// \param [out] cameraMatrix internal matrix(fx, fy, cx, cy)
+/// \param [out] distCoeffs distortion coefficient (k1, k2, p1, p2, k3)
+/// \return Returns CAMERA_STATUS_SUCCESS(0) successfully. Otherwise, it returns a non-zero error code. Please refer to the definition of the error code in CameraStatus.h.
+MVSDK_API CameraSdkStatus CameraGetUndistortParams(
+	CameraHandle	hCamera,
+	int				*width,
+	int				*height,
+	double			cameraMatrix[4],
+	double			distCoeffs[5]
+	);
+
+/// @ingroup API_UNDISTORT
+/// \~chinese
+/// \brief 使能镜头校正
+/// \param [in] hCamera 相机的句柄。
+/// \param [in] bEnable 使能校正
+/// \return 成功返回 CAMERA_STATUS_SUCCESS(0)。否则返回非0值的错误码, 请参考 CameraStatus.h 中错误码的定义。
+/// \~english
+/// \brief Set undistort enable status
+/// \param [in] hCamera Camera handle.
+/// \param [in] bEnable enable status
+/// \return Returns CAMERA_STATUS_SUCCESS(0) successfully. Otherwise, it returns a non-zero error code. Please refer to the definition of the error code in CameraStatus.h.
+MVSDK_API CameraSdkStatus CameraSetUndistortEnable(
+	CameraHandle	hCamera,
+	BOOL			bEnable
+	);
+
+/// @ingroup API_UNDISTORT
+/// \~chinese
+/// \brief 获取镜头校正使能状态
+/// \param [in] hCamera 相机的句柄。
+/// \param [out] bEnable 使能校正
+/// \return 成功返回 CAMERA_STATUS_SUCCESS(0)。否则返回非0值的错误码, 请参考 CameraStatus.h 中错误码的定义。
+/// \~english
+/// \brief Get undistort enable status
+/// \param [in] hCamera Camera handle.
+/// \param [out] bEnable enable status
+/// \return Returns CAMERA_STATUS_SUCCESS(0) successfully. Otherwise, it returns a non-zero error code. Please refer to the definition of the error code in CameraStatus.h.
+MVSDK_API CameraSdkStatus CameraGetUndistortEnable(
+	CameraHandle	hCamera,
+	BOOL*			bEnable
+	);
+
+/// @ingroup API_UNDISTORT
+/// \~chinese
+/// \brief 打开校正编辑面板
+/// \param [in] hCamera 相机的句柄。
+/// \param [in] hParent    调用该函数的窗口的句柄。可以为NULL。
+/// \return 成功返回 CAMERA_STATUS_SUCCESS(0)。否则返回非0值的错误码, 请参考 CameraStatus.h 中错误码的定义。
+/// \~english
+/// \brief Open the undistort editing panel
+/// \param [in] hCamera Camera handle.
+/// \param [in] hParent The handle of the window that called the function. Can be NULL.
+/// \return Returns CAMERA_STATUS_SUCCESS(0) successfully. Otherwise, it returns a non-zero error code. Please refer to the definition of the error code in CameraStatus.h.
+MVSDK_API CameraSdkStatus CameraCustomizeUndistort(
+	CameraHandle	hCamera,
+	HWND			hParent
+	);
+
+/// @ingroup API_ENHANCE
+/// \~chinese
+/// \brief 使能平场校正
+/// \param [in] hCamera 相机的句柄。
+/// \param [in] bEnable     TRUE: 使能平场校正   FALSE: 关闭平场校正
+/// \return 成功返回 CAMERA_STATUS_SUCCESS(0)。否则返回非0值的错误码, 请参考 CameraStatus.h 中错误码的定义。
+/// \~english
+/// \brief Enable flat field correction
+/// \param [in] hCamera Camera handle.
+/// \param [in] bEnable TRUE: Enable flat field correction FALSE: Turn off flat field correction
+/// \return Returns CAMERA_STATUS_SUCCESS(0) successfully. Otherwise, it returns a non-zero error code. Please refer to the definition of the error code in CameraStatus.h.
+MVSDK_API CameraSdkStatus CameraFlatFieldingCorrectSetEnable(
+	CameraHandle hCamera,
+	BOOL bEnable
+	);
+
+/// @ingroup API_ENHANCE
+/// \~chinese
+/// \brief 获取平场校正使能状态
+/// \param [in] hCamera 相机的句柄。
+/// \param [out] pbEnable 返回使能状态
+/// \return 成功返回 CAMERA_STATUS_SUCCESS(0)。否则返回非0值的错误码, 请参考 CameraStatus.h 中错误码的定义。
+/// \~english
+/// \brief Get Plane Correction Enable Status
+/// \param [in] hCamera Camera handle.
+/// \param [out] pbEnable Returns enable state
+/// \return Returns CAMERA_STATUS_SUCCESS(0) successfully. Otherwise, it returns a non-zero error code. Please refer to the definition of the error code in CameraStatus.h.
+MVSDK_API CameraSdkStatus CameraFlatFieldingCorrectGetEnable(
+	CameraHandle hCamera,
+	BOOL* pbEnable
+	);
+
+/// @ingroup API_ENHANCE
+/// \~chinese
+/// \brief 设置平场校正参数
+/// \param [in] hCamera 相机的句柄。
+/// \param [in] pDarkFieldingImage 暗场图片
+/// \param [in] pDarkFieldingFrInfo 暗场图片信息
+/// \param [in] pLightFieldingImage 明场图片
+/// \param [in] pLightFieldingFrInfo 明场图片信息
+/// \return 成功返回 CAMERA_STATUS_SUCCESS(0)。否则返回非0值的错误码, 请参考 CameraStatus.h 中错误码的定义。
+/// \~english
+/// \brief Set flat field correction parameters
+/// \param [in] hCamera Camera handle.
+/// \param [in] pDarkFieldingImage dark field image
+/// \param [in] pDarkFieldingFrInfo dark field image information
+/// \param [in] pLightFieldingImage Brightfield image
+/// \param [in] pLightFieldingFrInfo Brightfield image information
+/// \return Returns CAMERA_STATUS_SUCCESS(0) successfully. Otherwise, it returns a non-zero error code. Please refer to the definition of the error code in CameraStatus.h.
+MVSDK_API CameraSdkStatus CameraFlatFieldingCorrectSetParameter(
+	CameraHandle hCamera,
+	BYTE const* pDarkFieldingImage,
+	tSdkFrameHead const* pDarkFieldingFrInfo,
+	BYTE const* pLightFieldingImage,
+	tSdkFrameHead const* pLightFieldingFrInfo
+	);
+
+/// @ingroup API_ENHANCE
+/// \~chinese
+/// \brief 获取平场校正参数的状态
+/// \param [in] hCamera 相机的句柄。
+/// \param [out] pbValid 返回参数是否有效
+/// \param [out] pFilePath 返回参数文件的路径
+/// \return 成功返回 CAMERA_STATUS_SUCCESS(0)。否则返回非0值的错误码, 请参考 CameraStatus.h 中错误码的定义。
+/// \~english
+/// \brief Get status of flat field correction parameters
+/// \param [in] hCamera Camera handle.
+/// \param [out] pbValid Return whether the parameter is valid
+/// \param [out] pFilePath Returns the path of the parameter file
+/// \return Returns CAMERA_STATUS_SUCCESS(0) successfully. Otherwise, it returns a non-zero error code. Please refer to the definition of the error code in CameraStatus.h.
+MVSDK_API CameraSdkStatus CameraFlatFieldingCorrectGetParameterState(
+	CameraHandle hCamera,
+	BOOL *pbValid,
+	char *pFilePath
+	);
+
+/// @ingroup API_ENHANCE
+/// \~chinese
+/// \brief 保存平场校正参数到文件
+/// \param [in] hCamera 相机的句柄。
+/// \param [in] pszFileName 文件路径
+/// \return 成功返回 CAMERA_STATUS_SUCCESS(0)。否则返回非0值的错误码, 请参考 CameraStatus.h 中错误码的定义。
+/// \~english
+/// \brief Save flat correction parameters to file
+/// \param [in] hCamera Camera handle.
+/// \param [in] pszFileName file path
+/// \return Returns CAMERA_STATUS_SUCCESS(0) successfully. Otherwise, it returns a non-zero error code. Please refer to the definition of the error code in CameraStatus.h.
+MVSDK_API CameraSdkStatus CameraFlatFieldingCorrectSaveParameterToFile(
+	CameraHandle hCamera,
+	char const* pszFileName
+	);
+
+/// @ingroup API_ENHANCE
+/// \~chinese
+/// \brief 从文件中加载平场校正参数
+/// \param [in] hCamera 相机的句柄。
+/// \param [in] pszFileName 文件路径
+/// \return 成功返回 CAMERA_STATUS_SUCCESS(0)。否则返回非0值的错误码, 请参考 CameraStatus.h 中错误码的定义。
+/// \~english
+/// \brief Load flat field correction parameters from file
+/// \param [in] hCamera Camera handle.
+/// \param [in] pszFileName file path
+/// \return Returns CAMERA_STATUS_SUCCESS(0) successfully. Otherwise, it returns a non-zero error code. Please refer to the definition of the error code in CameraStatus.h.
+MVSDK_API CameraSdkStatus CameraFlatFieldingCorrectLoadParameterFromFile(
+	CameraHandle hCamera,
+	char const* pszFileName
+	);
+
+/// @ingroup API_ENHANCE
+/// \~chinese
+/// \brief 设置3D降噪参数
+/// \param [in] hCamera 相机的句柄。
+/// \param [in] bEnable  启用或禁用
+/// \param [in] nCount   使用几张图片进行降噪(2-8张)
+/// \param [in] Weights  降噪权重，如当使用3张图片进行降噪则这个参数可以传入3个浮点(0.3,0.3,0.4)，最后一张图片的权重大于前2张。如果不需要使用权重，则把这个参数传入0，表示所有图片的权重相同(0.33,0.33,0.33)
+/// \return 成功返回 CAMERA_STATUS_SUCCESS(0)。否则返回非0值的错误码, 请参考 CameraStatus.h 中错误码的定义。
+/// \~english
+/// \brief Set 3D noise reduction parameters
+/// \param [in] hCamera Camera handle.
+/// \param [in] bEnable enable or disable
+/// \param [in] nCount Noise reduction using several pictures (2-8)
+/// \param [in] Weights Noise reduction weight, such as when using 3 pictures for noise reduction, this parameter can be passed in 3 floating points (0.3, 0.3, 0.4). The weight of the last picture is larger than the first 2 pictures. . If you do not need to use weights, then pass this parameter to 0, indicating that all images have the same weight (0.33, 0.33, 0.33)
+/// \return Returns CAMERA_STATUS_SUCCESS(0) successfully. Otherwise, it returns a non-zero error code. Please refer to the definition of the error code in CameraStatus.h.
+MVSDK_API CameraSdkStatus CameraSetDenoise3DParams(
+	CameraHandle    hCamera, 
+	BOOL			bEnable,
+	int				nCount,
+	float			*Weights
+	);
+
+/// @ingroup API_ENHANCE
+/// \~chinese
+/// \brief 获取当前的3D降噪参数
+/// \param [in] hCamera 相机的句柄。
+/// \param [out] bEnable  启用或禁用
+/// \param [out] nCount   使用了几张图片进行降噪
+/// \param [out] bUseWeight 是否使用了降噪权重
+/// \param [out] Weights  降噪权重
+/// \return 成功返回 CAMERA_STATUS_SUCCESS(0)。否则返回非0值的错误码, 请参考 CameraStatus.h 中错误码的定义。
+/// \~english
+/// \brief Get current 3D noise reduction parameters
+/// \param [in] hCamera Camera handle.
+/// \param [out] bEnable enable or disable
+/// \param [out] nCount uses several pictures for noise reduction
+/// \param [out] bUseWeight whether to use noise reduction weights
+/// \param [out] Weights Noise Reduction Weights
+/// \return Returns CAMERA_STATUS_SUCCESS(0) successfully. Otherwise, it returns a non-zero error code. Please refer to the definition of the error code in CameraStatus.h.
+MVSDK_API CameraSdkStatus CameraGetDenoise3DParams(
+	CameraHandle    hCamera, 
+	BOOL			*bEnable,
+	int				*nCount,
+	BOOL			*bUseWeight,
+	float			*Weights
+	);
+
+/// @ingroup API_ENHANCE
+/// \~chinese
+/// \brief 对一组帧进行一次降噪处理
+/// \param [in] InFramesHead  输入帧头
+/// \param [in] InFramesData  输入帧数据
+/// \param [in] nCount   输入帧的数量
+/// \param [in] Weights  降噪权重
+/// \param [out] OutFrameHead 输出帧头
+/// \param [out] OutFrameData 输出帧数据
+/// \return 成功返回 CAMERA_STATUS_SUCCESS(0)。否则返回非0值的错误码, 请参考 CameraStatus.h 中错误码的定义。
+/// \~english
+/// \brief Perform a noise reduction on a group of frames
+/// \param [in] InFramesHead input frame header
+/// \param [in] InFramesData input frame data
+/// \param [in] nCount Number of input frames
+/// \param [in] Weights Noise Reduction Weight
+/// \param [out] OutFrameHead output frame header
+/// \param [out] OutFrameData output frame data
+/// \return Returns CAMERA_STATUS_SUCCESS(0) successfully. Otherwise, it returns a non-zero error code. Please refer to the definition of the error code in CameraStatus.h.
+MVSDK_API CameraSdkStatus CameraManualDenoise3D(
+	tSdkFrameHead	*InFramesHead,
+	BYTE			**InFramesData,
+	int				nCount,
+	float			*Weights,
+	tSdkFrameHead	*OutFrameHead,
+	BYTE			*OutFrameData
+	);
+
+/// @ingroup API_ADVANCE
+/// \~chinese
+/// \brief 获取输出格式的特性支持。（比如：H264、H265支持设置码率）
+/// \param [in] hCamera 相机的句柄。
+/// \param [in] iMediaType 输出格式索引
+/// \param [out] uCap 特性支持
+/// \return 成功返回 CAMERA_STATUS_SUCCESS(0)。否则返回非0值的错误码, 请参考 CameraStatus.h 中错误码的定义。
+/// \~english
+/// \brief Get the feature support of the output format. (For example: H264, H265 support setting bit rate)
+/// \param [in] hCamera Handle of the camera.
+/// \param [in] iMediaType output format index
+/// \param [out] uCap feature support
+/// \return Returns CAMERA_STATUS_SUCCESS(0) successfully. Otherwise, it returns a non-zero error code. Please refer to the definition of the error code in CameraStatus.h.
+MVSDK_API CameraSdkStatus CameraGetMediaCapability(
+	CameraHandle    hCamera, 
+	int				iMediaType,
+	UINT			*uCap
+	);
+
+/// @ingroup API_ADVANCE
+/// \~chinese
+/// \brief 设置码率。（仅部分输出格式支持，比如：H264、H265）
+/// \param [in] hCamera 相机的句柄。
+/// \param [in] iMediaType 输出格式索引
+/// \param [in] uRate 码率
+/// \return 成功返回 CAMERA_STATUS_SUCCESS(0)。否则返回非0值的错误码, 请参考 CameraStatus.h 中错误码的定义。
+/// \~english
+/// \brief Set the bit rate. (Only some output formats are supported, such as H264, H265)
+/// \param [in] hCamera Handle of the camera.
+/// \param [in] iMediaType output format index
+/// \param [in] uRate bit rate
+/// \return Returns CAMERA_STATUS_SUCCESS(0) successfully. Otherwise, it returns a non-zero error code. Please refer to the definition of the error code in CameraStatus.h.
+MVSDK_API CameraSdkStatus CameraSetMediaBitRate(
+	CameraHandle    hCamera, 
+	int				iMediaType,
+	UINT			uRate
+	);
+
+/// @ingroup API_ADVANCE
+/// \~chinese
+/// \brief 获取码率设置。（仅部分输出格式支持，比如：H264、H265）
+/// \param [in] hCamera 相机的句柄。
+/// \param [in] iMediaType 输出格式索引
+/// \param [out] uRate 码率
+/// \return 成功返回 CAMERA_STATUS_SUCCESS(0)。否则返回非0值的错误码, 请参考 CameraStatus.h 中错误码的定义。
+/// \~english
+/// \brief Get the bit rate. (Only some output formats are supported, such as H264, H265)
+/// \param [in] hCamera Handle of the camera.
+/// \param [in] iMediaType output format index
+/// \param [out] uRate bit rate
+/// \return Returns CAMERA_STATUS_SUCCESS(0) successfully. Otherwise, it returns a non-zero error code. Please refer to the definition of the error code in CameraStatus.h.
+MVSDK_API CameraSdkStatus CameraGetMediaBitRate(
+	CameraHandle    hCamera, 
+	int				iMediaType,
+	UINT			*uRate
+	);
+
+/// @ingroup API_ADVANCE
+/// \~chinese
+/// \brief 设置相机帧事件回调函数。当帧开始以及帧完成时，pCallBack所指向的回调函数就会被调用。 
+/// \param [in] hCamera 相机的句柄。
+/// \param [in] pCallBack 回调函数指针。
+/// \param [in] pContext  回调函数的附加参数，在回调函数被调用时该附加参数会被传入，可以为NULL。
+/// \return 成功返回 CAMERA_STATUS_SUCCESS(0)。否则返回非0值的错误码, 请参考 CameraStatus.h 中错误码的定义。
+/// \note 对于全局快门相机帧开始表示一帧曝光结束
+/// \~english
+/// \brief Set the camera frame event callback function. When the frame starts and when the frame is completed, the callback function pointed to by pCallBack will be called.
+/// \param [in] hCamera Camera handle.
+/// \param [in] pCallBack callback function pointer.
+/// \param [in] pContext Additional parameter of the callback function. This additional parameter will be passed in when the callback function is called. It can be NULL.
+/// \return Returns CAMERA_STATUS_SUCCESS(0) successfully. Otherwise, it returns a non-zero error code. Please refer to the definition of the error code in CameraStatus.h.
+/// \note For the start of the global shutter camera frame, it means the end of a frame exposure
+MVSDK_API CameraSdkStatus CameraSetFrameEventCallback(
+	CameraHandle        hCamera,
+	CAMERA_FRAME_EVENT_CALLBACK pCallBack,
+	PVOID               pContext
+	);
+
+/// @ingroup API_ENHANCE
+/// \~chinese
+/// \brief 设置降噪系数.
+/// \param [in] hCamera 相机的句柄。
+/// \param [in] value   [0,7]
+/// \return 成功返回 CAMERA_STATUS_SUCCESS(0)。否则返回非0值的错误码, 请参考 CameraStatus.h 中错误码的定义。
+/// \~english
+/// \brief Set the noise reduction coefficient.
+/// \param [in] hCamera Camera handle.
+/// \param [in] value   [0,7]
+/// \return Returns CAMERA_STATUS_SUCCESS(0) successfully. Otherwise, it returns a non-zero error code. Please refer to the definition of the error code in CameraStatus.h.
+MVSDK_API CameraSdkStatus CameraSetNoiseReductionValue(
+	CameraHandle    hCamera,
+	int				value
+	);
+
+/// @ingroup API_ENHANCE
+/// \~chinese
+/// \brief 获取降噪系数.
+/// \param [in] hCamera 相机的句柄。
+/// \param [out] value  [0,7]
+/// \return 成功返回 CAMERA_STATUS_SUCCESS(0)。否则返回非0值的错误码, 请参考 CameraStatus.h 中错误码的定义。
+/// \~english
+/// \brief Get the noise reduction coefficient.
+/// \param [in] hCamera Camera handle.
+/// \param [out] value  [0,7]
+/// \return Returns CAMERA_STATUS_SUCCESS(0) successfully. Otherwise, it returns a non-zero error code. Please refer to the definition of the error code in CameraStatus.h.
+MVSDK_API CameraSdkStatus CameraGetNoiseReductionValue(
+	CameraHandle    hCamera,
+	int*			value
+	);
+
+/// @ingroup API_ENHANCE
+/// \~chinese
+/// \brief 设置对数曲线值
+/// \param [in] hCamera 相机的句柄。
+/// \param [in] value   [0,255]
+/// \return 成功返回 CAMERA_STATUS_SUCCESS(0)。否则返回非0值的错误码, 请参考 CameraStatus.h 中错误码的定义。
+/// \~english
+/// \brief Set logarithmic curve value
+/// \param [in] hCamera Camera handle.
+/// \param [in] value   [0,255]
+/// \return Returns CAMERA_STATUS_SUCCESS(0) successfully. Otherwise, it returns a non-zero error code. Please refer to the definition of the error code in CameraStatus.h.
+MVSDK_API CameraSdkStatus CameraSetLogarithmicCurveValue(
+	CameraHandle    hCamera,
+	int				value
+	);
+
+/// @ingroup API_ENHANCE
+/// \~chinese
+/// \brief 获取对数曲线值
+/// \param [in] hCamera 相机的句柄。
+/// \param [out] value  [0,255]
+/// \return 成功返回 CAMERA_STATUS_SUCCESS(0)。否则返回非0值的错误码, 请参考 CameraStatus.h 中错误码的定义。
+/// \~english
+/// \brief Get logarithmic curve value
+/// \param [in] hCamera Camera handle.
+/// \param [out] value  [0,255]
+/// \return Returns CAMERA_STATUS_SUCCESS(0) successfully. Otherwise, it returns a non-zero error code. Please refer to the definition of the error code in CameraStatus.h.
+MVSDK_API CameraSdkStatus CameraGetLogarithmicCurveValue(
+	CameraHandle    hCamera,
+	int*			value
+	);
+
+/// @ingroup API_ADVANCE
+/// \~chinese
+/// \brief 设置拼接行数，从多帧提取指定的行数拼接成一帧
+/// \param [in] hCamera 相机的句柄。
+/// \param [in] numLines 拼接行数（默认为0，0表示不做拼接处理）
+/// \return 成功返回 CAMERA_STATUS_SUCCESS(0)。否则返回非0值的错误码, 请参考 CameraStatus.h 中错误码的定义。
+/// \~english
+/// \brief Set the number of splicing lines, extract the specified number of lines from multiple frames and splice them into one frame (only support line scan series)
+/// \param [in] hCamera Camera handle.
+/// \param [in] numLines Number of splicing lines (default is 0, 0 means no splicing processing)
+/// \return Returns CAMERA_STATUS_SUCCESS(0) successfully. Otherwise, it returns a non-zero error code. Please refer to the definition of the error code in CameraStatus.h.
+MVSDK_API CameraSdkStatus CameraSetSpliceLines(
+	CameraHandle    hCamera,
+	int             numLines
+	);
+
+/// @ingroup API_ADVANCE
+/// \~chinese
+/// \brief 获取拼接行数
+/// \param [in] hCamera 相机的句柄。
+/// \param [in] numLines 拼接行数（默认为0，0表示不做拼接处理）
+/// \return 成功返回 CAMERA_STATUS_SUCCESS(0)。否则返回非0值的错误码, 请参考 CameraStatus.h 中错误码的定义。
+/// \~english
+/// \brief Get the number of splicing lines
+/// \param [in] hCamera Camera handle.
+/// \param [in] numLines Number of splicing lines (default is 0, 0 means no splicing processing)
+/// \return Returns CAMERA_STATUS_SUCCESS(0) successfully. Otherwise, it returns a non-zero error code. Please refer to the definition of the error code in CameraStatus.h.
+MVSDK_API CameraSdkStatus CameraGetSpliceLines(
+	CameraHandle    hCamera,
+	int*            numLines
+	);
+
+/// @ingroup API_GRAB
+/// \~chinese
+/// \brief 从指定通道获取数据。(仅部分相机硬件支持此功能)
+/// \param [in] hCamera 相机的句柄。
+/// \param [in] pszChannelName 通道名。
+/// \param [out] pFrameInfo 图像的帧头信息指针。
+/// \param [out] pbyBuffer 返回图像数据的缓冲区指针。
+/// \param [in] wTimes 抓取图像的超时时间，单位毫秒。在wTimes时间内还未获得图像，则该函数会返回超时错误。
+/// \return 成功返回 CAMERA_STATUS_SUCCESS(0)。否则返回非0值的错误码, 请参考 CameraStatus.h 中错误码的定义。
+/// \~english
+/// \brief Get data from the specified channel. (Only some camera hardware supports this function)
+/// \param [in] hCamera Handle of the camera.
+/// \param [in] pszChannelName Channel name.
+/// \param [out] pFrameInfo The header information pointer of the image.
+/// \param [out] pbyBuffer Returns the buffer pointer of the image data.
+/// \param [in] wTimes Timeout for grabbing an image in milliseconds. The function returns a timeout error if no image has been obtained within wTimes.
+/// \return Returns CAMERA_STATUS_SUCCESS(0) successfully. Otherwise, it returns a non-zero error code. Please refer to the definition of the error code in CameraStatus.h.
+MVSDK_API CameraSdkStatus CameraSnapChannelBuffer(
+	CameraHandle	hCamera,
+	char const*		pszChannelName,
+	tSdkFrameHead*	pFrameInfo,
+	BYTE**			pbyBuffer,
+	UINT			wTimes
+	);
+
+/// @ingroup API_GRAB
+/// \~chinese
+/// \brief 释放由@link #CameraSnapChannelBuffer @endlink获得的缓冲区。
+/// \param [in] hCamera 相机的句柄。
+/// \param [in] pszChannelName 通道名。
+/// \param [in] pbyBuffer 帧缓冲区地址。
+/// \return 成功返回 CAMERA_STATUS_SUCCESS(0)。否则返回非0值的错误码, 请参考 CameraStatus.h 中错误码的定义。
+/// \~english
+/// \brief Releases the buffer obtained by @link #CameraSnapChannelBuffer @endlink.
+/// \param [in] hCamera Camera handle.
+/// \param [in] pszChannelName Channel name.
+/// \param [in] pbyBuffer Frame buffer address.
+/// \return Returns CAMERA_STATUS_SUCCESS(0) successfully. Otherwise, it returns a non-zero error code. Please refer to the definition of the error code in CameraStatus.h.
+MVSDK_API CameraSdkStatus CameraReleaseChannelBuffer(
+	CameraHandle    hCamera, 
+	char const*		pszChannelName,
+	BYTE*           pbyBuffer
+	);
+
+/// @ingroup API_UTIL
+/// \~chinese
+/// \brief 图片清晰度评估
+/// \param [in] hCamera 相机的句柄。
+/// \param [in] iAlgorithSel 使用的评估算法,参考@link emEvaluateDefinitionAlgorith @endlink的定义
+/// \param [in] pbyIn    输入图像数据的缓冲区地址，不能为NULL。 
+/// \param [in] pFrInfo  输入图像的帧头信息
+/// \param [out] DefinitionValue 返回的清晰度估值（越大越清晰）
+/// \return 成功返回 CAMERA_STATUS_SUCCESS(0)。否则返回非0值的错误码, 请参考 CameraStatus.h 中错误码的定义。
+/// \~english
+/// \brief Image clarity assessment
+/// \param [in] hCamera Camera handle.
+/// \param [in] iAlgorithSel The currently used evaluation algorithm, see @link emEvaluateDefinitionAlgorith @endlink
+/// \param [in] pbyIn The buffer address of the input image data. Cannot be NULL.
+/// \param [in] pFrInfo input image frame header information
+/// \param [out] DefinitionValue Returns the sharpness value (greater the clearer)
+/// \return Returns CAMERA_STATUS_SUCCESS(0) successfully. Otherwise, it returns a non-zero error code. Please refer to the definition of the error code in CameraStatus.h.
+MVSDK_API CameraSdkStatus CameraEvaluateImageDefinition(
+	CameraHandle        hCamera,
+	INT					iAlgorithSel,
+	BYTE*               pbyIn, 
+	tSdkFrameHead*      pFrInfo,
+	double*				DefinitionValue
+	);
+
 #ifdef __cplusplus
 }
 #endif

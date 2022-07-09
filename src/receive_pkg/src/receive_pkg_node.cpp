@@ -18,7 +18,7 @@ int main(int argc, char *argv[])
 {
     ros::init(argc, argv, "receive_pkg_node");
     ros::NodeHandle nodeHandle;
-    ros::Subscriber subscriber = nodeHandle.subscribe("Drive_Node", 1, call_back);
+    ros::Subscriber subscriber = nodeHandle.subscribe("Driver_Node", 1, call_back);
     
     while (ros::ok()) {
         ros::spinOnce();

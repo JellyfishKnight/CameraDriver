@@ -265,7 +265,8 @@ driver_pkg/include/Driver/MindVision/CMakeFiles/MindVision.dir/MindVision.cpp.o:
   /usr/include/opencv4/opencv2/core/ovx.hpp \
   /home/wjy/CameraDriverWS/src/driver_pkg/include/Driver/MindVision/MindVision.h \
   /home/wjy/CameraDriverWS/src/driver_pkg/include/Driver/MindVision/lib/CameraApi.h \
-  /usr/include/CameraDefine.h /usr/include/CameraStatus.h \
+  /home/wjy/CameraDriverWS/src/driver_pkg/include/Driver/MindVision/lib/CameraDefine.h \
+  /home/wjy/CameraDriverWS/src/driver_pkg/include/Driver/MindVision/lib/CameraStatus.h \
   /usr/include/opencv4/opencv2/imgproc/imgproc.hpp \
   /usr/include/opencv4/opencv2/imgproc.hpp \
   /usr/include/opencv4/opencv2/imgproc/imgproc_c.h \

@@ -1,4 +1,5 @@
 <launch>
+    <param name="serial_port"  type="string" value="/dev/mindvision" />
 
     <node pkg="driver_pkg" type="driver_pkg_node" name="driver_pkg_node"/>
 

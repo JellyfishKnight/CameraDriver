@@ -177,8 +177,8 @@ driver_pkg/CMakeFiles/driver_pkg_node.dir/src/driver_pkg_node.cpp.o: /home/wjy/C
   /usr/include/c++/9/bits/istream.tcc \
   /home/wjy/CameraDriverWS/src/driver_pkg/include/Driver/MindVision/MindVision.h \
   /home/wjy/CameraDriverWS/src/driver_pkg/include/Driver/MindVision/lib/CameraApi.h \
-  /usr/include/CameraDefine.h \
-  /usr/include/CameraStatus.h \
+  /home/wjy/CameraDriverWS/src/driver_pkg/include/Driver/MindVision/lib/CameraDefine.h \
+  /home/wjy/CameraDriverWS/src/driver_pkg/include/Driver/MindVision/lib/CameraStatus.h \
   /usr/include/opencv4/opencv2/core/core.hpp \
   /usr/include/opencv4/opencv2/core.hpp \
   /usr/include/opencv4/opencv2/core/cvdef.h \
@@ -1694,12 +1694,6 @@ driver_pkg/CMakeFiles/driver_pkg_node.dir/src/driver_pkg_node.cpp.o: /home/wjy/C
 
 /usr/include/boost/date_time/period.hpp:
 
-/usr/include/boost/predef/compiler/dignus.h:
-
-/usr/include/boost/date_time/adjust_functors.hpp:
-
-/usr/include/boost/date_time/year_month_day.hpp:
-
 /usr/include/boost/date_time/gregorian/gregorian_types.hpp:
 
 /usr/include/boost/date_time/int_adapter.hpp:
@@ -2200,14 +2194,6 @@ driver_pkg/CMakeFiles/driver_pkg_node.dir/src/driver_pkg_node.cpp.o: /home/wjy/C
 
 /usr/include/c++/9/bits/uniform_int_dist.h:
 
-/usr/include/boost/mpl/aux_/config/eti.hpp:
-
-/usr/include/boost/mpl/same_as.hpp:
-
-/usr/include/boost/date_time/date_defs.hpp:
-
-/usr/include/boost/mpl/vector/aux_/preprocessed/typeof_based/vector20.hpp:
-
 /usr/include/boost/date_time/gregorian/greg_calendar.hpp:
 
 /usr/include/opencv4/opencv2/core/bufferpool.hpp:
@@ -2347,6 +2333,8 @@ driver_pkg/CMakeFiles/driver_pkg_node.dir/src/driver_pkg_node.cpp.o: /home/wjy/C
 /usr/include/boost/predef/os/windows.h:
 
 /usr/include/x86_64-linux-gnu/c++/9/bits/gthr.h:
+
+/usr/include/c++/9/bits/ios_base.h:
 
 /usr/include/boost/numeric/conversion/detail/bounds.hpp:
 
@@ -2554,10 +2542,6 @@ driver_pkg/CMakeFiles/driver_pkg_node.dir/src/driver_pkg_node.cpp.o: /home/wjy/C
 
 /usr/include/boost/mpl/aux_/config/typeof.hpp:
 
-/usr/include/c++/9/bits/ios_base.h:
-
-/usr/include/CameraDefine.h:
-
 /usr/include/boost/predef/library/c/cloudabi.h:
 
 /usr/include/boost/numeric/conversion/converter_policies.hpp:
@@ -2694,6 +2678,14 @@ driver_pkg/CMakeFiles/driver_pkg_node.dir/src/driver_pkg_node.cpp.o: /home/wjy/C
 
 /usr/include/c++/9/bits/exception_ptr.h:
 
+/usr/include/boost/predef/compiler/dignus.h:
+
+/usr/include/boost/date_time/adjust_functors.hpp:
+
+/usr/include/boost/date_time/year_month_day.hpp:
+
+/home/wjy/CameraDriverWS/src/driver_pkg/include/Driver/MindVision/lib/CameraStatus.h:
+
 /usr/include/c++/9/bits/basic_string.tcc:
 
 /usr/include/boost/mpl/vector/aux_/pop_front.hpp:
@@ -2773,6 +2765,8 @@ driver_pkg/CMakeFiles/driver_pkg_node.dir/src/driver_pkg_node.cpp.o: /home/wjy/C
 /usr/include/c++/9/bits/exception.h:
 
 /usr/include/boost/preprocessor/list/adt.hpp:
+
+/home/wjy/CameraDriverWS/src/driver_pkg/include/Driver/MindVision/lib/CameraDefine.h:
 
 /usr/include/c++/9/bits/locale_facets.tcc:
 
@@ -3097,6 +3091,14 @@ driver_pkg/CMakeFiles/driver_pkg_node.dir/src/driver_pkg_node.cpp.o: /home/wjy/C
 /home/wjy/CameraDriverWS/src/driver_pkg/include/Driver/MindVision/lib/CameraApi.h:
 
 /usr/include/boost/mpl/aux_/at_impl.hpp:
+
+/usr/include/boost/mpl/aux_/config/eti.hpp:
+
+/usr/include/boost/mpl/same_as.hpp:
+
+/usr/include/boost/date_time/date_defs.hpp:
+
+/usr/include/boost/mpl/vector/aux_/preprocessed/typeof_based/vector20.hpp:
 
 /usr/include/boost/mpl/aux_/nttp_decl.hpp:
 
@@ -3524,8 +3526,6 @@ driver_pkg/CMakeFiles/driver_pkg_node.dir/src/driver_pkg_node.cpp.o: /home/wjy/C
 
 /usr/include/boost/weak_ptr.hpp:
 
-/usr/include/CameraStatus.h:
-
 /usr/include/boost/mpl/aux_/comparison_op.hpp:
 
 /usr/include/boost/mpl/aux_/iter_fold_impl.hpp:
@@ -3584,9 +3584,9 @@ driver_pkg/CMakeFiles/driver_pkg_node.dir/src/driver_pkg_node.cpp.o: /home/wjy/C
 
 /usr/include/boost/exception/exception.hpp:
 
-/usr/include/x86_64-linux-gnu/bits/mathcalls-narrow.h:
-
 /usr/include/x86_64-linux-gnu/bits/types/timer_t.h:
+
+/usr/include/x86_64-linux-gnu/bits/mathcalls-narrow.h:
 
 /usr/include/boost/current_function.hpp:
 

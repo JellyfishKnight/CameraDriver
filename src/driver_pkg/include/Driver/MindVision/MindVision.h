@@ -14,7 +14,7 @@
 class MindVision : public BaseDriver{
 private:
     int hCamera;                            //相机句柄
-    int CameraCounts = -1;                  //相机数量
+    int CameraCounts = 4;                  //相机数量
     int fps;                        
     tSdkCameraDevInfo CameraEnumList;       //相机枚举列表
     tSdkCameraCapbility Capability;         //设备描述信息

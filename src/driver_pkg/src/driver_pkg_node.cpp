@@ -17,20 +17,20 @@ int main(int argc, char *argv[])
     sensor_msgs::ImagePtr msg;
     ros::NodeHandle nodeHandle;
     ros::Publisher publisher = nodeHandle.advertise<sensor_msgs::Image>("Driver_Node", 1);
-    while (ros::ok()) {
-        if (mindVision.init() && mindVision.start()) {
+    if (mindVision.init() && mindVision.start()) {
+        while (ros::ok()) {
             mindVision.grab(msgPicture);
-        } else {
-            cout << "Initialize or start failed" << endl;
-            return -1;
+            if (msgPicture.empty()) {
+                cout << "Grab failed!" << endl;
+                return -1;
+            }
+            cout << "Sending" << endl;
+            msg = cv_bridge::CvImage(std_msgs::Header(), "bgr8", msgPicture).toImageMsg();
+            publisher.publish(*msg);
         }
-        if (msgPicture.empty()) {
-            cout << "Grab failed!" << endl;
-            return -1;
-        }
-        cout << "Sending" << endl;
-        msg = cv_bridge::CvImage(std_msgs::Header(), "bgr8", msgPicture).toImageMsg();
-        publisher.publish(*msg);
+    } else {
+        cout << "Initialize or start failed" << endl;
+        return -1;
     }
     return 0;
 }

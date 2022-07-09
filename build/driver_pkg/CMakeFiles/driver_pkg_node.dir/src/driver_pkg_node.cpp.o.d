@@ -164,7 +164,8 @@ driver_pkg/CMakeFiles/driver_pkg_node.dir/src/driver_pkg_node.cpp.o: \
   /usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/bits/istream.tcc \
   /home/wjy/CameraDriverWS/src/driver_pkg/include/Driver/MindVision/MindVision.h \
   /home/wjy/CameraDriverWS/src/driver_pkg/include/Driver/MindVision/lib/CameraApi.h \
-  /usr/include/CameraDefine.h /usr/include/CameraStatus.h \
+  /home/wjy/CameraDriverWS/src/driver_pkg/include/Driver/MindVision/lib/CameraDefine.h \
+  /home/wjy/CameraDriverWS/src/driver_pkg/include/Driver/MindVision/lib/CameraStatus.h \
   /usr/include/opencv4/opencv2/core/core.hpp \
   /usr/include/opencv4/opencv2/core.hpp \
   /usr/include/opencv4/opencv2/core/cvdef.h \
