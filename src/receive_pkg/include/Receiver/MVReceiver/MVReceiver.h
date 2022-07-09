@@ -18,7 +18,6 @@ class MVReceiver : public BaseReceiver {
 private:
     NodeHandle nodeHandle;
     Subscriber subscriber;
-    static cv_bridge::CvImagePtr cvPtr;
 protected:
     /**
      * @brief subscrib的回调函数
@@ -29,8 +28,6 @@ public:
      * @brief 订阅话题
      */
     void subscribe() override;
-
-    Mat getImg() override;
 };
 
 

@@ -14,7 +14,6 @@ using namespace cv;
 class BaseReceiver {
 public:
     virtual void subscribe() = 0;
-    virtual Mat getImg() = 0;
 };
 
 

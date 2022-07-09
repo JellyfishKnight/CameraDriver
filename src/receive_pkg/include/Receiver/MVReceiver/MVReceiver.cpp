@@ -11,19 +11,13 @@
 using namespace cv;
 using namespace ros;
 
-cv_bridge::CvImagePtr MVReceiver::cvPtr;
-
-
 void MVReceiver::callBack(const sensor_msgs::Image::ConstPtr& imgInfo) {
-    cvPtr = cv_bridge::toCvCopy(*imgInfo, sensor_msgs::image_encodings::TYPE_8UC3);
-//    imshow("sss",cvImg);
-//    waitKey(1);
+    cv_bridge::CvImagePtr cvPtr = cv_bridge::toCvCopy(*imgInfo, sensor_msgs::image_encodings::TYPE_8UC3);
+    Mat cvImg = cvPtr->image;
+    imshow("sss",cvImg);
+    waitKey(1);
 }
 
 void MVReceiver::subscribe() {
     subscriber = nodeHandle.subscribe("Driver_Node" ,1 ,callBack);
-}
-
-Mat MVReceiver::getImg() {
-    return cvPtr->image;
 }
