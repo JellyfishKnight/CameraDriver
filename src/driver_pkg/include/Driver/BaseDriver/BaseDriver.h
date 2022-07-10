@@ -6,11 +6,12 @@
 class BaseDriver {                             //虚基类
 protected:
     virtual void setCameraData() = 0;
+    virtual bool grab() = 0;
 public:
     virtual bool init() = 0;
     virtual bool start() = 0;
     virtual bool stop() = 0;
-    virtual bool grab(cv::Mat& src) = 0;
+    virtual void publish() = 0;
 };
 
 #endif //BASEDRIVER_H

@@ -8,32 +8,51 @@
 #include <opencv2/imgproc/imgproc_c.h>
 #include <iostream>
 #include "BaseDriver.h"
+#include "ros/ros.h"
+#include "sensor_msgs/Image.h"
 
-
+using namespace ros;
+using namespace cv;
 
 class MindVision : public BaseDriver{
 private:
-    int hCamera;                            //相机句柄
+    int hCamera{};                            //相机句柄
     int CameraCounts = 4;                  //相机数量
-    int fps;                        
-    tSdkCameraDevInfo CameraEnumList;       //相机枚举列表
-    tSdkCameraCapbility Capability;         //设备描述信息
-    tSdkFrameHead FrameInfo;
-    BYTE* pbyBuffer;
+    int fps{};
+    tSdkCameraDevInfo CameraEnumList{};       //相机枚举列表
+    tSdkCameraCapbility Capability{};         //设备描述信息
+    tSdkFrameHead FrameInfo{};
+    BYTE* pbyBuffer{};
     int iDisplayFrames = 10000;
     IplImage* ilpImage = nullptr;
-    double* pfLineTime;
+    double* pfLineTime{};
     int channel = 3;
-    unsigned char* g_pRgBuffer;              //处理后数据缓存区
+    unsigned char* g_pRgBuffer{};              //处理后数据缓存区
+    Mat src;                                //cv图像
 
+    NodeHandle nodeHandle;                  //节点处理器
+    Publisher publisher;                    //发布器
+    sensor_msgs::ImagePtr msg;              //消息图像指针
+
+    Rate rate;                              //发送频率
 protected:
     /**
      * @brief 设置相机参数
      */
-    void setCameraData() override;                    
-
+    void setCameraData() override;
+    /**
+     * @brief 将相机的数据转化为Mat
+     *
+     * @return true 转化成功
+     * @return false 转化失败
+     */
+    bool grab() override;
 public:
-    MindVision() = default;
+    /**
+     * @brief 构造函数
+     * @param frequency 发送频率(每秒多少次)
+     */
+    explicit MindVision(int frequency = 10000) : rate(frequency) {}
 
     ~MindVision() = default;
     /**
@@ -58,12 +77,9 @@ public:
      */
     bool stop() override;
     /**
-     * @brief 将相机的数据转化为Mat
-     * 
-     * @return true 转化成功
-     * @return false 转化失败
+     * @brief 发布消息
      */
-    bool grab(cv::Mat& src) override;
+    void publish() override;
 };
 
 #endif //MINDVISION_H
