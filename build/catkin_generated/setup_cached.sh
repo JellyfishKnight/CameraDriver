@@ -12,4 +12,4 @@ export LD_LIBRARY_PATH="/home/wjy/Projects/RMlearning/CameraDriverWS/build/devel
 export PKG_CONFIG_PATH="/home/wjy/Projects/RMlearning/CameraDriverWS/build/devel/lib/pkgconfig:$PKG_CONFIG_PATH"
 export PYTHONPATH="/home/wjy/Projects/RMlearning/CameraDriverWS/build/devel/lib/python3/dist-packages:$PYTHONPATH"
 export ROSLISP_PACKAGE_DIRECTORIES="/home/wjy/Projects/RMlearning/CameraDriverWS/build/devel/share/common-lisp:$ROSLISP_PACKAGE_DIRECTORIES"
-export ROS_PACKAGE_PATH="/home/wjy/CameraDriverWS/src:/home/wjy/Projects/RMlearning/CameraDriverWS/src:$ROS_PACKAGE_PATH"
+export ROS_PACKAGE_PATH="/home/wjy/Projects/RMlearning/CameraDriverWS/src:$ROS_PACKAGE_PATH"

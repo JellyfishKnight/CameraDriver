@@ -42,25 +42,3 @@ if(NOT DEFINED CMAKE_OBJDUMP)
   set(CMAKE_OBJDUMP "/usr/bin/objdump")
 endif()
 
-if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/wjy/Projects/RMlearning/CameraDriverWS/build/receive_pkg/catkin_generated/installspace/receive_pkg.pc")
-endif()
-
-if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/receive_pkg/cmake" TYPE FILE FILES
-    "/home/wjy/Projects/RMlearning/CameraDriverWS/build/receive_pkg/catkin_generated/installspace/receive_pkgConfig.cmake"
-    "/home/wjy/Projects/RMlearning/CameraDriverWS/build/receive_pkg/catkin_generated/installspace/receive_pkgConfig-version.cmake"
-    )
-endif()
-
-if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/receive_pkg" TYPE FILE FILES "/home/wjy/Projects/RMlearning/CameraDriverWS/src/receive_pkg/package.xml")
-endif()
-
-if(NOT CMAKE_INSTALL_LOCAL_ONLY)
-  # Include the install script for each subdirectory.
-  include("/home/wjy/Projects/RMlearning/CameraDriverWS/build/receive_pkg/include/Receiver/BaseReceiver/cmake_install.cmake")
-  include("/home/wjy/Projects/RMlearning/CameraDriverWS/build/receive_pkg/include/Receiver/MVReceiver/cmake_install.cmake")
-
-endif()
-

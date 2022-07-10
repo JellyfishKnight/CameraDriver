@@ -61,7 +61,7 @@ CMake Deprecation Warning at /usr/src/googletest/googletest/CMakeLists.txt:56 (c
 -- +++ processing catkin package: 'recognize_pkg'
 -- ==> add_subdirectory(recognize_pkg)
 -- Configuring done
-CMake Warning (dev) at driver_pkg/CMakeLists.txt:155 (add_executable):
+CMake Warning (dev) at driver_pkg/CMakeLists.txt:29 (add_executable):
   Policy CMP0115 is not set: Source file extensions must be explicit.  Run
   "cmake --help-policy CMP0115" for policy details.  Use the cmake_policy
   command to set the policy and suppress this warning.

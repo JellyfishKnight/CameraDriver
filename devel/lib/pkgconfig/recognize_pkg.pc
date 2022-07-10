@@ -1,0 +1,8 @@
+prefix=/home/wjy/Projects/RMlearning/CameraDriverWS/devel
+
+Name: recognize_pkg
+Description: Description of recognize_pkg
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

@@ -120,18 +120,14 @@ include_directories(
         include
         ${catkin_INCLUDE_DIRS}
         ${OpenCV_INCLUDE_DIRS}
-        ${PROJECT_SOURCE_DIR}/include/PreProcess
-        ${PROJECT_SOURCE_DIR}/include/Ranger
-        ${PROJECT_SOURCE_DIR}/include/System
 )
 
 ## Declare a C++ library
-# add_library(${PROJECT_NAME}
-#   src/${PROJECT_NAME}/recognize_pkg.cpp
-# )
-add_subdirectory(${PROJECT_SOURCE_DIR}/include/PreProcess)
-add_subdirectory(${PROJECT_SOURCE_DIR}/include/Ranger)
-add_subdirectory(${PROJECT_SOURCE_DIR}/include/System)
+ add_library(${PROJECT_NAME}
+        src/PreProcess.cpp
+        src/Ranger.cpp
+        src/System.cpp
+ )
 ## Add cmake target dependencies of the library
 ## as an example, code may need to be generated before libraries
 ## either from message generation or dynamic reconfigure
@@ -152,7 +148,6 @@ add_executable(${PROJECT_NAME}_node src/recognize_pkg_node.cpp)
 ## Add cmake target dependencies of the executable
 ## same as for the library above
 # add_dependencies(${PROJECT_NAME}_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
-set(TargetClass PreProcess Ranger System)
 ## Specify libraries to link a library or executable target against
 # target_link_libraries(${PROJECT_NAME}_node
 #   ${catkin_LIBRARIES}
@@ -160,7 +155,7 @@ set(TargetClass PreProcess Ranger System)
 target_link_libraries(${PROJECT_NAME}_node
         ${catkin_LIBRARIES}
         ${OpenCV_LIBS}
-        ${TargetClass}
+        ${PROJECT_NAME}
  )
 
 #############

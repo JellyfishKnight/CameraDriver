@@ -1,5 +1,5 @@
 #include "iostream"
-#include "MindVision.h"
+#include "driver_pkg/MindVision.h"
 #include "ros/ros.h"
 
 using namespace std;

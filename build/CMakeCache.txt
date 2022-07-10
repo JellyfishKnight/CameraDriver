@@ -315,15 +315,6 @@ CMAKE_STRIP:FILEPATH=/usr/bin/strip
 // Studio IDE projects all commands are done without /nologo.
 CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
 
-//Value Computed by CMake
-DAHUA_BINARY_DIR:STATIC=/home/wjy/Projects/RMlearning/CameraDriverWS/build/driver_pkg/include/Driver/DAHUA
-
-//Value Computed by CMake
-DAHUA_IS_TOP_LEVEL:STATIC=OFF
-
-//Value Computed by CMake
-DAHUA_SOURCE_DIR:STATIC=/home/wjy/Projects/RMlearning/CameraDriverWS/src/driver_pkg/include/Driver/DAHUA
-
 //Path to a program.
 DOXYGEN_EXECUTABLE:FILEPATH=DOXYGEN_EXECUTABLE-NOTFOUND
 
@@ -438,15 +429,6 @@ Ranger_IS_TOP_LEVEL:STATIC=OFF
 
 //Value Computed by CMake
 Ranger_SOURCE_DIR:STATIC=/home/wjy/Projects/RMlearning/CameraDriverWS/src/recognize_pkg/include/Ranger
-
-//Value Computed by CMake
-Recognizer_BINARY_DIR:STATIC=/home/wjy/Projects/RMlearning/CameraDriverWS/build/recognize_pkg/include/Recognizer
-
-//Value Computed by CMake
-Recognizer_IS_TOP_LEVEL:STATIC=OFF
-
-//Value Computed by CMake
-Recognizer_SOURCE_DIR:STATIC=/home/wjy/Projects/RMlearning/CameraDriverWS/src/recognize_pkg/include/Recognizer
 
 //Enable debian style python package layout
 SETUPTOOLS_DEB_LAYOUT:BOOL=ON
@@ -600,15 +582,6 @@ receive_pkg_IS_TOP_LEVEL:STATIC=OFF
 receive_pkg_SOURCE_DIR:STATIC=/home/wjy/Projects/RMlearning/CameraDriverWS/src/receive_pkg
 
 //Value Computed by CMake
-recoginze_pkg_BINARY_DIR:STATIC=/home/wjy/Projects/RMlearning/CameraDriverWS/build/recoginze_pkg
-
-//Value Computed by CMake
-recoginze_pkg_IS_TOP_LEVEL:STATIC=OFF
-
-//Value Computed by CMake
-recoginze_pkg_SOURCE_DIR:STATIC=/home/wjy/Projects/RMlearning/CameraDriverWS/src/recoginze_pkg
-
-//Value Computed by CMake
 recognize_pkg_BINARY_DIR:STATIC=/home/wjy/Projects/RMlearning/CameraDriverWS/build/recognize_pkg
 
 //Value Computed by CMake
@@ -631,9 +604,6 @@ roscpp_traits_DIR:PATH=/opt/ros/noetic/share/roscpp_traits/cmake
 
 //The directory containing a CMake configuration file for rosgraph_msgs.
 rosgraph_msgs_DIR:PATH=/opt/ros/noetic/share/rosgraph_msgs/cmake
-
-//The directory containing a CMake configuration file for rospy.
-rospy_DIR:PATH=/opt/ros/noetic/share/rospy/cmake
 
 //The directory containing a CMake configuration file for rostime.
 rostime_DIR:PATH=/opt/ros/noetic/share/rostime/cmake
@@ -795,7 +765,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=18
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=11
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP

@@ -1,4 +1,4 @@
-prefix=/home/wjy/CameraDriverWS/devel
+prefix=/home/wjy/Projects/RMlearning/CameraDriverWS/devel
 
 Name: receive_pkg
 Description: Description of receive_pkg

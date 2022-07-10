@@ -3,6 +3,5 @@
 
     <node pkg="driver_pkg" type="driver_pkg_node" name="driver_pkg_node"/>
 
-    <node pkg="receive_pkg" type="receive_pkg_node" name="receive_pkg_node"/>
-
+    <node pkg="recognize_pkg" type="recognize_pkg_node" name="recognize_pkg_node"/>
 </launch>
