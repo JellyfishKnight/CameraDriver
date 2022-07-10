@@ -1,4 +1,4 @@
-# Install script for directory: /home/wjy/CameraDriverWS/src/receive_pkg/include/Receiver/MVReceiver
+# Install script for directory: /home/wjy/Projects/RMlearning/CameraDriverWS/src/receive_pkg/include/Receiver/MVReceiver
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

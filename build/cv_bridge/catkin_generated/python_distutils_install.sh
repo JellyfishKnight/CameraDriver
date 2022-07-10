@@ -13,7 +13,7 @@ fi
 
 echo_and_run() { echo "+ $@" ; "$@" ; }
 
-echo_and_run cd "/home/wjy/CameraDriverWS/src/cv_bridge"
+echo_and_run cd "/home/wjy/Projects/RMlearning/CameraDriverWS/src/cv_bridge"
 
 # ensure that Python install destination exists
 echo_and_run mkdir -p "$DESTDIR/usr/local/lib/python3/dist-packages"
@@ -22,12 +22,12 @@ echo_and_run mkdir -p "$DESTDIR/usr/local/lib/python3/dist-packages"
 # into one location when some dependencies were installed in another
 # location, #123.
 echo_and_run /usr/bin/env \
-    PYTHONPATH="/usr/local/lib/python3/dist-packages:/home/wjy/CameraDriverWS/build/lib/python3/dist-packages:$PYTHONPATH" \
-    CATKIN_BINARY_DIR="/home/wjy/CameraDriverWS/build" \
+    PYTHONPATH="/usr/local/lib/python3/dist-packages:/home/wjy/Projects/RMlearning/CameraDriverWS/build/lib/python3/dist-packages:$PYTHONPATH" \
+    CATKIN_BINARY_DIR="/home/wjy/Projects/RMlearning/CameraDriverWS/build" \
     "/usr/bin/python3" \
-    "/home/wjy/CameraDriverWS/src/cv_bridge/setup.py" \
-    egg_info --egg-base /home/wjy/CameraDriverWS/build/cv_bridge \
-    build --build-base "/home/wjy/CameraDriverWS/build/cv_bridge" \
+    "/home/wjy/Projects/RMlearning/CameraDriverWS/src/cv_bridge/setup.py" \
+    egg_info --egg-base /home/wjy/Projects/RMlearning/CameraDriverWS/build/cv_bridge \
+    build --build-base "/home/wjy/Projects/RMlearning/CameraDriverWS/build/cv_bridge" \
     install \
     --root="${DESTDIR-/}" \
     --install-layout=deb --prefix="/usr/local" --install-scripts="/usr/local/bin"

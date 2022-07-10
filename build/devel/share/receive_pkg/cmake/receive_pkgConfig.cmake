@@ -67,8 +67,8 @@ set(receive_pkg_CONFIG_INCLUDED TRUE)
 
 # set variables for source/devel/install prefixes
 if("TRUE" STREQUAL "TRUE")
-  set(receive_pkg_SOURCE_PREFIX /home/wjy/CameraDriverWS/src/receive_pkg)
-  set(receive_pkg_DEVEL_PREFIX /home/wjy/CameraDriverWS/build/devel)
+  set(receive_pkg_SOURCE_PREFIX /home/wjy/Projects/RMlearning/CameraDriverWS/src/receive_pkg)
+  set(receive_pkg_DEVEL_PREFIX /home/wjy/Projects/RMlearning/CameraDriverWS/build/devel)
   set(receive_pkg_INSTALL_PREFIX "")
   set(receive_pkg_PREFIX ${receive_pkg_DEVEL_PREFIX})
 else()
@@ -110,7 +110,7 @@ if(NOT " " STREQUAL " ")
         message(FATAL_ERROR "Project 'receive_pkg' specifies '${idir}' as an include dir, which is not found.  It does not exist in '${include}'.  ${_report}")
       endif()
     else()
-      message(FATAL_ERROR "Project 'receive_pkg' specifies '${idir}' as an include dir, which is not found.  It does neither exist as an absolute directory nor in '/home/wjy/CameraDriverWS/src/receive_pkg/${idir}'.  ${_report}")
+      message(FATAL_ERROR "Project 'receive_pkg' specifies '${idir}' as an include dir, which is not found.  It does neither exist as an absolute directory nor in '/home/wjy/Projects/RMlearning/CameraDriverWS/src/receive_pkg/${idir}'.  ${_report}")
     endif()
     _list_append_unique(receive_pkg_INCLUDE_DIRS ${include})
   endforeach()
@@ -154,7 +154,7 @@ foreach(library ${libraries})
     set(lib_path "")
     set(lib "${library}-NOTFOUND")
     # since the path where the library is found is returned we have to iterate over the paths manually
-    foreach(path /home/wjy/CameraDriverWS/build/devel/lib;/home/wjy/CameraDriverWS/devel/lib;/opt/ros/noetic/lib)
+    foreach(path /home/wjy/Projects/RMlearning/CameraDriverWS/build/devel/lib;/home/wjy/Projects/RMlearning/CameraDriverWS/devel/lib;/opt/ros/noetic/lib)
       find_library(lib ${library}
         PATHS ${path}
         NO_DEFAULT_PATH NO_CMAKE_FIND_ROOT_PATH)

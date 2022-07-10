@@ -1,4 +1,4 @@
-# Install script for directory: /home/wjy/CameraDriverWS/src/cv_bridge
+# Install script for directory: /home/wjy/Projects/RMlearning/CameraDriverWS/src/cv_bridge
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -43,37 +43,37 @@ if(NOT DEFINED CMAKE_OBJDUMP)
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/wjy/CameraDriverWS/build/cv_bridge/catkin_generated/installspace/cv_bridge.pc")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/wjy/Projects/RMlearning/CameraDriverWS/build/cv_bridge/catkin_generated/installspace/cv_bridge.pc")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/cv_bridge/cmake" TYPE FILE FILES "/home/wjy/CameraDriverWS/build/cv_bridge/catkin_generated/installspace/cv_bridge-extras.cmake")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/cv_bridge/cmake" TYPE FILE FILES "/home/wjy/Projects/RMlearning/CameraDriverWS/build/cv_bridge/catkin_generated/installspace/cv_bridge-extras.cmake")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/cv_bridge/cmake" TYPE FILE FILES
-    "/home/wjy/CameraDriverWS/build/cv_bridge/catkin_generated/installspace/cv_bridgeConfig.cmake"
-    "/home/wjy/CameraDriverWS/build/cv_bridge/catkin_generated/installspace/cv_bridgeConfig-version.cmake"
+    "/home/wjy/Projects/RMlearning/CameraDriverWS/build/cv_bridge/catkin_generated/installspace/cv_bridgeConfig.cmake"
+    "/home/wjy/Projects/RMlearning/CameraDriverWS/build/cv_bridge/catkin_generated/installspace/cv_bridgeConfig-version.cmake"
     )
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/cv_bridge" TYPE FILE FILES "/home/wjy/CameraDriverWS/src/cv_bridge/package.xml")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/cv_bridge" TYPE FILE FILES "/home/wjy/Projects/RMlearning/CameraDriverWS/src/cv_bridge/package.xml")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  include("/home/wjy/CameraDriverWS/build/cv_bridge/catkin_generated/safe_execute_install.cmake")
+  include("/home/wjy/Projects/RMlearning/CameraDriverWS/build/cv_bridge/catkin_generated/safe_execute_install.cmake")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include/cv_bridge" TYPE DIRECTORY FILES "/home/wjy/CameraDriverWS/src/cv_bridge/include/cv_bridge/")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include/cv_bridge" TYPE DIRECTORY FILES "/home/wjy/Projects/RMlearning/CameraDriverWS/src/cv_bridge/include/cv_bridge/")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/wjy/CameraDriverWS/build/cv_bridge/python/cmake_install.cmake")
-  include("/home/wjy/CameraDriverWS/build/cv_bridge/src/cmake_install.cmake")
-  include("/home/wjy/CameraDriverWS/build/cv_bridge/test/cmake_install.cmake")
+  include("/home/wjy/Projects/RMlearning/CameraDriverWS/build/cv_bridge/python/cmake_install.cmake")
+  include("/home/wjy/Projects/RMlearning/CameraDriverWS/build/cv_bridge/src/cmake_install.cmake")
+  include("/home/wjy/Projects/RMlearning/CameraDriverWS/build/cv_bridge/test/cmake_install.cmake")
 
 endif()
 

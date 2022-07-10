@@ -1,4 +1,4 @@
-prefix=/home/wjy/CameraDriverWS/build/devel
+prefix=/home/wjy/Projects/RMlearning/CameraDriverWS/build/devel
 
 Name: driver_pkg
 Description: Description of driver_pkg

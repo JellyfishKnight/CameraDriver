@@ -1,4 +1,4 @@
-# Install script for directory: /home/wjy/CameraDriverWS/src/cv_bridge/test
+# Install script for directory: /home/wjy/Projects/RMlearning/CameraDriverWS/src/cv_bridge/test
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

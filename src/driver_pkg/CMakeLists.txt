@@ -121,12 +121,13 @@ catkin_package(
 
 
 include_directories(
-  include
-  ${catkin_INCLUDE_DIRS}
-  ${OpenCV_INCLUDE_DIRS}
-  ${PROJECT_SOURCE_DIR}/include/Driver/MindVision/lib
-  ${PROJECT_SOURCE_DIR}/include/Driver/BaseDriver
-  ${PROJECT_SOURCE_DIR}/include/Driver/MindVision
+        include
+        ${catkin_INCLUDE_DIRS}
+        ${OpenCV_INCLUDE_DIRS}
+        ${PROJECT_SOURCE_DIR}/include/Driver/MindVision/lib
+        ${PROJECT_SOURCE_DIR}/include/Driver/DAHUA/lib
+        ${PROJECT_SOURCE_DIR}/include/Driver/BaseDriver
+        ${PROJECT_SOURCE_DIR}/include/Driver/MindVision
 )
 
 ## Declare a C++ library
@@ -139,6 +140,7 @@ include_directories(
 
 add_subdirectory(${PROJECT_SOURCE_DIR}/include/Driver/BaseDriver)
 add_subdirectory(${PROJECT_SOURCE_DIR}/include/Driver/MindVision)
+
 
 set(TargetClass BaseDriver MindVision)
 ## Add cmake target dependencies of the library
@@ -167,12 +169,13 @@ add_executable(${PROJECT_NAME}_node src/driver_pkg_node)
 #   ${catkin_LIBRARIES}
 # )
 
-target_link_libraries(${PROJECT_NAME}_node
-   ${catkin_LIBRARIES}
-   MVSDK
-   ${OpenCV_LIBS}
-   ${TargetClass}
-   )
+target_link_libraries(
+        ${PROJECT_NAME}_node
+        ${catkin_LIBRARIES}
+        MVSDK
+        ${OpenCV_LIBS}
+        ${TargetClass}
+        )
 #############
 ## Install ##
 #############

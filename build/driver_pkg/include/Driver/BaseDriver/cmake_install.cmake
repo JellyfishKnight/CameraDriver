@@ -1,4 +1,4 @@
-# Install script for directory: /home/wjy/CameraDriverWS/src/driver_pkg/include/Driver/BaseDriver
+# Install script for directory: /home/wjy/Projects/RMlearning/CameraDriverWS/src/driver_pkg/include/Driver/BaseDriver
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

@@ -1,4 +1,4 @@
-# Install script for directory: /home/wjy/CameraDriverWS/src/cv_bridge/python
+# Install script for directory: /home/wjy/Projects/RMlearning/CameraDriverWS/src/cv_bridge/python
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -43,6 +43,6 @@ if(NOT DEFINED CMAKE_OBJDUMP)
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/python3/dist-packages/cv_bridge/boost" TYPE FILE FILES "/home/wjy/CameraDriverWS/build/devel/lib/python3/dist-packages/cv_bridge/boost/__init__.py")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/python3/dist-packages/cv_bridge/boost" TYPE FILE FILES "/home/wjy/Projects/RMlearning/CameraDriverWS/build/devel/lib/python3/dist-packages/cv_bridge/boost/__init__.py")
 endif()
 
