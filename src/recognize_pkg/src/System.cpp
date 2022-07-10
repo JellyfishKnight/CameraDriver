@@ -83,7 +83,7 @@ void System::Start() {
         if (pThis->center.x != 0 && pThis->center.y != 0) {
             //单目测距
             Ranging check;
-            check.start(pThis->matchA, pThis->matchB, mask);
+            check.start(pThis->matchA, pThis->matchB, pThis->demo);
         }
         //数据归零
         pThis->center.x = pThis->center.y = 0;
@@ -95,6 +95,7 @@ void System::Start() {
         }
     }
     cout << "Finished!" << endl;
+    waitKey(0);
 }
 
 void System::ContoursFind(const Mat &frame) {             /*调试完毕*/
@@ -115,7 +116,8 @@ void System::RectFit(Mat &mask) {
     allRects.clear();
     //使用椭圆拟合
     for (auto &contour: selectedContours) {
-        if (contour.size() > 100 && contour.size() < 800) {
+        //过滤太小的噪点
+        if (contour.size() > 20) {
             allRects.push_back(fitEllipse(contour));
         }
     }
@@ -140,14 +142,15 @@ void System::RectFit(Mat &mask) {
                 && allRects[j].size.height / allRects[j].size.width <= 7)
                 //对两个矩形的角度进行筛选
                 if (angleI * angleJ > 0 && abs(abs(angleI) - abs(angleJ)) < 5)
+//                    && (angleI > -50 && angleI < 50) && (angleJ > -50 && angleJ < 50))
                     //对两个矩形的面积进行配对
-                    if ((allRects[i].size.area() / allRects[j].size.area() >= 0.8
-                         || allRects[j].size.area() / allRects[i].size.area() >= 0.8
-                            && (allRects[i].size.area() / allRects[j].size.area() <= 1.25
-                                || allRects[j].size.area() / allRects[i].size.area() <= 1.25)))
+                    if ((allRects[i].size.area() / allRects[j].size.area() >= 0.9
+                        || allRects[j].size.area() / allRects[i].size.area() >= 0.9
+                        && (allRects[i].size.area() / allRects[j].size.area() <= 1.11
+                        || allRects[j].size.area() / allRects[i].size.area() <= 1.11)))
                         //两个矩形的中心点高度之差不能大
                         if (abs(allRects[i].center.y - allRects[j].center.y) <=
-                            (allRects[i].size.height + allRects[j].size.height) / 4) {
+                            (allRects[i].size.height + allRects[j].size.height) / 8) {
                             Point2f point_i[4], point_j[4];
                             //得到两个矩形的角点
                             allRects[i].points(point_i);
@@ -165,11 +168,11 @@ void System::RectFit(Mat &mask) {
                                            (matchB.center.y + matchA.center.y) / 2);
                             //画出匹配上的矩形
                             for (int l = 0; l < 4; l++) {
-                                line(pThis->demo, point_i[l], point_i[(l + 1) % 4], Scalar(0, 255, 255), 10);
-                                line(pThis->demo, point_j[l], point_j[(l + 1) % 4], Scalar(0, 255, 255), 10);
+                                line(pThis->demo, point_i[l], point_i[(l + 1) % 4], Scalar(0, 255, 255), 2);
+                                line(pThis->demo, point_j[l], point_j[(l + 1) % 4], Scalar(0, 255, 255), 2);
                             }
                             //画出装甲板中心
-                            circle(pThis->demo, center, 10, Scalar(0, 255, 255), -1);
+                            circle(pThis->demo, center, 4, Scalar(0, 255, 255), -1);
                         }
         }
     }

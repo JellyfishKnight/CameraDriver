@@ -138,7 +138,7 @@ void Ranging::start(const RotatedRect& a, const RotatedRect& b, Mat& demo) {    
     tz = tvecCamera2Obj.at<double>(2);
     float distObj2Camera = sqrt(tx * tx + ty * ty + tz * tz);
     //在图上标出装甲板的距离
-    putText(demo,"Dist:" + to_string(distObj2Camera).substr(0, 6), points[4], FONT_HERSHEY_SIMPLEX,2, Scalar(0,255,0),2);
+    putText(demo,"Dist:" + to_string(distObj2Camera).substr(0, 6), points[4], FONT_HERSHEY_SIMPLEX,0.5, Scalar(0,255,0),2);
 
 
     float thetaY, thetaX, thetaZ;
@@ -152,7 +152,7 @@ void Ranging::start(const RotatedRect& a, const RotatedRect& b, Mat& demo) {    
     thetaX = thetaX * 180.0 / CV_PI;
     thetaZ = thetaZ * 180.0 / CV_PI;
 //    cout << rotRvec << endl;
-    putText(demo, "Y" + to_string(thetaY).substr(0, 4), points[1], FONT_HERSHEY_SIMPLEX, 1.5, Scalar(0, 0,255), 2);
-    putText(demo, "X:" + to_string(thetaX).substr(0, 4), points[8], FONT_HERSHEY_SIMPLEX, 1.5, Scalar(0,0,255), 2);
-    putText(demo, "Z:" + to_string(thetaZ).substr(0, 4), points[5], FONT_HERSHEY_SIMPLEX, 1.5, Scalar(0,0,255), 2);
+    putText(demo, "Y" + to_string(thetaY).substr(0, 4), points[1], FONT_HERSHEY_SIMPLEX, 0.5, Scalar(0, 0,255), 2);
+    putText(demo, "X:" + to_string(thetaX).substr(0, 4), points[8], FONT_HERSHEY_SIMPLEX, 0.5, Scalar(0,0,255), 2);
+    putText(demo, "Z:" + to_string(thetaZ).substr(0, 4), points[5], FONT_HERSHEY_SIMPLEX, 0.5, Scalar(0,0,255), 2);
 }
