@@ -18,8 +18,7 @@ void MVReceiver::callBack(const sensor_msgs::Image::ConstPtr &imgInfo, void (*p)
     cv_bridge::CvImagePtr cvPtr = cv_bridge::toCvCopy(*imgInfo, sensor_msgs::image_encodings::TYPE_8UC3);
     //将接收到的数据转化为Mat
     pThis->cvImg = cvPtr->image;
-//    imshow("cvImg",pThis->cvImg);
-//    waitKey(1);
+    //将参数传出
     p(pThis->cvImg);
 }
 

@@ -13,7 +13,6 @@
 using namespace cv;
 
 class BaseReceiver {                //Ðé»ùÀà
-protected:
 public:
     virtual void subscribe(void (*p)(Mat mask)) = 0;
 };
