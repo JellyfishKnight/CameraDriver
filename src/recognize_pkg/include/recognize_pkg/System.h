@@ -22,6 +22,8 @@ private:
     string root;
     //敌方颜色
     Color color;
+    //原图
+    Mat demo;
     //所有找到的轮廓
     vector<vector<Point>> allContours;
     //轮廓层级
@@ -59,6 +61,10 @@ public:
      * @brief 启动识别系统
      */
     static void Start(Mat demo);
+    /**
+     * @brief 重载函数,用于视频调试
+     */
+    static void Start();
 
     ~System() = default;
 

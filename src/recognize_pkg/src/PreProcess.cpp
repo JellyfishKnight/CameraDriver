@@ -36,8 +36,8 @@ Mat PreProcess::start(Color color, Mat& input) {
     GaussianBlur(demo, blurDst, Size(5, 5), 5);    //高斯模糊去噪点
     threshold(blurDst, binaryDst, 80, 255, THRESH_BINARY);
     //寻找边缘
-    Canny(binaryDst, edge, 35, 135);                   //可以考虑待改进
+//    Canny(binaryDst, edge, 35, 135);                   //可以考虑待改进
     namedWindow("Pre", WINDOW_NORMAL);
     imshow("Pre", binaryDst);
-    return edge;
+    return binaryDst;
 }
