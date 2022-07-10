@@ -32,6 +32,8 @@
 3. **编译项目**
 
    ```bash
+   #删除原有的构建文件
+   $ rm -rf build devel
    $ catkin_make
    $ source /devel/setup.bash
    #如果是zsh
@@ -44,7 +46,7 @@
    #在第二个终端中运行
    $ rosrun driver_pkg driver_pkg_node
    #在第三个终端中运行
-   $ rosrun receive_pkg receive_pkg_node
+   $ rosrun recognize_pkg recognize_pkg_node
    ```
 
    **或者直接**
