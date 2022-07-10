@@ -14,16 +14,23 @@ using namespace std;
 using namespace cv;
 using namespace ros;
 
-class MVReceiver : public BaseReceiver {
+
+
+class MVReceiver : BaseReceiver{
 private:
     NodeHandle nodeHandle;
     Subscriber subscriber;
+    Mat cvImg;
+    static MVReceiver* pThis;
 protected:
     /**
      * @brief subscrib的回调函数
      */
     static void callBack(const sensor_msgs::Image::ConstPtr& imgInfo);
 public:
+    MVReceiver() {
+        pThis = this;
+    }
     /**
      * @brief 订阅话题
      */
