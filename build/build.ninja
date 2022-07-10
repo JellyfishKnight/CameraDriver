@@ -1660,6 +1660,14 @@ build recognize_pkg/CMakeFiles/recognize_pkg.dir/src/System.cpp.o: CXX_COMPILER_
   OBJECT_DIR = recognize_pkg/CMakeFiles/recognize_pkg.dir
   OBJECT_FILE_DIR = recognize_pkg/CMakeFiles/recognize_pkg.dir/src
 
+build recognize_pkg/CMakeFiles/recognize_pkg.dir/src/DataReader.cpp.o: CXX_COMPILER__recognize_pkg_Debug /home/wjy/Projects/RMlearning/CameraDriverWS/src/recognize_pkg/src/DataReader.cpp || cmake_object_order_depends_target_recognize_pkg
+  DEFINES = -DROSCONSOLE_BACKEND_LOG4CXX -DROS_BUILD_SHARED_LIBS=1 -DROS_PACKAGE_NAME=\"recognize_pkg\" -Drecognize_pkg_EXPORTS
+  DEP_FILE = recognize_pkg/CMakeFiles/recognize_pkg.dir/src/DataReader.cpp.o.d
+  FLAGS = -g -fPIC
+  INCLUDES = -I/home/wjy/Projects/RMlearning/CameraDriverWS/src/recognize_pkg/include -I/home/wjy/Projects/RMlearning/CameraDriverWS/src/receive_pkg/include -I/home/wjy/Projects/RMlearning/CameraDriverWS/src/cv_bridge/include -I/opt/ros/noetic/include -I/opt/ros/noetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp -I/usr/local/include/opencv4
+  OBJECT_DIR = recognize_pkg/CMakeFiles/recognize_pkg.dir
+  OBJECT_FILE_DIR = recognize_pkg/CMakeFiles/recognize_pkg.dir/src
+
 
 # =============================================================================
 # Link build statements for SHARED_LIBRARY target recognize_pkg
@@ -1668,7 +1676,7 @@ build recognize_pkg/CMakeFiles/recognize_pkg.dir/src/System.cpp.o: CXX_COMPILER_
 #############################################
 # Link the shared library devel/lib/librecognize_pkg.so
 
-build devel/lib/librecognize_pkg.so: CXX_SHARED_LIBRARY_LINKER__recognize_pkg_Debug recognize_pkg/CMakeFiles/recognize_pkg.dir/src/PreProcess.cpp.o recognize_pkg/CMakeFiles/recognize_pkg.dir/src/Ranger.cpp.o recognize_pkg/CMakeFiles/recognize_pkg.dir/src/System.cpp.o
+build devel/lib/librecognize_pkg.so: CXX_SHARED_LIBRARY_LINKER__recognize_pkg_Debug recognize_pkg/CMakeFiles/recognize_pkg.dir/src/PreProcess.cpp.o recognize_pkg/CMakeFiles/recognize_pkg.dir/src/Ranger.cpp.o recognize_pkg/CMakeFiles/recognize_pkg.dir/src/System.cpp.o recognize_pkg/CMakeFiles/recognize_pkg.dir/src/DataReader.cpp.o
   LANGUAGE_COMPILE_FLAGS = -g
   OBJECT_DIR = recognize_pkg/CMakeFiles/recognize_pkg.dir
   POST_BUILD = :

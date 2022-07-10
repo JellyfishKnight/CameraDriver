@@ -127,7 +127,8 @@ include_directories(
         src/PreProcess.cpp
         src/Ranger.cpp
         src/System.cpp
- )
+        src/DataReader.cpp
+         )
 ## Add cmake target dependencies of the library
 ## as an example, code may need to be generated before libraries
 ## either from message generation or dynamic reconfigure
