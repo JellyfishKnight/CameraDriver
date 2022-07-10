@@ -1,0 +1,4 @@
+Log file created at: 2022/07/10 17:21:30
+Running on machine: wjy
+Log line format: [IWEF]mmdd hh:mm:ss.uuuuuu threadid file:line] msg
+W0710 17:21:30.895664 70347 MVCameraBase.cpp:99] Device:(name:MV-SUA134GC#0 sn:041072720053)Lost

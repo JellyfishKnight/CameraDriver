@@ -20,7 +20,6 @@ void MVReceiver::callBack(const sensor_msgs::Image::ConstPtr &imgInfo, void (*p)
     pThis->cvImg = cvPtr->image;
     //将参数传出
     p(pThis->cvImg);
-
 }
 
 void MVReceiver::subscribe(void (*p)(Mat mask)) {

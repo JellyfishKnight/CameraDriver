@@ -14,7 +14,6 @@
 using namespace std;
 using namespace cv;
 
-
 System *System::pThis = nullptr;
 
 void System::Start(Mat demo) {
@@ -33,25 +32,26 @@ void System::Start(Mat demo) {
         return ;
     }
     //预处理(返回一个二值化图)
-    /**此处SF**/
     Mat frame = PreProcess::start(pThis->color, mask).clone();
     //轮廓查找以及筛选
     pThis->ContoursFind(frame);
     //寻找匹配的矩形
-    pThis->RectFit(mask);
+    pThis->RectFit(demo);
     if (pThis->center.x != 0 && pThis->center.y != 0) {
         //单目测距
         Ranging check;
-        check.start(pThis->matchA, pThis->matchB, mask);
+        check.start(pThis->matchA, pThis->matchB, demo);
     }
     //查找数字
+    //(待神经网络实现)
     //数据归零
     pThis->center.x = pThis->center.y = 0;
     cout << "------------------------------------------------" << endl;
     namedWindow("mask", WINDOW_NORMAL);
-    imshow("mask", mask);
+    imshow("mask", demo);
     waitKey(1);
 }
+
 
 void System::Start() {
     VideoCapture capture(pThis->root);
@@ -114,7 +114,7 @@ void System::ContoursFind(const Mat &frame) {             /*调试完毕*/
 }
 
 /*选择条件待优化,目前误识别依然存在*/
-void System::RectFit(Mat &mask) {
+void System::RectFit(Mat &demo) {
     allRects.clear();
     //使用椭圆拟合
     for (auto &contour: selectedContours) {
@@ -170,11 +170,11 @@ void System::RectFit(Mat &mask) {
                                            (matchB.center.y + matchA.center.y) / 2);
                             //画出匹配上的矩形
                             for (int l = 0; l < 4; l++) {
-                                line(pThis->demo, point_i[l], point_i[(l + 1) % 4], Scalar(0, 255, 255), 2);
-                                line(pThis->demo, point_j[l], point_j[(l + 1) % 4], Scalar(0, 255, 255), 2);
+                                line(demo, point_i[l], point_i[(l + 1) % 4], Scalar(0, 255, 255), 2);
+                                line(demo, point_j[l], point_j[(l + 1) % 4], Scalar(0, 255, 255), 2);
                             }
                             //画出装甲板中心
-                            circle(pThis->demo, center, 4, Scalar(0, 255, 255), -1);
+                            circle(demo, center, 4, Scalar(0, 255, 255), -1);
                         }
         }
     }

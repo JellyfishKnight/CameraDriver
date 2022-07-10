@@ -93,11 +93,6 @@ void Ranging::caculateError(Mat& rvec, Mat& tvec) {                         /*调
     vector<Point2f> outPutPoints;                       //3d到2d重投影
     projectPoints(objPoints, rvec, tvec , cameraMatrix, disCoeffs, outPutPoints);
     Mat test = Mat::zeros(Size(2000,2000), CV_8UC1);
-//    for (int i = 0; i < outPutPoints.size(); i++) {
-//        putText(test, to_string(i), outPutPoints[i], FONT_HERSHEY_SIMPLEX, 2, Scalar(255,255,255),2);
-//    }
-//    namedWindow("test", WINDOW_NORMAL);
-//    imshow("test", test);
     float totalError = 0;
     for (int i = 0; i < outPutPoints.size(); i++) {
         totalError += sqrt(pow((points[i].x - outPutPoints[i].x), 2) + pow((points[i].y - outPutPoints[i].y), 2));
@@ -106,7 +101,7 @@ void Ranging::caculateError(Mat& rvec, Mat& tvec) {                         /*调
     cout << "Average error is : " << totalError << endl;
 }
 
-void Ranging::start(const RotatedRect& a, const RotatedRect& b, Mat& demo) {        /**相机姿态解算以及距离解算有问题**/
+void Ranging::start(const RotatedRect& a, const RotatedRect& b, Mat& demo) {        /**剩余的解算欧拉角暂时没有解决**/
     //初始化
     init(a, b);
 
@@ -131,7 +126,6 @@ void Ranging::start(const RotatedRect& a, const RotatedRect& b, Mat& demo) {    
     //求解相机在世界坐标系中的坐标
     cameraPoint = -RMatrix.inverse() * TMatrix;
     //算出相机到装甲板中心的距离
-    /**这部分在某些时候距离仍然不准确,但是应该不是算法上的问题,目前估计是在视频画质方面的问题**/
     float tx, ty, tz;
     tx = tvecCamera2Obj.at<double>(0);
     ty = tvecCamera2Obj.at<double>(1);
@@ -140,7 +134,7 @@ void Ranging::start(const RotatedRect& a, const RotatedRect& b, Mat& demo) {    
     //在图上标出装甲板的距离
     putText(demo,"Dist:" + to_string(distObj2Camera).substr(0, 6), points[4], FONT_HERSHEY_SIMPLEX,0.5, Scalar(0,255,0),2);
 
-
+    /*******************施工区域*******************/
     float thetaY, thetaX, thetaZ;
     //根据旋转矩阵求出坐标旋转角
     thetaX = atan2(rotRvec.at<double>(2,1), rotRvec.at<double>(2,2));
@@ -151,6 +145,7 @@ void Ranging::start(const RotatedRect& a, const RotatedRect& b, Mat& demo) {    
     thetaY = thetaY * 180.0 / CV_PI;                                       //从弧度转化为角度
     thetaX = thetaX * 180.0 / CV_PI;
     thetaZ = thetaZ * 180.0 / CV_PI;
+    /*******************施工区域*******************/
 //    cout << rotRvec << endl;
     putText(demo, "Y" + to_string(thetaY).substr(0, 4), points[1], FONT_HERSHEY_SIMPLEX, 0.5, Scalar(0, 0,255), 2);
     putText(demo, "X:" + to_string(thetaX).substr(0, 4), points[8], FONT_HERSHEY_SIMPLEX, 0.5, Scalar(0,0,255), 2);
