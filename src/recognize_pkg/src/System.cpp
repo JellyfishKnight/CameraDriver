@@ -39,7 +39,7 @@ void System::Start(Mat demo) {
     pThis->RectFit(demo);
     if (pThis->center.x != 0 && pThis->center.y != 0) {
         //单目测距
-        Ranging check;
+        Ranger check;
         check.start(pThis->matchA, pThis->matchB, demo);
     }
     //查找数字
@@ -84,7 +84,7 @@ void System::Start() {
         pThis->RectFit(pThis->demo);
         if (pThis->center.x != 0 && pThis->center.y != 0) {
             //单目测距
-            Ranging check;
+            Ranger check;
             check.start(pThis->matchA, pThis->matchB, pThis->demo);
         }
         //数据归零

@@ -11,7 +11,7 @@ using namespace std;
 using namespace cv;
 
 //工具类:解算PnP,不可被实例化
-class Ranging {
+class Ranger {
 private:
     //相机内参矩阵
     Mat cameraMatrix;
@@ -22,6 +22,10 @@ private:
     //装甲板的实际宽度和高度
     float boardWidth = 135;
     float boardHeight = 125;
+    //从solvePnP返回的旋转向量和平移向量
+    Mat rvecCamera2Obj, tvecCamera2Obj;
+    //旋转矩阵
+    Mat rotRvec;
     /**
      * @brief 初始化成员变量
      */
@@ -34,8 +38,19 @@ private:
     /**
      * @brief 误差计算
      */
-    void caculateError(Mat& rvec, Mat& tvec);
-
+    void caculateError();
+    /**
+     * @brief 单目测距
+     * @param rvecCamera2Obj 从相机坐标系到世界坐标系的旋转向量
+     * @param tvecCamera2Obj 从相机坐标系到世界坐标系的平移向量
+     * @param demo 原图
+     */
+    void distanceSolver(Mat& demo);
+    /**
+     * @brief 计算欧拉角
+     * @param demo 原图
+     */
+    void eulerSolver(Mat& demo);
 public:
     /**
      * @brief 开始解算PnP
@@ -44,9 +59,9 @@ public:
      */
     void start(const RotatedRect& a, const RotatedRect& b, Mat& demo);
 
-    Ranging() = default;
+    Ranger() = default;
 
-    ~Ranging() = default;
+    ~Ranger() = default;
 };
 
 
