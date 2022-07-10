@@ -8,13 +8,14 @@
 #include "ros/ros.h"
 #include "cv_bridge/cv_bridge.h"
 #include "sensor_msgs/Image.h"
+#include "opencv2/core/core.hpp"
 
 using namespace cv;
 
 class BaseReceiver {                //Ðé»ùÀà
 protected:
 public:
-    virtual void subscribe() = 0;
+    virtual void subscribe(void (*p)(Mat mask)) = 0;
 };
 
 

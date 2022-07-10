@@ -24,17 +24,18 @@ private:
     static MVReceiver* pThis;
 protected:
     /**
-     * @brief subscrib的回调函数
+     * @brief subscribe的回调函数
      */
-    static void callBack(const sensor_msgs::Image::ConstPtr& imgInfo);
+    static void callBack(const sensor_msgs::Image::ConstPtr& imgInfo, void (*p)(Mat mask));
 public:
     MVReceiver() {
         pThis = this;
     }
     /**
      * @brief 订阅话题
+     * @param 函数指针,用于传参
      */
-    void subscribe() override;
+    void subscribe(void (*p)(Mat mask)) override;
 };
 
 
