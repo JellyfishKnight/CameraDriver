@@ -24,6 +24,8 @@ private:
     Color color;
     //原图
     Mat demo;
+    //二值化输出
+    Mat binaryDst;
     //所有找到的轮廓
     vector<vector<Point>> allContours;
     //轮廓层级
@@ -47,6 +49,7 @@ private:
      */
     void RectFit(Mat& demo);
 
+    friend class PreProcess;
 public:
     /**
      * @brief 构造器

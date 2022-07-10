@@ -23,7 +23,7 @@ public:
      * @param color 敌方的颜色
      * @param input 输入图片
      */
-    static Mat start(Color color, Mat &input);
+    static Mat start(Color color, Mat& input);
 };
 
 #endif //SRC_PREPROCESS_H

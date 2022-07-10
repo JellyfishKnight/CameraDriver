@@ -14,6 +14,7 @@
 using namespace std;
 using namespace cv;
 
+
 System *System::pThis = nullptr;
 
 void System::Start(Mat demo) {
@@ -32,6 +33,7 @@ void System::Start(Mat demo) {
         return ;
     }
     //预处理(返回一个二值化图)
+    /**此处SF**/
     Mat frame = PreProcess::start(pThis->color, mask).clone();
     //轮廓查找以及筛选
     pThis->ContoursFind(frame);

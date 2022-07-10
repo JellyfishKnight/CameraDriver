@@ -10,9 +10,10 @@ using namespace ros;
 
 int main(int argc, char* argv[]) {
     init(argc, argv, "recognize_pkg");
-//    MVReceiver mvReceiver;
-    System system("/home/wjy/Projects/RMlearning/CameraDriverWS/src/TestVideo/sample_red.avi", RED);
-    System::Start();
-//    mvReceiver.subscribe(System::Start);
+    MVReceiver mvReceiver;
+    mvReceiver.subscribe(System::Start);
+//    System system("/home/wjy/Projects/RMlearning/CameraDriverWS/src/TestVideo/sample_red.avi", RED);
+//    System::Start();
+
     return 0;
 }
