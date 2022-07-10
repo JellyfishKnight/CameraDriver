@@ -7,14 +7,11 @@
 
 using namespace ros;
 
+
 int main(int argc, char* argv[]) {
     init(argc, argv, "recognize_pkg");
     MVReceiver mvReceiver;
     System system;
-    mvReceiver.subscribe(System::Receive);
-    system.Start();
-    while(ok()) {
-        spinOnce();
-    }
+    mvReceiver.subscribe(System::Start);
     return 0;
 }

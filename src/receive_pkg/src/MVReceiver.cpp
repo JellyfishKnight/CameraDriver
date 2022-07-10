@@ -20,9 +20,11 @@ void MVReceiver::callBack(const sensor_msgs::Image::ConstPtr &imgInfo, void (*p)
     pThis->cvImg = cvPtr->image;
     //将参数传出
     p(pThis->cvImg);
+
 }
 
 void MVReceiver::subscribe(void (*p)(Mat mask)) {
     //订阅话题
     subscriber = nodeHandle.subscribe<sensor_msgs::Image>("Driver_Node", 1, bind(&callBack, _1, p));
+    spin();
 }

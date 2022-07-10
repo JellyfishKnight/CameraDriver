@@ -12,75 +12,64 @@
 using namespace std;
 using namespace cv;
 
-System* System::pThis = nullptr;
+System *System::pThis = nullptr;
 
-void System::Start() {
-    if (root == "NULL") {
-        VideoCapture capture(root);
-        if (!capture.isOpened()) {
-            cout << "Filename is wrong!" << endl;
-            return;
-        }
-        while (true) {
-            capture >> demo;
-            //判空以及判定结束
-            if (demo.empty()) {
-                cout << "Picture read failed" << endl;
-                return;
-            }
-            //预处理(返回一个二值化图)
-            Mat frame = PreProcess::start(color, demo).clone();
-            //轮廓查找以及筛选
-            ContoursFind(frame);
-            //寻找匹配的矩形
-            RectFit();
-            if (center.x != 0 && center.y != 0) {
-                //单目测距
-                Ranging check;
-                check.start(matchA, matchB, demo);
-            }
-            //数据归零
-            center.x = center.y = 0;
-            cout << "------------------------------------------------" << endl;
-            namedWindow("demo", WINDOW_NORMAL);
-            imshow("demo", demo);
-            int control = waitKey(1);
-            if (control == 27) {
-                break;
-            }
-        }
-    } else {
-        while (true) {
-            //判空以及判定结束
-            if (demo.empty()) {
-                cout << "Picture read failed" << endl;
-                return;
-            }
-            //预处理(返回一个二值化图)
-            Mat frame = PreProcess::start(color, demo).clone();
-            //轮廓查找以及筛选
-            ContoursFind(frame);
-            //寻找匹配的矩形
-            RectFit();
-            if (center.x != 0 && center.y != 0) {
-                //单目测距
-                Ranging check;
-                check.start(matchA, matchB, demo);
-            }
-            //数据归零
-            center.x = center.y = 0;
-            cout << "------------------------------------------------" << endl;
-            namedWindow("demo", WINDOW_NORMAL);
-            imshow("demo", demo);
-            int control = waitKey(1);
-            if (control == 27) {
-                break;
-            }
-        }
+void System::Start(Mat demo) {
+//        VideoCapture capture(pThis->root);
+//        if (!capture.isOpened()) {
+//            cout << "Filename is wrong!" << endl;
+//            return;
+//        }
+//        while (true) {
+//            capture >> demo;
+//            //判空以及判定结束
+//            if (demo.empty()) {
+//                cout << "Picture read failed" << endl;
+//                return;
+//            }
+//            //预处理(返回一个二值化图)
+//            Mat frame = PreProcess::start(pThis->color, demo).clone();
+//            //轮廓查找以及筛选
+//            pThis->ContoursFind(frame);
+//            //寻找匹配的矩形
+//            pThis->RectFit(demo);
+//            if (pThis->center.x != 0 && pThis->center.y != 0) {
+//                //单目测距
+//                Ranging check;
+//                check.start(pThis->matchA, pThis->matchB, demo);
+//            }
+//            //数据归零
+//            pThis->center.x = pThis->center.y = 0;
+//            cout << "------------------------------------------------" << endl;
+//            namedWindow("demo", WINDOW_NORMAL);
+//            imshow("demo", demo);
+//            int control = waitKey(1);
+//            if (control == 27) {
+//                break;
+//            }
+//        }
+    //判空以及判定结束
+    if (demo.empty()) {
+        cout << "Picture read failed" << endl;
+        return;
     }
-    waitKey(0);
-    cout << "Finished" << endl;
-    destroyAllWindows();
+    //预处理(返回一个二值化图)
+    Mat frame = PreProcess::start(pThis->color, demo).clone();
+    //轮廓查找以及筛选
+    pThis->ContoursFind(frame);
+    //寻找匹配的矩形
+    pThis->RectFit(demo);
+    if (pThis->center.x != 0 && pThis->center.y != 0) {
+        //单目测距
+        Ranging check;
+        check.start(pThis->matchA, pThis->matchB, demo);
+    }
+    //数据归零
+    pThis->center.x = pThis->center.y = 0;
+    cout << "------------------------------------------------" << endl;
+    namedWindow("demo", WINDOW_NORMAL);
+    imshow("demo", demo);
+    waitKey(1);
 }
 
 void System::ContoursFind(const Mat &frame) {
@@ -97,7 +86,7 @@ void System::ContoursFind(const Mat &frame) {
 }
 
 /*选择条件待优化,目前误识别依然存在*/
-void System::RectFit() {
+void System::RectFit(Mat &demo) {
     allRects.clear();
     //使用椭圆拟合
     for (auto &contour: selectedContours) {
@@ -130,7 +119,7 @@ void System::RectFit() {
                     if ((allRects[i].size.area() / allRects[j].size.area() >= 0.8
                          || allRects[j].size.area() / allRects[i].size.area() >= 0.8
                             && (allRects[i].size.area() / allRects[j].size.area() <= 1.25
-                                || allRects[j].size.area() / allRects[i].size.area() <=1.25)))
+                                || allRects[j].size.area() / allRects[i].size.area() <= 1.25)))
                         //两个矩形的中心点高度之差不能大
                         if (abs(allRects[i].center.y - allRects[j].center.y) <=
                             (allRects[i].size.height + allRects[j].size.height) / 4) {
@@ -159,9 +148,4 @@ void System::RectFit() {
                         }
         }
     }
-}
-
-void System::Receive(Mat input) {
-    pThis->demo = input.clone();
-    cv::imshow("demo",pThis->demo);
 }

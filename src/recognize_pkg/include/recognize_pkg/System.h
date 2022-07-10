@@ -16,13 +16,12 @@ using namespace cv;
 
 class System {
 private:
+    //静态指针指向当前对象
     static System* pThis;
     //视频路径 (也可以从相机接收)
     string root;
     //敌方颜色
     Color color;
-    //原图
-    Mat demo;
     //所有找到的轮廓
     vector<vector<Point>> allContours;
     //轮廓层级
@@ -44,7 +43,7 @@ private:
     /**
      * @brief 拟合矩形并且进行匹配
      */
-    void RectFit();
+    void RectFit(Mat& demo);
 
 public:
     /**
@@ -59,13 +58,7 @@ public:
     /**
      * @brief 启动识别系统
      */
-    void Start();
-
-    /**
-     * @brief 接受Receiver的图像
-     * @param input 输入图像
-     */
-    static void Receive(Mat input);
+    static void Start(Mat demo);
 
     ~System() = default;
 
