@@ -124,24 +124,34 @@ void System::RectFit(Mat &demo) {
         }
     }
     for (int i = 0; i < allRects.size(); i++) {
+        Point2f point_i[4];
+        allRects[i].points(point_i);
+        for (int l = 0; l < 4; l++) {
+            line(demo, point_i[l], point_i[(l + 1) % 4], Scalar(0, 255, 255), 2);
+        }
+    }
+    for (int i = 0; i < allRects.size(); i++) {
+        //角度调整
+        float angleI;
+        if (allRects[i].angle > 90) {
+            angleI = -allRects[i].angle + 90;
+        } else {
+            angleI = allRects[i].angle;
+        }
         for (int j = i + 1; j < allRects.size(); j++) {
-            float angleI, angleJ;
             //角度调整
-            if (allRects[i].angle > 90) {
-                angleI = -allRects[i].angle + 90;
-            } else {
-                angleI = allRects[i].angle;
-            }
+            float angleJ;
             if (allRects[j].angle > 90) {
                 angleJ = -allRects[j].angle + 90;
             } else {
                 angleJ = allRects[j].angle;
             }
-            //对矩形长宽比进行筛选
-            if (allRects[i].size.height / allRects[i].size.width >= 2
-                && allRects[i].size.height / allRects[i].size.width <= 9
-                && allRects[j].size.height / allRects[j].size.width >= 2
-                && allRects[j].size.height / allRects[j].size.width <= 9)
+            /*************************施工区域****************************/
+            //对矩形长宽比进行筛选(灯条长宽比也许是主要影响)
+            if (allRects[i].size.height / allRects[i].size.width >= 5
+                && allRects[i].size.height / allRects[i].size.width <= 20
+                && allRects[j].size.height / allRects[j].size.width >= 5
+                && allRects[j].size.height / allRects[j].size.width <= 20)
                 //对两个矩形的角度进行筛选 (考虑从倾斜角度做一个约束?)
                 if (angleI * angleJ > 0 && abs(abs(angleI) - abs(angleJ)) < 5)
 //                    && (angleI > -50 && angleI < 50) && (angleJ > -50 && angleJ < 50))
@@ -153,6 +163,7 @@ void System::RectFit(Mat &demo) {
                         //两个矩形的中心点高度之差不能大
                         if (abs(allRects[i].center.y - allRects[j].center.y) <=
                             (allRects[i].size.height + allRects[j].size.height) / 8) {
+                            /*************************施工区域****************************/
                             Point2f point_i[4], point_j[4];
                             //得到两个矩形的角点
                             allRects[i].points(point_i);
