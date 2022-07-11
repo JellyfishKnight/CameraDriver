@@ -139,17 +139,17 @@ void System::RectFit(Mat &demo) {
             }
             //对矩形长宽比进行筛选
             if (allRects[i].size.height / allRects[i].size.width >= 2
-                && allRects[i].size.height / allRects[i].size.width <= 7
+                && allRects[i].size.height / allRects[i].size.width <= 9
                 && allRects[j].size.height / allRects[j].size.width >= 2
-                && allRects[j].size.height / allRects[j].size.width <= 7)
-                //对两个矩形的角度进行筛选
+                && allRects[j].size.height / allRects[j].size.width <= 9)
+                //对两个矩形的角度进行筛选 (考虑从倾斜角度做一个约束?)
                 if (angleI * angleJ > 0 && abs(abs(angleI) - abs(angleJ)) < 5)
 //                    && (angleI > -50 && angleI < 50) && (angleJ > -50 && angleJ < 50))
                     //对两个矩形的面积进行配对
-                    if ((allRects[i].size.area() / allRects[j].size.area() >= 0.9
-                        || allRects[j].size.area() / allRects[i].size.area() >= 0.9
-                        && (allRects[i].size.area() / allRects[j].size.area() <= 1.11
-                        || allRects[j].size.area() / allRects[i].size.area() <= 1.11)))
+                    if ((allRects[i].size.area() / allRects[j].size.area() >= 0.5
+                        || allRects[j].size.area() / allRects[i].size.area() >= 0.5
+                        && (allRects[i].size.area() / allRects[j].size.area() <= 2
+                        || allRects[j].size.area() / allRects[i].size.area() <= 2)))
                         //两个矩形的中心点高度之差不能大
                         if (abs(allRects[i].center.y - allRects[j].center.y) <=
                             (allRects[i].size.height + allRects[j].size.height) / 8) {
