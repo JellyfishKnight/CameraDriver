@@ -94,6 +94,7 @@ void Ranger::caculateError() {
 }
 
 void Ranger::distanceSolver(Mat &demo) {     //将旋转向量转化为
+    Mat rotRvec;
     Rodrigues(rvecCamera2Obj, rotRvec);                     //旋转矩阵
     //将opencv矩阵转化为Eigen的矩阵,方便矩阵运算
     Eigen::Matrix<float, Eigen::Dynamic, Eigen::Dynamic> RMatrix;
@@ -104,33 +105,29 @@ void Ranger::distanceSolver(Mat &demo) {     //将旋转向量转化为
     //求解相机在世界坐标系中的坐标
     cameraPoint = -RMatrix.inverse() * TMatrix;
     //算出相机到装甲板中心的距离
-    float tx, ty, tz;
     tx = tvecCamera2Obj.at<double>(0);
     ty = tvecCamera2Obj.at<double>(1);
     tz = tvecCamera2Obj.at<double>(2);
-    float distObj2Camera = sqrt(tx * tx + ty * ty + tz * tz);
+    distObj2Camera = sqrt(tx * tx + ty * ty + tz * tz);
     //在图上标出装甲板的距离
     putText(demo,"Dist:" + to_string(distObj2Camera).substr(0, 6), points[4], FONT_HERSHEY_SIMPLEX,0.5, Scalar(0,255,0),2);
 
 }
 
 void Ranger::eulerSolver(Mat &demo) {
-    //滚动角,俯仰角,水平转动角
-    float roll, pitch, yaw;
-    //根据旋转矩阵求出坐标旋转角
-    yaw = atan2(rotRvec.at<double>(2,1), rotRvec.at<double>(2,2));
-    pitch = atan2(-rotRvec.at<double>(2,0), sqrt(rotRvec.at<double>(2,1) * rotRvec.at<double>(2,1) + rotRvec.at<double>(2,2) * rotRvec.at<double>(2,2)));
-    roll = atan2 (rotRvec.at<double>(1, 0), rotRvec.at<double>(0, 0));
+    /********************施工区域********************/
+    //俯仰角,水平转动角
+    float pitch, yaw;
+    pitch = asin(tvecCamera2Obj.at<double>(1) / distObj2Camera);
+    yaw = asin(tvecCamera2Obj.at<double>(0) / (distObj2Camera * sqrt(1 - pow(tvecCamera2Obj.at<double>(1) / distObj2Camera, 2))));
     //从弧度转化为角度
-    yaw = yaw * 180.0 / CV_PI;
-    pitch = pitch * 180.0 / CV_PI;
-    roll = roll * 180.0 / CV_PI;
+    yaw *= 180.0 / CV_PI;
+    pitch *= 180.0 / CV_PI;
     cout << "Yaw: " << yaw << endl;
     cout << "Pitch: " << pitch << endl;
-    cout << "Roll: " << roll << endl;
+    /********************施工区域********************/
     putText(demo, "yaw" + to_string(yaw).substr(0, 4), points[1], FONT_HERSHEY_SIMPLEX, 0.5, Scalar(0, 0,255), 2);
     putText(demo, "pitch:" + to_string(pitch).substr(0, 4), points[8], FONT_HERSHEY_SIMPLEX, 0.5, Scalar(0,0,255), 2);
-    putText(demo, "row:" + to_string(roll).substr(0, 4), points[5], FONT_HERSHEY_SIMPLEX, 0.5, Scalar(0,0,255), 2);
 }
 
 void Ranger::start(const RotatedRect& a, const RotatedRect& b, Mat& demo) {        /**剩余的解算欧拉角暂时没有解决**/

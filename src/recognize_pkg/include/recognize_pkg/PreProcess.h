@@ -17,13 +17,15 @@ class PreProcess {
 private:
     ~PreProcess() = default;
     PreProcess() = default;
+
+    static void myUndistort(Mat cameraMatrix, Mat distCoeffs, Mat& input);
 public:
     /**
      * @brief 预处理静态函数
      * @param color 敌方的颜色
      * @param input 输入图片
      */
-    static Mat start(Color color, Mat& input);
+    static Mat start(Color color, Mat cameraMatrix, Mat distCoeffs, Mat& input);
 };
 
 #endif //SRC_PREPROCESS_H

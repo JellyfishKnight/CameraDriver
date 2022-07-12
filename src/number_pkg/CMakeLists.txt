@@ -12,6 +12,8 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
 )
 
+find_package(OpenCV 4 REQUIRED)
+
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
 
@@ -115,15 +117,19 @@ catkin_package(
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
 include_directories(
-# include
-  ${catkin_INCLUDE_DIRS}
+        include
+        ${catkin_INCLUDE_DIRS}
+        ${OpenCV_INCLUDE_DIRS}
 )
 
 ## Declare a C++ library
 # add_library(${PROJECT_NAME}
 #   src/${PROJECT_NAME}/number_pkg.cpp
 # )
-
+add_library(
+        ${PROJECT_NAME} STATIC
+        src/Number.cpp
+)
 ## Add cmake target dependencies of the library
 ## as an example, code may need to be generated before libraries
 ## either from message generation or dynamic reconfigure
@@ -148,6 +154,11 @@ include_directories(
 # target_link_libraries(${PROJECT_NAME}_node
 #   ${catkin_LIBRARIES}
 # )
+ target_link_libraries(
+         ${PROJECT_NAME}
+         ${catkin_LIBRARIES}
+         ${OpenCV_LIBS}
+         )
 
 #############
 ## Install ##

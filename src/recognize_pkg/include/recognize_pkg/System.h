@@ -22,6 +22,8 @@ private:
     string root;
     //敌方颜色
     Color color;
+    //相机内参矩阵以及畸变距阵
+    Mat cameraMatrix, disCoeffs;
     //原图
     Mat demo;
     //二值化输出
@@ -38,6 +40,14 @@ private:
     RotatedRect matchA, matchB;
     //装甲板中心
     Point center;
+    //帧率
+    static float FPS;
+    /**
+     * @brief 数据读取
+     * @return true 成功读取
+     * @return false 读取失败
+     */
+    static bool DataRead();
     /**
      * @brief 找到轮廓并且进行筛选
      * @param frame 输入图像,应当为二值化图像
@@ -47,7 +57,7 @@ private:
     /**
      * @brief 拟合矩形并且进行匹配
      */
-    void RectFit(Mat& demo);
+    void RectFit();
 
     friend class PreProcess;
 public:
@@ -58,6 +68,7 @@ public:
      */
     explicit System(string  r = "NULL", Color c = BLUE) : root(std::move(r)), color(c) {
         pThis = this;
+        DataRead();
     }
 
     /**

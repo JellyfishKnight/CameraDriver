@@ -139,6 +139,7 @@ if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   include("/home/wjy/Projects/RMlearning/CameraDriverWS/build/cv_bridge/cmake_install.cmake")
   include("/home/wjy/Projects/RMlearning/CameraDriverWS/build/driver_pkg/cmake_install.cmake")
   include("/home/wjy/Projects/RMlearning/CameraDriverWS/build/receive_pkg/cmake_install.cmake")
+  include("/home/wjy/Projects/RMlearning/CameraDriverWS/build/number_pkg/cmake_install.cmake")
   include("/home/wjy/Projects/RMlearning/CameraDriverWS/build/recognize_pkg/cmake_install.cmake")
 
 endif()

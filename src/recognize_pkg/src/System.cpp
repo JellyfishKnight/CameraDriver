@@ -6,37 +6,43 @@
 #include "recognize_pkg/Ranger.h"
 #include "recognize_pkg/DataReader.h"
 #include "iostream"
+#include "chrono"
 #include "opencv2/core.hpp"
 #include "opencv2/highgui.hpp"
 #include "opencv2/imgproc.hpp"
-#include <opencv2/calib3d.hpp>
 
 using namespace std;
 using namespace cv;
 
 System *System::pThis = nullptr;
 
+float System::FPS = 0;
+
+bool System::DataRead() {
+    DataReader dataReader("/home/wjy/Projects/RMlearning/CameraDriverWS/src/recognize_pkg/data/data.xml");
+    if (!dataReader.readData(pThis->cameraMatrix, pThis->disCoeffs)) {
+        cout << "Data file root wrong!" << endl;
+        return false;
+    } else {
+        return true;
+    }
+}
+
 void System::Start(Mat demo) {
+//    lastTime = getTickCount();
     //判空以及判定结束
     if (demo.empty()) {
         cout << "Picture read failed" << endl;
         return;
     }
     //相机数据读取
-    Mat cameraMatrix, disCoeffs, mask = demo.clone();
-    /**路径根据个人情况修改**/
-    DataReader dataReader("/home/wjy/Projects/RMlearning/CameraDriverWS/src/recognize_pkg/data/data.xml");
-    if (dataReader.readData(cameraMatrix, disCoeffs)) {
-        undistort(demo, mask, cameraMatrix, disCoeffs);
-    } else {
-        return ;
-    }
+    Mat mask = demo.clone();
     //预处理(返回一个二值化图)
-    Mat frame = PreProcess::start(pThis->color, mask).clone();
+    Mat frame = PreProcess::start(pThis->color,pThis->cameraMatrix,pThis->disCoeffs, mask).clone();
     //轮廓查找以及筛选
     pThis->ContoursFind(frame);
     //寻找匹配的矩形
-    pThis->RectFit(demo);
+    pThis->RectFit();
     if (pThis->center.x != 0 && pThis->center.y != 0) {
         //单目测距
         Ranger check;
@@ -47,6 +53,9 @@ void System::Start(Mat demo) {
     //数据归零
     pThis->center.x = pThis->center.y = 0;
     cout << "------------------------------------------------" << endl;
+    //帧率计算
+//    curTime = getTickCount();
+//    FPS = 1 / ((curTime - lastTime) * 1000 / getTickFrequency());
     namedWindow("mask", WINDOW_NORMAL);
     imshow("mask", demo);
     waitKey(1);
@@ -61,27 +70,20 @@ void System::Start() {
     }
     cout << "Started!" << endl;
     while (true) {
+        auto start = chrono::system_clock::now();
         capture >> pThis->demo;
         //判空以及判定结束
         if (pThis->demo.empty()) {
             cout << "Picture read failed" << endl;
             return;
         }
-        //相机数据读取
-        Mat cameraMatrix, disCoeffs, mask = pThis->demo.clone();
-        /**路径根据个人情况修改**/
-        DataReader dataReader("/home/wjy/Projects/RMlearning/CameraDriverWS/src/recognize_pkg/data/data.xml");
-        if (dataReader.readData(cameraMatrix, disCoeffs)) {
-            undistort(pThis->demo, mask, cameraMatrix, disCoeffs);
-        } else {
-            return;
-        }
+        Mat mask = pThis->demo.clone();
         //预处理(返回一个二值化图)
-        Mat frame = PreProcess::start(pThis->color, mask).clone();
+        Mat frame = PreProcess::start(pThis->color, pThis->cameraMatrix, pThis->disCoeffs, mask).clone();
         //轮廓查找以及筛选
         pThis->ContoursFind(frame);
         //寻找匹配的矩形
-        pThis->RectFit(pThis->demo);
+        pThis->RectFit();
         if (pThis->center.x != 0 && pThis->center.y != 0) {
             //单目测距
             Ranger check;
@@ -90,12 +92,19 @@ void System::Start() {
         //数据归零
         pThis->center.x = pThis->center.y = 0;
         cout << "------------------------------------------------" << endl;
+        //帧率计算
+        auto end = chrono::system_clock::now();
+        auto duration = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
+        FPS = (double)(duration.count()) * std::chrono::microseconds::period::num / std::chrono::microseconds::period::den;
+        putText(pThis->demo, to_string(FPS).substr(4),Point(10,50),FONT_HERSHEY_SIMPLEX,1,Scalar(255,0,0),2);
+        //图片显示
         namedWindow("demo", WINDOW_NORMAL);
         imshow("demo", pThis->demo);
         if (waitKey(1) == 27) {
             break;
         }
     }
+    capture.release();
     cout << "Finished!" << endl;
     waitKey(0);
 }
@@ -114,7 +123,7 @@ void System::ContoursFind(const Mat &frame) {             /*调试完毕*/
 }
 
 /*选择条件待优化,目前误识别依然存在*/
-void System::RectFit(Mat &demo) {
+void System::RectFit() {
     allRects.clear();
     //使用椭圆拟合
     for (auto &contour: selectedContours) {
@@ -123,13 +132,14 @@ void System::RectFit(Mat &demo) {
             allRects.push_back(fitEllipse(contour));
         }
     }
-    for (int i = 0; i < allRects.size(); i++) {
-        Point2f point_i[4];
-        allRects[i].points(point_i);
-        for (int l = 0; l < 4; l++) {
-            line(demo, point_i[l], point_i[(l + 1) % 4], Scalar(0, 255, 255), 2);
-        }
-    }
+    //画出所有的矩形(Debug用)
+//    for (auto & allRect : allRects) {
+//        Point2f point_i[4];
+//        allRect.points(point_i);
+//        for (int l = 0; l < 4; l++) {
+//            line(demo, point_i[l], point_i[(l + 1) % 4], Scalar(0, 255, 255), 2);
+//        }
+//    }
     for (int i = 0; i < allRects.size(); i++) {
         //角度调整
         float angleI;
@@ -149,9 +159,9 @@ void System::RectFit(Mat &demo) {
             /*************************施工区域****************************/
             //对矩形长宽比进行筛选(灯条长宽比也许是主要影响)
             if (allRects[i].size.height / allRects[i].size.width >= 5
-                && allRects[i].size.height / allRects[i].size.width <= 20
+                && allRects[i].size.height / allRects[i].size.width <= 10
                 && allRects[j].size.height / allRects[j].size.width >= 5
-                && allRects[j].size.height / allRects[j].size.width <= 20)
+                && allRects[j].size.height / allRects[j].size.width <= 10)
                 //对两个矩形的角度进行筛选 (考虑从倾斜角度做一个约束?)
                 if (angleI * angleJ > 0 && abs(abs(angleI) - abs(angleJ)) < 5)
 //                    && (angleI > -50 && angleI < 50) && (angleJ > -50 && angleJ < 50))

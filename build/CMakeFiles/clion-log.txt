@@ -42,10 +42,11 @@ CMake Deprecation Warning at /usr/src/googletest/googletest/CMakeLists.txt:56 (c
 -- BUILD_SHARED_LIBS is on
 -- BUILD_SHARED_LIBS is on
 -- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
--- ~~  traversing 4 packages in topological order:
+-- ~~  traversing 5 packages in topological order:
 -- ~~  - cv_bridge
 -- ~~  - driver_pkg
 -- ~~  - receive_pkg
+-- ~~  - number_pkg
 -- ~~  - recognize_pkg
 -- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 -- +++ processing catkin package: 'cv_bridge'
@@ -58,6 +59,8 @@ CMake Deprecation Warning at /usr/src/googletest/googletest/CMakeLists.txt:56 (c
 -- Found OpenCV: /usr/local (found suitable version "4.5.4", minimum required is "4") 
 -- +++ processing catkin package: 'receive_pkg'
 -- ==> add_subdirectory(receive_pkg)
+-- +++ processing catkin package: 'number_pkg'
+-- ==> add_subdirectory(number_pkg)
 -- +++ processing catkin package: 'recognize_pkg'
 -- ==> add_subdirectory(recognize_pkg)
 -- Configuring done

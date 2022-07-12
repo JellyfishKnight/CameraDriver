@@ -24,8 +24,10 @@ private:
     float boardHeight = 125;
     //从solvePnP返回的旋转向量和平移向量
     Mat rvecCamera2Obj, tvecCamera2Obj;
-    //旋转矩阵
-    Mat rotRvec;
+    //平移矩阵的三个数
+    float tx, ty, tz;
+    //相机到目标点的距离
+    float distObj2Camera;
     /**
      * @brief 初始化成员变量
      */
