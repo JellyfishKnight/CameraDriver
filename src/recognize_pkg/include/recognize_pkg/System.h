@@ -57,7 +57,7 @@ private:
     /**
      * @brief 拟合矩形并且进行匹配
      */
-    void RectFit();
+    void RectFit(Mat& demo);
 
     friend class PreProcess;
 public:

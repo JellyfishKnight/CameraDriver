@@ -124,6 +124,7 @@
 /home/wjy/Projects/RMlearning/CameraDriverWS/build/receive_pkg/CMakeFiles/install/local.dir
 /home/wjy/Projects/RMlearning/CameraDriverWS/build/receive_pkg/CMakeFiles/install/strip.dir
 /home/wjy/Projects/RMlearning/CameraDriverWS/build/number_pkg/CMakeFiles/number_pkg.dir
+/home/wjy/Projects/RMlearning/CameraDriverWS/build/number_pkg/CMakeFiles/number_pkg_node.dir
 /home/wjy/Projects/RMlearning/CameraDriverWS/build/number_pkg/CMakeFiles/test.dir
 /home/wjy/Projects/RMlearning/CameraDriverWS/build/number_pkg/CMakeFiles/edit_cache.dir
 /home/wjy/Projects/RMlearning/CameraDriverWS/build/number_pkg/CMakeFiles/rebuild_cache.dir

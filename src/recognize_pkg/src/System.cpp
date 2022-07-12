@@ -29,7 +29,7 @@ bool System::DataRead() {
 }
 
 void System::Start(Mat demo) {
-//    lastTime = getTickCount();
+    auto start = chrono::system_clock::now();
     //判空以及判定结束
     if (demo.empty()) {
         cout << "Picture read failed" << endl;
@@ -42,7 +42,7 @@ void System::Start(Mat demo) {
     //轮廓查找以及筛选
     pThis->ContoursFind(frame);
     //寻找匹配的矩形
-    pThis->RectFit();
+    pThis->RectFit(demo);
     if (pThis->center.x != 0 && pThis->center.y != 0) {
         //单目测距
         Ranger check;
@@ -54,8 +54,11 @@ void System::Start(Mat demo) {
     pThis->center.x = pThis->center.y = 0;
     cout << "------------------------------------------------" << endl;
     //帧率计算
-//    curTime = getTickCount();
-//    FPS = 1 / ((curTime - lastTime) * 1000 / getTickFrequency());
+    auto end = chrono::system_clock::now();
+    auto duration = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
+    FPS = (double)(duration.count()) * std::chrono::microseconds::period::num / std::chrono::microseconds::period::den;
+    double s = 1.0 / FPS;
+    putText(demo, to_string(s).substr(0, 4),Point(10,50),FONT_HERSHEY_SIMPLEX,1,Scalar(255,0,0),2);
     namedWindow("mask", WINDOW_NORMAL);
     imshow("mask", demo);
     waitKey(1);
@@ -83,7 +86,7 @@ void System::Start() {
         //轮廓查找以及筛选
         pThis->ContoursFind(frame);
         //寻找匹配的矩形
-        pThis->RectFit();
+        pThis->RectFit(pThis->demo);
         if (pThis->center.x != 0 && pThis->center.y != 0) {
             //单目测距
             Ranger check;
@@ -96,7 +99,8 @@ void System::Start() {
         auto end = chrono::system_clock::now();
         auto duration = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
         FPS = (double)(duration.count()) * std::chrono::microseconds::period::num / std::chrono::microseconds::period::den;
-        putText(pThis->demo, to_string(FPS).substr(4),Point(10,50),FONT_HERSHEY_SIMPLEX,1,Scalar(255,0,0),2);
+        double s = 1.0 / FPS;
+        putText(pThis->demo, to_string(s).substr(0, 4),Point(10,50),FONT_HERSHEY_SIMPLEX,1,Scalar(255,0,0),2);
         //图片显示
         namedWindow("demo", WINDOW_NORMAL);
         imshow("demo", pThis->demo);
@@ -123,7 +127,7 @@ void System::ContoursFind(const Mat &frame) {             /*调试完毕*/
 }
 
 /*选择条件待优化,目前误识别依然存在*/
-void System::RectFit() {
+void System::RectFit(Mat& demo) {
     allRects.clear();
     //使用椭圆拟合
     for (auto &contour: selectedContours) {
