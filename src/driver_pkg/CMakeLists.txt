@@ -6,6 +6,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(catkin REQUIRED COMPONENTS
         roscpp
+        publish_pkg
         cv_bridge
         sensor_msgs
 )

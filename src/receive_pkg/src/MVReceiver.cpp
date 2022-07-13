@@ -24,6 +24,6 @@ void MVReceiver::callBack(const sensor_msgs::Image::ConstPtr &imgInfo, void (*p)
 
 void MVReceiver::subscribe(void (*p)(Mat mask)) {
     //¶©ÔÄ»°Ìâ
-    subscriber = nodeHandle.subscribe<sensor_msgs::Image>("Driver_Node", 1, bind(&callBack, _1, p));
+    subscriber = nodeHandle.subscribe<sensor_msgs::Image>(topic, 1, bind(&callBack, _1, p));
     spin();
 }

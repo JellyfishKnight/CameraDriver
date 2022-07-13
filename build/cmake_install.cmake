@@ -137,6 +137,7 @@ if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
   include("/home/wjy/Projects/RMlearning/CameraDriverWS/build/gtest/cmake_install.cmake")
   include("/home/wjy/Projects/RMlearning/CameraDriverWS/build/cv_bridge/cmake_install.cmake")
+  include("/home/wjy/Projects/RMlearning/CameraDriverWS/build/publish_pkg/cmake_install.cmake")
   include("/home/wjy/Projects/RMlearning/CameraDriverWS/build/driver_pkg/cmake_install.cmake")
   include("/home/wjy/Projects/RMlearning/CameraDriverWS/build/receive_pkg/cmake_install.cmake")
   include("/home/wjy/Projects/RMlearning/CameraDriverWS/build/number_pkg/cmake_install.cmake")

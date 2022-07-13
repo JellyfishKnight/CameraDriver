@@ -4,14 +4,8 @@
 //
 // Created by 17703 on 2022/5/14.
 //
-#include "opencv2/core.hpp"
-#include "opencv2/imgcodecs.hpp"
-#include "opencv2/ml.hpp"
+#include "ros/ros.h"
 #include "number_pkg/Number.h"
-#include <algorithm>
-#include <iostream>
-#include <random>
-#include <vector>
 #include <string>
 
 using namespace std;

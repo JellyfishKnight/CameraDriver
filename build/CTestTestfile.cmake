@@ -6,6 +6,7 @@
 # testing this directory and lists subdirectories to be tested as well.
 subdirs("gtest")
 subdirs("cv_bridge")
+subdirs("publish_pkg")
 subdirs("driver_pkg")
 subdirs("receive_pkg")
 subdirs("number_pkg")

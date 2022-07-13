@@ -42,8 +42,9 @@ CMake Deprecation Warning at /usr/src/googletest/googletest/CMakeLists.txt:56 (c
 -- BUILD_SHARED_LIBS is on
 -- BUILD_SHARED_LIBS is on
 -- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
--- ~~  traversing 5 packages in topological order:
+-- ~~  traversing 6 packages in topological order:
 -- ~~  - cv_bridge
+-- ~~  - publish_pkg
 -- ~~  - driver_pkg
 -- ~~  - receive_pkg
 -- ~~  - number_pkg
@@ -54,9 +55,11 @@ CMake Deprecation Warning at /usr/src/googletest/googletest/CMakeLists.txt:56 (c
 -- Found PythonLibs: /usr/lib/x86_64-linux-gnu/libpython3.8.so (found version "3.8.10") 
 -- Found OpenCV: /usr/local (found suitable version "4.5.4", minimum required is "4") found components: opencv_core opencv_imgproc opencv_imgcodecs 
 -- Found PythonLibs: /usr/lib/x86_64-linux-gnu/libpython3.8.so (found suitable version "3.8.10", minimum required is "3.8") 
+-- +++ processing catkin package: 'publish_pkg'
+-- ==> add_subdirectory(publish_pkg)
+-- Found OpenCV: /usr/local (found suitable version "4.5.4", minimum required is "4") 
 -- +++ processing catkin package: 'driver_pkg'
 -- ==> add_subdirectory(driver_pkg)
--- Found OpenCV: /usr/local (found suitable version "4.5.4", minimum required is "4") 
 -- +++ processing catkin package: 'receive_pkg'
 -- ==> add_subdirectory(receive_pkg)
 -- +++ processing catkin package: 'number_pkg'
@@ -64,7 +67,7 @@ CMake Deprecation Warning at /usr/src/googletest/googletest/CMakeLists.txt:56 (c
 -- +++ processing catkin package: 'recognize_pkg'
 -- ==> add_subdirectory(recognize_pkg)
 -- Configuring done
-CMake Warning (dev) at driver_pkg/CMakeLists.txt:29 (add_executable):
+CMake Warning (dev) at driver_pkg/CMakeLists.txt:30 (add_executable):
   Policy CMP0115 is not set: Source file extensions must be explicit.  Run
   "cmake --help-policy CMP0115" for policy details.  Use the cmake_policy
   command to set the policy and suppress this warning.

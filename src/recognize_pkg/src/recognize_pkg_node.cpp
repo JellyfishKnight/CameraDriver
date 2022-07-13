@@ -14,7 +14,7 @@ int main(int argc, char* argv[]) {
     cout << "Input 1 to start camera, 2 to start video" << endl;
     cin >> choice;
     if (choice == 1) {   //相机调试
-        MVReceiver mvReceiver;
+        MVReceiver mvReceiver("Driver_Node");
         System system;
         mvReceiver.subscribe(System::Start);
     } else {   //视频调试

@@ -18,6 +18,7 @@ using namespace ros;
 
 class MVReceiver : BaseReceiver{
 private:
+    string topic;
     NodeHandle nodeHandle;
     Subscriber subscriber;
     Mat cvImg;
@@ -28,7 +29,7 @@ protected:
      */
     static void callBack(const sensor_msgs::Image::ConstPtr& imgInfo, void (*p)(Mat mask));
 public:
-    MVReceiver() {
+    MVReceiver(string t) : topic(move(t)) {
         pThis = this;
     }
     /**
