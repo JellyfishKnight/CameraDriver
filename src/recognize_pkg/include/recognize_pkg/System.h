@@ -20,6 +20,8 @@ private:
     static System* pThis;
     //视频路径 (也可以从相机接收)
     string root;
+    //相机数据文件路径
+    string dataRoot;
     //敌方颜色
     Color color;
     //相机内参矩阵以及畸变距阵
@@ -66,7 +68,8 @@ public:
      * @param r 视频输入路径
      * @param c 敌方装甲板颜色
      */
-    explicit System(string  r = "NULL", Color c = BLUE) : root(std::move(r)), color(c) {
+    explicit System(string  fr = "NULL", Color c = BLUE, string dr = "/home/wjy/Projects/RMlearning/CameraDriverWS/src/Datas/CameraData.xml") :
+    root(std::move(fr)), dataRoot(dr), color(c) {
         pThis = this;
         DataRead();
     }

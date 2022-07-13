@@ -6,6 +6,7 @@
 #include "recognize_pkg/Ranger.h"
 #include "recognize_pkg/DataReader.h"
 #include "iostream"
+#include <string>
 #include "chrono"
 #include "opencv2/core.hpp"
 #include "opencv2/highgui.hpp"
@@ -19,7 +20,7 @@ System *System::pThis = nullptr;
 float System::FPS = 0;
 
 bool System::DataRead() {
-    DataReader dataReader("/home/wjy/Projects/RMlearning/CameraDriverWS/src/Datas/CameraDatas.xml");
+    DataReader dataReader(pThis->dataRoot);
     if (!dataReader.readData(pThis->cameraMatrix, pThis->disCoeffs)) {
         cout << "Data file root wrong!" << endl;
         return false;
@@ -45,7 +46,7 @@ void System::Start(Mat demo) {
     pThis->RectFit(demo);
     if (pThis->center.x != 0 && pThis->center.y != 0) {
         //单目测距
-        Ranger check;
+        Ranger check(pThis->cameraMatrix, pThis->disCoeffs);
         check.start(pThis->matchA, pThis->matchB, demo);
     }
     //查找数字
@@ -89,7 +90,7 @@ void System::Start() {
         pThis->RectFit(pThis->demo);
         if (pThis->center.x != 0 && pThis->center.y != 0) {
             //单目测距
-            Ranger check;
+            Ranger check(pThis->cameraMatrix, pThis->disCoeffs);
             check.start(pThis->matchA, pThis->matchB, pThis->demo);
         }
         //数据归零

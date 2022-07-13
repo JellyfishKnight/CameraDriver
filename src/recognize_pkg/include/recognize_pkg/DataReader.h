@@ -14,13 +14,15 @@ using namespace cv;
 class DataReader {
 private:
     //文件读取器指针
-    FileStorage* fileStorage;
+    FileStorage* fileStorage{};
+
+    string root;
 public:
     /**
      * @brief 构造器
      * @param root 文件路径
      */
-    explicit DataReader(const string& root);
+    explicit DataReader(string  r);
     /**
      * @brief 开始读取数据
      * @param cameraMat 相机内参矩阵

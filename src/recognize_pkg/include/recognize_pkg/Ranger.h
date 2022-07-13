@@ -61,7 +61,7 @@ public:
      */
     void start(const RotatedRect& a, const RotatedRect& b, Mat& demo);
 
-    Ranger() = default;
+    Ranger(Mat& CM, Mat& DC) : cameraMatrix(CM), disCoeffs(DC) {};
 
     ~Ranger() = default;
 };
