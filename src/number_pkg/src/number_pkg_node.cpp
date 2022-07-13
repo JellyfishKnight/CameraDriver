@@ -17,10 +17,9 @@ using namespace ros;
 
 int main(int argc, char* argv[]) {
     init(argc, argv, "number_pkg");
-    string readRoot = "/home/wjy/Projects/RMlearning/CameraDriverWS/src/Datas/SVM_img/";
-    string saveRoot = "/home/wjy/Projects/RMlearning/CameraDriverWS/src/Datas/SVM.xml";
+    string readRoot = "/home/wjy/Projects/RMlearning/CameraDriverWS/src/Datas/SVM.xml";
     ImgReceiver imgReceiver("Number");
-    Number number(readRoot, saveRoot);
+    Number number(readRoot, readRoot);
     imgReceiver.subscribe(Number::start);
     return 0;
 }

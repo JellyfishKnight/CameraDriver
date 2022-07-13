@@ -32,7 +32,7 @@ private:
     Rate rate;
 protected:
     //图片类型转换
-    bool imgConvert(Mat& cvImg) override;
+    bool imgConvert(Mat cvImg) override;
 public:
     //构造器
     ImgPublisher(string inputTopic, int rate) : topic(move(inputTopic)), rate(rate) {}

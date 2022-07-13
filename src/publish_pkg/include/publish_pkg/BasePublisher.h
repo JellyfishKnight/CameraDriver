@@ -9,7 +9,7 @@
 
 class BasePublisher {   //Ðé»ùÀà
 protected:
-    virtual bool imgConvert(cv::Mat& cvImg) = 0;
+    virtual bool imgConvert(cv::Mat cvImg) = 0;
 public:
     virtual void publish(cv::Mat& inputImg) = 0;
 };

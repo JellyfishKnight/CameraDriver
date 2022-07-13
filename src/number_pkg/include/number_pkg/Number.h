@@ -36,7 +36,7 @@ private:
     //每个类别总样本数，正确分类样本数，错误分类样本数
     int total_images[15]{}, correct_result[15]{}, wrong_result[15]{};
     /**
-     * @brief 数据加载
+     * @brief 图片数据加载
      */
     void LoadData(const string &data_path);
     //图片集
