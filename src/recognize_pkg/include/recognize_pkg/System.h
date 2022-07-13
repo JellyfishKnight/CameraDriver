@@ -6,6 +6,7 @@
 #define SRC_SYSTEM_H
 
 #include <utility>
+#include "publish_pkg/ImgPublisher.h"
 #include "PreProcess.h"
 #include "opencv2/core.hpp"
 #include "opencv2/highgui.hpp"
@@ -45,7 +46,7 @@ private:
     //帧率
     static float FPS;
     //发布器
-
+    ImgPublisher* imgPublisher{};
     /**
      * @brief 数据读取
      * @return true 成功读取
@@ -62,13 +63,6 @@ private:
      * @brief 拟合矩形并且进行匹配
      */
     void RectFit(Mat& demo);
-
-    /**
-     * @brief 发送图片消息给数字识别器
-     */
-    void Publish2Number();
-
-//    friend class PreProcess;
 public:
     /**
      * @brief 构造器
@@ -76,9 +70,10 @@ public:
      * @param c 敌方装甲板颜色
      */
     explicit System(string  fr = "NULL", Color c = BLUE, string dr = "/home/wjy/Projects/RMlearning/CameraDriverWS/src/Datas/CameraData.xml") :
-    root(std::move(fr)), dataRoot(dr), color(c) {
+    root(std::move(fr)), dataRoot(move(dr)), color(c) {
         pThis = this;
         DataRead();
+        imgPublisher = new ImgPublisher("Number", 10000);
     }
 
     /**

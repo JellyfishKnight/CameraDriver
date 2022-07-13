@@ -1644,9 +1644,9 @@ build receive_pkg/CMakeFiles/receive_pkg.dir/src/BaseReceiver.cpp.o: CXX_COMPILE
   OBJECT_DIR = receive_pkg/CMakeFiles/receive_pkg.dir
   OBJECT_FILE_DIR = receive_pkg/CMakeFiles/receive_pkg.dir/src
 
-build receive_pkg/CMakeFiles/receive_pkg.dir/src/MVReceiver.cpp.o: CXX_COMPILER__receive_pkg_Debug /home/wjy/Projects/RMlearning/CameraDriverWS/src/receive_pkg/src/MVReceiver.cpp || cmake_object_order_depends_target_receive_pkg
+build receive_pkg/CMakeFiles/receive_pkg.dir/src/ImgReceiver.cpp.o: CXX_COMPILER__receive_pkg_Debug /home/wjy/Projects/RMlearning/CameraDriverWS/src/receive_pkg/src/ImgReceiver.cpp || cmake_object_order_depends_target_receive_pkg
   DEFINES = -DROSCONSOLE_BACKEND_LOG4CXX -DROS_BUILD_SHARED_LIBS=1 -DROS_PACKAGE_NAME=\"receive_pkg\"
-  DEP_FILE = receive_pkg/CMakeFiles/receive_pkg.dir/src/MVReceiver.cpp.o.d
+  DEP_FILE = receive_pkg/CMakeFiles/receive_pkg.dir/src/ImgReceiver.cpp.o.d
   FLAGS = -g -std=gnu++14
   INCLUDES = -I/home/wjy/Projects/RMlearning/CameraDriverWS/src/receive_pkg/include -I/home/wjy/Projects/RMlearning/CameraDriverWS/src/cv_bridge/include -I/opt/ros/noetic/include -I/opt/ros/noetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp -I/usr/local/include/opencv4
   OBJECT_DIR = receive_pkg/CMakeFiles/receive_pkg.dir
@@ -1660,7 +1660,7 @@ build receive_pkg/CMakeFiles/receive_pkg.dir/src/MVReceiver.cpp.o: CXX_COMPILER_
 #############################################
 # Link the static library devel/lib/libreceive_pkg.a
 
-build devel/lib/libreceive_pkg.a: CXX_STATIC_LIBRARY_LINKER__receive_pkg_Debug receive_pkg/CMakeFiles/receive_pkg.dir/src/BaseReceiver.cpp.o receive_pkg/CMakeFiles/receive_pkg.dir/src/MVReceiver.cpp.o
+build devel/lib/libreceive_pkg.a: CXX_STATIC_LIBRARY_LINKER__receive_pkg_Debug receive_pkg/CMakeFiles/receive_pkg.dir/src/BaseReceiver.cpp.o receive_pkg/CMakeFiles/receive_pkg.dir/src/ImgReceiver.cpp.o
   LANGUAGE_COMPILE_FLAGS = -g
   OBJECT_DIR = receive_pkg/CMakeFiles/receive_pkg.dir
   POST_BUILD = :

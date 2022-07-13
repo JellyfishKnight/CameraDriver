@@ -150,3 +150,22 @@ void Ranger::start(const RotatedRect& a, const RotatedRect& b, Mat& demo) {     
     //解算欧拉角
     eulerSolver(demo);
 }
+
+Mat Ranger::getROI(Mat& demo) {
+    Point2f pointsOfROI[4];
+    Point2f pointsOfNumber[4];
+    //指定ROI区域的四个角点
+    pointsOfROI[0] = points[1];
+    pointsOfROI[1] = points[4];
+    pointsOfROI[2] = points[5];
+    pointsOfROI[3] = points[8];
+    //指定输出图像的四个角点 (注意顺序与上面的数组对应)
+    pointsOfNumber[0] = Point2f(0, 0);
+    pointsOfNumber[1] = Point2f(1000, 0);
+    pointsOfNumber[2] = Point2f(1000, 1000);
+    pointsOfNumber[3] = Point2f(0, 1000);
+    //获取透视变换矩阵
+    Mat tranMat = getPerspectiveTransform(pointsOfROI, pointsOfNumber);
+    warpPerspective(demo, RegionOfInterest, tranMat, Size(1000, 1000));
+    return RegionOfInterest;
+}

@@ -16,6 +16,8 @@ using namespace std;
 using namespace cv;
 using namespace ml;
 
+
+Number* Number::pThis = nullptr;
 /**
  *
  * @param root
@@ -117,19 +119,19 @@ float Number::EvaluateModel(vector<float> output) {
     return (float)total_correct / output.size();
 }
 
-void Number::start(const Mat& numberImage) {
-    LoadData(readRoot);
+void Number::start(Mat numberImage) {
+    pThis->LoadData(pThis->readRoot);
 
     // 循环100次测试参数(C, gamma)性能
     double correct_rate = 0;
     int test_num = 1;
     for (int i = 0; i < test_num; i++) {
         // 分割训练集测试集
-        SplitTrainTest();
+        pThis->SplitTrainTest();
         // 合并成一个图片使API能Predict
         Mat train_image, test_image;
-        vconcat(train_images, train_image);
-        vconcat(test_images, test_image);
+        vconcat(pThis->train_images, train_image);
+        vconcat(pThis->test_images, test_image);
         // SVM参数设置和训练
         Ptr<SVM> svm;
         svm = SVM::create();
@@ -137,16 +139,16 @@ void Number::start(const Mat& numberImage) {
         svm->setKernel(SVM::RBF);
         svm->setGamma(0.025);
         svm->setC(7);
-        svm->train(train_image, ml::ROW_SAMPLE, train_labels);
+        svm->train(train_image, ml::ROW_SAMPLE, pThis->train_labels);
         svm->save("../svm.xml");
         // 预测和评估模型
         vector<float> svm_output;
         svm->predict(test_image, svm_output);
-        double temp_correct_rate = EvaluateModel(svm_output);
+        double temp_correct_rate = pThis->EvaluateModel(svm_output);
         correct_rate += temp_correct_rate / test_num;
     }
-    for (int i = 1; i <= class_num; ++i) {
-        printf("Average number of wrong predictions on class %d is %.0f.\n", i, round((float)wrong_result[i] / test_num));
+    for (int i = 1; i <= pThis->class_num; ++i) {
+        printf("Average number of wrong predictions on class %d is %.0f.\n", i, round((float)pThis->wrong_result[i] / test_num));
     }
     cout << "Correct rate of SVM on test set is: " << correct_rate * 100 << "%." << endl;
 //    // kNN方法
@@ -160,18 +162,18 @@ void Number::start(const Mat& numberImage) {
 }
 
 void Number::start() {
-    LoadData(readRoot);
+    pThis->LoadData(pThis->readRoot);
 
     // 循环100次测试参数(C, gamma)性能
     double correct_rate = 0;
     int test_num = 1;
     for (int i = 0; i < test_num; i++) {
         // 分割训练集测试集
-        SplitTrainTest();
+        pThis->SplitTrainTest();
         // 合并成一个图片使API能Predict
         Mat train_image, test_image;
-        vconcat(train_images, train_image);
-        vconcat(test_images, test_image);
+        vconcat(pThis->train_images, train_image);
+        vconcat(pThis->test_images, test_image);
         // SVM参数设置和训练
         Ptr<SVM> svm;
         svm = SVM::create();
@@ -179,16 +181,16 @@ void Number::start() {
         svm->setKernel(SVM::RBF);
         svm->setGamma(0.025);
         svm->setC(7);
-        svm->train(train_image, ml::ROW_SAMPLE, train_labels);
+        svm->train(train_image, ml::ROW_SAMPLE, pThis->train_labels);
         svm->save("../svm.xml");
         // 预测和评估模型
         vector<float> svm_output;
         svm->predict(test_image, svm_output);
-        double temp_correct_rate = EvaluateModel(svm_output);
+        double temp_correct_rate = pThis->EvaluateModel(svm_output);
         correct_rate += temp_correct_rate / test_num;
     }
-    for (int i = 1; i <= class_num; ++i) {
-        printf("Average number of wrong predictions on class %d is %.0f.\n", i, round((float)wrong_result[i] / test_num));
+    for (int i = 1; i <= pThis->class_num; ++i) {
+        printf("Average number of wrong predictions on class %d is %.0f.\n", i, round((float)pThis->wrong_result[i] / test_num));
     }
     cout << "Correct rate of SVM on test set is: " << correct_rate * 100 << "%." << endl;
 

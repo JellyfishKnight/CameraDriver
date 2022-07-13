@@ -21,6 +21,8 @@ using namespace ml;
 
 class Number {
 private:
+    //指向当前对象的静态指针
+    static Number* pThis;
     //训练图片路径
     string readRoot;
     //数据保存路径
@@ -75,16 +77,18 @@ public:
      * @param maxIndex 每个类别最多样本数量
      */
     explicit Number(string rr, string sr, int classNum = 8, double trainRatio = 0.1, int maxIndex = 1000) :
-        readRoot(move(rr)), saveRoot(move(sr)), class_num(classNum), train_ratio(trainRatio), max_index(maxIndex) {}
+        readRoot(move(rr)), saveRoot(move(sr)), class_num(classNum), train_ratio(trainRatio), max_index(maxIndex) {
+        pThis = this;
+    }
     /**
      * @brief 开始识别
      * @param numberImage 装甲板数字图片
      */
-    void start(const Mat& numberImage);
+    static void start(Mat numberImage);
     /**
      * @brief 重载函数,测试用
      */
-    void start();
+    static void start();
 
     ~Number() = default;
 };

@@ -2,8 +2,8 @@
 // Created by wjy on 22-7-9.
 //
 
-#ifndef SRC_MVRECEIVER_H
-#define SRC_MVRECEIVER_H
+#ifndef SRC_IMGRECEIVER_H
+#define SRC_IMGRECEIVER_H
 #include "BaseReceiver.h"
 #include "opencv2/core/core.hpp"
 #include "opencv2/highgui/highgui.hpp"
@@ -16,20 +16,20 @@ using namespace ros;
 
 
 
-class MVReceiver : BaseReceiver{
+class ImgReceiver : BaseReceiver{
 private:
     string topic;
     NodeHandle nodeHandle;
     Subscriber subscriber;
     Mat cvImg;
-    static MVReceiver* pThis;
+    static ImgReceiver* pThis;
 protected:
     /**
      * @brief subscribe的回调函数
      */
     static void callBack(const sensor_msgs::Image::ConstPtr& imgInfo, void (*p)(Mat mask));
 public:
-    MVReceiver(string t) : topic(move(t)) {
+    ImgReceiver(string t) : topic(move(t)) {
         pThis = this;
     }
     /**
@@ -40,4 +40,4 @@ public:
 };
 
 
-#endif //SRC_MVRECEIVER_H
+#endif //SRC_IMGRECEIVER_H

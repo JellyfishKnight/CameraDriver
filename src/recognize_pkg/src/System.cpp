@@ -92,6 +92,9 @@ void System::Start() {
             //单目测距
             Ranger check(pThis->cameraMatrix, pThis->disCoeffs);
             check.start(pThis->matchA, pThis->matchB, pThis->demo);
+            //获取并发送装甲板ROI区域给数字识别模块
+            Mat ROI = check.getROI(pThis->demo);
+            pThis->imgPublisher->publish(ROI);
         }
         //数据归零
         pThis->center.x = pThis->center.y = 0;

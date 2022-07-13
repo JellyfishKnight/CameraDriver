@@ -28,6 +28,8 @@ private:
     float tx, ty, tz;
     //相机到目标点的距离
     float distObj2Camera;
+    //装甲板ROI区域
+    Mat RegionOfInterest;
     /**
      * @brief 初始化成员变量
      */
@@ -60,6 +62,13 @@ public:
      * @param b 矩形b
      */
     void start(const RotatedRect& a, const RotatedRect& b, Mat& demo);
+
+    /**
+     * @brief 获取装甲板ROI图像
+     * @param demo 原图
+     * @return 装甲板ROI区域
+     */
+    Mat getROI(Mat& demo);
 
     Ranger(Mat& CM, Mat& DC) : cameraMatrix(CM), disCoeffs(DC) {};
 

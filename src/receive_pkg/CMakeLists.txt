@@ -29,7 +29,7 @@ include_directories(
 add_library(
         ${PROJECT_NAME} STATIC
         src/BaseReceiver.cpp
-        src/MVReceiver.cpp
+        src/ImgReceiver.cpp
         )
 
 target_link_libraries(${PROJECT_NAME}
