@@ -36,7 +36,7 @@ private:
     /**
      * @brief 数据加载
      */
-    void LoadData();
+    void LoadData(const string &data_path);
     //图片集
     vector<Mat> images;
     //
@@ -51,13 +51,6 @@ private:
      * @brief 分裂数据集
      */
     void SplitTrainTest();
-    /**
-     * @brief 评估模型
-     * @param output
-     * @param labels
-     * @param names
-     * @return 正确率大小
-     */
     //训练图片集
     vector<Mat> train_images;
     vector<int> train_labels;
@@ -67,10 +60,11 @@ private:
     /**
      * @brief 评估模型
      * @param output 预测结果
+     * @param labels 标签
+     * @param names 测试集文件名，用于找到错误的图片名字
      * @return 错误率
      */
     float EvaluateModel(vector<float> output);
-    // 测试集文件名，用于找到错误的图片名字
     vector<string> test_names;
 public:
     /**
@@ -86,7 +80,7 @@ public:
      * @brief 开始识别
      * @param numberImage 装甲板数字图片
      */
-    void start(const Mat& numberImage, Mat& demo);
+    void start(const Mat& numberImage);
     /**
      * @brief 重载函数,测试用
      */

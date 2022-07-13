@@ -138,8 +138,7 @@ void Ranger::start(const RotatedRect& a, const RotatedRect& b, Mat& demo) {     
     vector<Point3f> objPoints = getObjPoints();
     vector<Point2f> imgPoints(points, points + 9);
 
-    cout << cameraMatrix << endl;
-    cout << disCoeffs << endl;
+    //解算PnP
     solvePnP(objPoints, imgPoints, cameraMatrix, disCoeffs, rvecCamera2Obj, tvecCamera2Obj);
 
     //计算重投影误差

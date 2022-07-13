@@ -20,7 +20,7 @@ using namespace ml;
 
 
 int main() {
-    string readRoot = "/home/wjy/Projects/RMlearning/CameraDriverWS/src/number_pkg/src/SVM_img/";
+    string readRoot = "/home/wjy/Projects/RMlearning/CameraDriverWS/src/Datas/SVM_img/";
     string saveRoot = "/home/wjy/Projects/RMlearning/CameraDriverWS/src/Datas/SVM.xml";
     Number number(readRoot, saveRoot);
     number.start();

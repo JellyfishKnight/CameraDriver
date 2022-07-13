@@ -22,19 +22,20 @@ using namespace ml;
  * @param images
  * @param labels
  */
-void Number::LoadData() {
+void Number::LoadData(const string &data_path) {
     cout << "Loading images and labels to vector." << endl;
+
     for (int i = 1; i <= class_num; ++i) {
         string num_str = to_string(i);
         for (int j = 0; j < max_index; ++j) {
-            //寻找图片文件
-            string filename = samples::findFile(readRoot + num_str + "/" + to_string(j) + ".png",false, true);
-            //判空
+            //
+            string filename = samples::findFile(data_path + num_str + "/" + to_string(j) + ".png",
+                                                false, true);
             if (filename.empty()) {
                 continue;
             }
             total_images[i]++;
-            //读图
+            //
             Mat input = imread(filename, IMREAD_GRAYSCALE);
 
             Mat image;
@@ -72,7 +73,6 @@ void Number::Shuffle() {
         shuffled_labels.push_back(labels[index]);//根据打乱的索引数组 生成小数字图像的标签向量
         shuffled_names.push_back(file_names[index]);  //根据打乱的索引数组 生成小数字图像的文件名向量
     }
-
     images = shuffled_digits;//更新整体数字图像为打乱顺序的数字图像
     labels = shuffled_labels;//更新标签向量为 打乱顺序的数字图像对应的标签
     file_names = shuffled_names;//更新文件名向量为 打乱顺序的数字图像对应的文件名
@@ -104,22 +104,22 @@ void Number::SplitTrainTest() {
 float Number::EvaluateModel(vector<float> output) {
     int total_correct = 0;
     for (int i = 0; i < output.size(); ++i) {
-        if (lround(output[i]) == labels[i]) {
+        if (lround(output[i]) == test_labels[i]) {
             // 统计正确数量
-            correct_result[labels[i]]++;
+            correct_result[test_labels[i]]++;
             total_correct++;
         } else {
             cout << "Wrong prediction on " << test_names[i] << ".\n";
             // 统计到第i类错误数量
-            wrong_result[labels[i]]++;
+            wrong_result[test_labels[i]]++;
         }
     }
     return (float)total_correct / output.size();
 }
 
-void Number::start(const Mat& numberImage, Mat& demo) {
-    //加载数据
-    LoadData();
+void Number::start(const Mat& numberImage) {
+    LoadData(readRoot);
+
     // 循环100次测试参数(C, gamma)性能
     double correct_rate = 0;
     int test_num = 1;
@@ -138,7 +138,7 @@ void Number::start(const Mat& numberImage, Mat& demo) {
         svm->setGamma(0.025);
         svm->setC(7);
         svm->train(train_image, ml::ROW_SAMPLE, train_labels);
-        svm->save(saveRoot);
+        svm->save("../svm.xml");
         // 预测和评估模型
         vector<float> svm_output;
         svm->predict(test_image, svm_output);
@@ -146,8 +146,7 @@ void Number::start(const Mat& numberImage, Mat& demo) {
         correct_rate += temp_correct_rate / test_num;
     }
     for (int i = 1; i <= class_num; ++i) {
-        printf("Average number of wrong predictions on class %d is %.0f.\n", i,
-               round((float) wrong_result[i] / test_num));
+        printf("Average number of wrong predictions on class %d is %.0f.\n", i, round((float)wrong_result[i] / test_num));
     }
     cout << "Correct rate of SVM on test set is: " << correct_rate * 100 << "%." << endl;
 //    // kNN方法
@@ -161,8 +160,8 @@ void Number::start(const Mat& numberImage, Mat& demo) {
 }
 
 void Number::start() {
-    //加载数据
-    LoadData();
+    LoadData(readRoot);
+
     // 循环100次测试参数(C, gamma)性能
     double correct_rate = 0;
     int test_num = 1;
@@ -181,7 +180,7 @@ void Number::start() {
         svm->setGamma(0.025);
         svm->setC(7);
         svm->train(train_image, ml::ROW_SAMPLE, train_labels);
-        svm->save(saveRoot);
+        svm->save("../svm.xml");
         // 预测和评估模型
         vector<float> svm_output;
         svm->predict(test_image, svm_output);
@@ -189,10 +188,11 @@ void Number::start() {
         correct_rate += temp_correct_rate / test_num;
     }
     for (int i = 1; i <= class_num; ++i) {
-        printf("Average number of wrong predictions on class %d is %.0f.\n", i,
-               round((float) wrong_result[i] / test_num));
+        printf("Average number of wrong predictions on class %d is %.0f.\n", i, round((float)wrong_result[i] / test_num));
     }
     cout << "Correct rate of SVM on test set is: " << correct_rate * 100 << "%." << endl;
+
+
 //    // kNN方法
 //    Ptr<KNearest> kNN;
 //    kNN = KNearest::create();
