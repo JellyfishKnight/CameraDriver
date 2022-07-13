@@ -23,5 +23,6 @@ int main() {
     string readRoot = "/home/wjy/Projects/RMlearning/CameraDriverWS/src/number_pkg/src/SVM_img/";
     string saveRoot = "/home/wjy/Projects/RMlearning/CameraDriverWS/src/Datas/SVM.xml";
     Number number(readRoot, saveRoot);
+    number.start();
     return 0;
 }

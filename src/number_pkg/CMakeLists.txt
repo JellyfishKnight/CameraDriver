@@ -160,6 +160,7 @@ add_library(
          ${PROJECT_NAME}_node
          ${catkin_LIBRARIES}
          ${OpenCV_LIBS}
+         ${PROJECT_NAME}
          )
 
 #############

@@ -45,25 +45,12 @@ private:
     vector<string> file_names;
     /**
      * @brief 数据扰乱
-     * @param image_set
-     * @param label_set
-     * @param name_set
      */
-    void Shuffle(vector<Mat> &image_set, vector<int> &label_set, vector<string> &name_set);
+    void Shuffle();
     /**
      * @brief 分裂数据集
-     * @param image_set
-     * @param label_set
-     * @param name_set
-     * @param train_images
-     * @param train_labels
-     * @param test_images
-     * @param test_labels
-     * @param test_names
      */
-    void SplitTrainTest(vector<Mat> image_set, vector<int> label_set, vector<string> name_set,
-                                vector<Mat> &train_images, vector<int> &train_labels,
-                                vector<Mat> &test_images, vector<int> &test_labels, vector<string> &test_names);
+    void SplitTrainTest();
     /**
      * @brief 评估模型
      * @param output
@@ -71,7 +58,20 @@ private:
      * @param names
      * @return 正确率大小
      */
-    float EvaluateModel(vector<float> output, vector<string> names);
+    //训练图片集
+    vector<Mat> train_images;
+    vector<int> train_labels;
+    //测试图片集
+    vector<Mat> test_images;
+    vector<int> test_labels;
+    /**
+     * @brief 评估模型
+     * @param output 预测结果
+     * @return 错误率
+     */
+    float EvaluateModel(vector<float> output);
+    // 测试集文件名，用于找到错误的图片名字
+    vector<string> test_names;
 public:
     /**
      * @brief 构造器
@@ -87,6 +87,10 @@ public:
      * @param numberImage 装甲板数字图片
      */
     void start(const Mat& numberImage, Mat& demo);
+    /**
+     * @brief 重载函数,测试用
+     */
+    void start();
 
     ~Number() = default;
 };
