@@ -1,14 +1,30 @@
-cmake_minimum_required(VERSION 3.0.2)
+cmake_minimum_required(VERSION 3.10)
 project(publish_pkg)
 
+## Use C++14
+set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+#######################
+## Find dependencies ##
+#######################
+
+
 find_package(catkin REQUIRED COMPONENTS
-  cv_bridge
-  roscpp
-  sensor_msgs
-  std_msgs
-)
+        roscpp
+        cv_bridge
+        sensor_msgs
+        )
 
 find_package(OpenCV 4 REQUIRED)
+###########
+## Build ##
+###########
+catkin_package(
+        INCLUDE_DIRS include
+        LIBRARIES ${PROJECT_NAME}
+)
+
 
 include_directories(
         include
@@ -16,17 +32,14 @@ include_directories(
         ${OpenCV_INCLUDE_DIRS}
 )
 
-## Declare a C++ library
- add_library(
-         ${PROJECT_NAME} STATIC
-         src/BasePublisher.cpp
-         src/ImgPublisher.cpp
- )
+add_library(
+        ${PROJECT_NAME} STATIC
+        src/BasePublisher.cpp
+        src/ImgPublisher.cpp
+)
 
-## Specify libraries to link a library or executable target against
- target_link_libraries(
-         ${PROJECT_NAME}
-         ${catkin_LIBRARIES}
-         ${OpenCV_LIBS}
- )
-
+target_link_libraries(
+        ${PROJECT_NAME}
+        ${catkin_LIBRARIRES}
+        ${OpenCV_LIBS}
+        )

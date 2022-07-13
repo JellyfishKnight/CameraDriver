@@ -44,6 +44,8 @@ private:
     Point center;
     //帧率
     static float FPS;
+    //发布器
+
     /**
      * @brief 数据读取
      * @return true 成功读取
@@ -61,7 +63,12 @@ private:
      */
     void RectFit(Mat& demo);
 
-    friend class PreProcess;
+    /**
+     * @brief 发送图片消息给数字识别器
+     */
+    void Publish2Number();
+
+//    friend class PreProcess;
 public:
     /**
      * @brief 构造器

@@ -10,7 +10,7 @@ int main(int argc, char *argv[])
 {
     //ros≥ı ºªØ
     ros::init(argc, argv, "driver_pkg_node");
-    MindVision mindVision(10000);
+    MindVision mindVision("Driver_Node", 10000);
     if (mindVision.init() && mindVision.start()) {
         mindVision.publish();
     } else {

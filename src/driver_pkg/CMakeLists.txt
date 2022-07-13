@@ -37,3 +37,35 @@ target_link_libraries(
         ${OpenCV_LIBS}
         ${PROJECT_NAME}
         )
+#*********************************
+#cmake_minimum_required(VERSION 3.0.2)
+#project(recognize_pkg)
+#
+#find_package(catkin REQUIRED COMPONENTS
+#        receive_pkg
+#        roscpp
+#        )
+#
+#find_package(OpenCV 4 REQUIRED)
+#
+#
+#include_directories(
+#        include
+#        ${catkin_INCLUDE_DIRS}
+#        ${OpenCV_INCLUDE_DIRS}
+#)
+#
+#add_library(${PROJECT_NAME}
+#        src/PreProcess.cpp
+#        src/Ranger.cpp
+#        src/System.cpp
+#        src/DataReader.cpp
+#        )
+#
+#add_executable(${PROJECT_NAME}_node src/recognize_pkg_node.cpp)
+#
+#target_link_libraries(${PROJECT_NAME}_node
+#        ${catkin_LIBRARIES}
+#        ${OpenCV_LIBS}
+#        ${PROJECT_NAME}
+#        )

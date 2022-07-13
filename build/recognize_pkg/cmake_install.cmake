@@ -42,18 +42,3 @@ if(NOT DEFINED CMAKE_OBJDUMP)
   set(CMAKE_OBJDUMP "/usr/bin/objdump")
 endif()
 
-if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/wjy/Projects/RMlearning/CameraDriverWS/build/recognize_pkg/catkin_generated/installspace/recognize_pkg.pc")
-endif()
-
-if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/recognize_pkg/cmake" TYPE FILE FILES
-    "/home/wjy/Projects/RMlearning/CameraDriverWS/build/recognize_pkg/catkin_generated/installspace/recognize_pkgConfig.cmake"
-    "/home/wjy/Projects/RMlearning/CameraDriverWS/build/recognize_pkg/catkin_generated/installspace/recognize_pkgConfig-version.cmake"
-    )
-endif()
-
-if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/recognize_pkg" TYPE FILE FILES "/home/wjy/Projects/RMlearning/CameraDriverWS/src/recognize_pkg/package.xml")
-endif()
-

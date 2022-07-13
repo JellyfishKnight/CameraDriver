@@ -10,31 +10,39 @@
 #include "BaseDriver.h"
 #include "ros/ros.h"
 #include "sensor_msgs/Image.h"
+#include "publish_pkg/ImgPublisher.h"
 
 using namespace ros;
 using namespace cv;
 
 class MindVision : public BaseDriver{
 private:
-    int hCamera{};                            //相机句柄
-    int CameraCounts = 4;                  //相机数量
-    int fps{};
-    tSdkCameraDevInfo CameraEnumList{};       //相机枚举列表
-    tSdkCameraCapbility Capability{};         //设备描述信息
+    //相机句柄
+    int hCamera{};
+    //相机数量
+    int CameraCounts = 4;
+    //相机枚举列表
+    tSdkCameraDevInfo CameraEnumList{};
+    //设备描述信息
+    tSdkCameraCapbility Capability{};
     tSdkFrameHead FrameInfo{};
     BYTE* pbyBuffer{};
     int iDisplayFrames = 10000;
     IplImage* ilpImage = nullptr;
     double* pfLineTime{};
     int channel = 3;
-    unsigned char* g_pRgBuffer{};              //处理后数据缓存区
-    Mat src;                                //cv图像
-
-    NodeHandle nodeHandle;                  //节点处理器
-    Publisher publisher;                    //发布器
-    sensor_msgs::ImagePtr msg;              //消息图像指针
-
-    Rate rate;                              //发送频率
+    //处理后数据缓存区
+    unsigned char* g_pRgBuffer{};
+    //cv图像
+    Mat src;
+    //话题名称
+    string topic;
+    //发布器
+    ImgPublisher* imgPublisher = nullptr;
+    //消息图像指针
+    sensor_msgs::ImagePtr msg;
+    //发送频率
+    int rate;
 protected:
     /**
      * @brief 设置相机参数
@@ -51,10 +59,17 @@ public:
     /**
      * @brief 构造函数
      * @param frequency 发送频率(每秒多少次)
+     * @param t 话题名称
      */
-    explicit MindVision(int frequency = 10000) : rate(frequency) {}
-
-    ~MindVision() = default;
+    explicit MindVision(string t, int frequency = 10000) : topic(move(t)), rate(frequency) {
+        imgPublisher = new ImgPublisher(topic, rate);
+    }
+    /**
+     * @brief 析构器
+     */
+    ~MindVision() {
+        delete imgPublisher;
+    }
     /**
      * @brief 初始化
      * 

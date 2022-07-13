@@ -3,6 +3,6 @@ prefix=/home/wjy/Projects/RMlearning/CameraDriverWS/build/devel
 Name: driver_pkg
 Description: Description of driver_pkg
 Version: 0.0.0
-Cflags: 
-Libs: -L${prefix}/lib 
+Cflags: -I/home/wjy/Projects/RMlearning/CameraDriverWS/src/driver_pkg/include
+Libs: -L${prefix}/lib -lpublish_pkg
 Requires: 

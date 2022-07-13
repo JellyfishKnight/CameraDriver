@@ -3,7 +3,6 @@
 #include "ros/ros.h"
 #include "opencv2/core.hpp"
 #include "cv_bridge/cv_bridge.h"
-#include ""
 
 using namespace std;
 using namespace ros;
@@ -81,7 +80,6 @@ bool MindVision::stop() {
 }
 
 bool MindVision::grab() {
-    double st = getTickCount();
     if (CameraGetImageBuffer(hCamera, &FrameInfo, &pbyBuffer, 1000) == 0) {
         CameraImageProcess(hCamera, pbyBuffer, g_pRgBuffer, &FrameInfo);
         src = Mat(
@@ -98,17 +96,12 @@ bool MindVision::grab() {
 
 void MindVision::publish() {
     //发送器
-    publisher = nodeHandle.advertise<sensor_msgs::Image>("Driver_Node", 1);
     while (ok()) {
         grab();
         if (src.empty()) {                  //判空
             cout << "Grab failed!" << endl;
             return ;
         }
-        //将cv图像转化为消息图像
-        msg = cv_bridge::CvImage(std_msgs::Header(), "bgr8", src).toImageMsg();
-        //发送消息
-        publisher.publish(msg);
-        rate.sleep();
+        imgPublisher->publish(src);
     }
 }
