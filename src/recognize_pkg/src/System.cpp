@@ -19,7 +19,7 @@ System *System::pThis = nullptr;
 float System::FPS = 0;
 
 bool System::DataRead() {
-    DataReader dataReader("/home/wjy/Projects/RMlearning/CameraDriverWS/src/recognize_pkg/data/data.xml");
+    DataReader dataReader("/home/wjy/Projects/RMlearning/CameraDriverWS/src/Datas/CameraDatas.xml");
     if (!dataReader.readData(pThis->cameraMatrix, pThis->disCoeffs)) {
         cout << "Data file root wrong!" << endl;
         return false;

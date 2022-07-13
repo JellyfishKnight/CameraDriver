@@ -22,7 +22,9 @@ using namespace ml;
 class Number {
 private:
     //训练图片路径
-    string root;
+    string readRoot;
+    //数据保存路径
+    string saveRoot;
     // 类别数目
     const int class_num = 8;
     // 训练集占比
@@ -47,7 +49,29 @@ private:
      * @param label_set
      * @param name_set
      */
-    void Shuffle(vector<Mat> &image_set, vector<int> &label_set, vector<string> &name_set)
+    void Shuffle(vector<Mat> &image_set, vector<int> &label_set, vector<string> &name_set);
+    /**
+     * @brief 分裂数据集
+     * @param image_set
+     * @param label_set
+     * @param name_set
+     * @param train_images
+     * @param train_labels
+     * @param test_images
+     * @param test_labels
+     * @param test_names
+     */
+    void SplitTrainTest(vector<Mat> image_set, vector<int> label_set, vector<string> name_set,
+                                vector<Mat> &train_images, vector<int> &train_labels,
+                                vector<Mat> &test_images, vector<int> &test_labels, vector<string> &test_names);
+    /**
+     * @brief 评估模型
+     * @param output
+     * @param labels
+     * @param names
+     * @return 正确率大小
+     */
+    float EvaluateModel(vector<float> output, vector<string> names);
 public:
     /**
      * @brief 构造器
@@ -56,14 +80,15 @@ public:
      * @param trainRatio 训练集占比
      * @param maxIndex 每个类别最多样本数量
      */
-    explicit Number(string r, int classNum = 8, double trainRatio = 0.1, int maxIndex = 1000) :
-        root(std::move(r)), class_num(classNum), train_ratio(trainRatio), max_index(maxIndex) {}
+    explicit Number(string rr, string sr, int classNum = 8, double trainRatio = 0.1, int maxIndex = 1000) :
+        readRoot(move(rr)), saveRoot(move(sr)), class_num(classNum), train_ratio(trainRatio), max_index(maxIndex) {}
     /**
      * @brief 开始识别
      * @param numberImage 装甲板数字图片
      */
-    void start(Mat numberImage);
+    void start(const Mat& numberImage, Mat& demo);
 
+    ~Number() = default;
 };
 
 
