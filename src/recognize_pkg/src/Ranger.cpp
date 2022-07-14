@@ -120,8 +120,12 @@ void Ranger::eulerSolver(Mat &demo) {
     /********************施工区域********************/
     //俯仰角,水平转动角
     float pitch, yaw;
-    pitch = asin(tvecCamera2Obj.at<double>(1) / distObj2Camera);
-    yaw = asin(tvecCamera2Obj.at<double>(0) / (distObj2Camera * sqrt(1 - pow(tvecCamera2Obj.at<double>(1) / distObj2Camera, 2))));
+//    pitch = asin(tvecCamera2Obj.at<double>(1) / distObj2Camera);
+//    yaw = asin(tvecCamera2Obj.at<double>(0) / (distObj2Camera * sqrt(1 - pow(tvecCamera2Obj.at<double>(1) / distObj2Camera, 2))));
+    yaw = atan2(tvecCamera2Obj.at<double>(0), tvecCamera2Obj.at<double>(2));
+    pitch = -atan2(tvecCamera2Obj.at<double>(1),
+            sqrt(tvecCamera2Obj.at<double>(0) * tvecCamera2Obj.at<double>(0) +
+                    tvecCamera2Obj.at<double>(2) * tvecCamera2Obj.at<double>(2)));
     //从弧度转化为角度
     yaw *= 180.0 / CV_PI;
     pitch *= 180.0 / CV_PI;
@@ -155,7 +159,7 @@ void Ranger::start(const RotatedRect& a, const RotatedRect& b, Mat& demo) {     
 
 Mat Ranger::getROI(Mat& demo) {
     Point2f pointsOfROI[4];
-    Point2f pointsOfNumber[4];
+//    Point2f pointsOfNumber[4];
     //指定ROI区域的四个角点
     pointsOfROI[0] = Point2f(points[1].x + 10, points[1].y - 10);
     pointsOfROI[1] = Point2f(points[4].x - 10, points[4].y - 10);
