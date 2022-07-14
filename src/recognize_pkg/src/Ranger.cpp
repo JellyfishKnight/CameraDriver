@@ -1,7 +1,6 @@
 //
 // Created by wjy on 22-7-10.
 //
-
 #include <iostream>
 #include "recognize_pkg/Ranger.h"
 #include "Eigen/Eigen"
@@ -10,6 +9,7 @@
 #include "opencv2/core.hpp"
 #include "opencv2/imgproc.hpp"
 #include "opencv2/calib3d.hpp"
+#include "opencv2/highgui/highgui.hpp"
 
 using namespace std;
 using namespace cv;
@@ -155,17 +155,27 @@ Mat Ranger::getROI(Mat& demo) {
     Point2f pointsOfROI[4];
     Point2f pointsOfNumber[4];
     //指定ROI区域的四个角点
-    pointsOfROI[0] = points[1];
-    pointsOfROI[1] = points[4];
-    pointsOfROI[2] = points[5];
-    pointsOfROI[3] = points[8];
-    //指定输出图像的四个角点 (注意顺序与上面的数组对应)
-    pointsOfNumber[0] = Point2f(0, 0);
-    pointsOfNumber[1] = Point2f(20, 0);
-    pointsOfNumber[2] = Point2f(20, 20);
-    pointsOfNumber[3] = Point2f(20, 20);
-    //获取透视变换矩阵
-    Mat tranMat = getPerspectiveTransform(pointsOfROI, pointsOfNumber);
-    warpPerspective(demo, RegionOfInterest, tranMat, Size(20, 20));
-    return RegionOfInterest;
+    pointsOfROI[0] = Point2f(points[1].x + 10, points[1].y - 10);
+    pointsOfROI[1] = Point2f(points[4].x - 10, points[4].y - 10);
+    pointsOfROI[2] = Point2f(points[5].x - 10, points[5].y + 10);
+    pointsOfROI[3] = Point2f(points[8].x + 10, points[8].y + 10);
+//    //指定输出图像的四个角点 (注意顺序与上面的数组对应)
+//    pointsOfNumber[0] = Point2f(0, 0);
+//    pointsOfNumber[1] = Point2f(20, 0);
+//    pointsOfNumber[2] = Point2f(20, 20);
+//    pointsOfNumber[3] = Point2f(20, 20);
+    /**不知道为什么透视变换会导致图片不能正确地被变换,但是实测发现不用透视变换也能够识别到数字**/
+    Mat ROI = demo.colRange(pointsOfROI[0].x, pointsOfROI[1].x);
+    ROI = ROI.rowRange(pointsOfROI[0].y, pointsOfROI[3].y);
+    //规范数据发送格式,使其能够被预测
+    resize(ROI, ROI, Size(20, 20));
+//    Mat tranMat = getPerspectiveTransform(pointsOfROI, pointsOfNumber);
+//    warpPerspective(demo, RegionOfInterest, tranMat, Size(20, 20));
+//    //获取透视变换矩阵
+//    Mat tranMat = getPerspectiveTransform(pointsOfROI, pointsOfNumber);
+//    warpPerspective(demo, RegionOfInterest, tranMat, Size(20, 20));
+//    namedWindow("Number",WINDOW_NORMAL);
+//    imshow("Number", RegionOfInterest);
+//    waitKey(1);
+    return ROI;
 }

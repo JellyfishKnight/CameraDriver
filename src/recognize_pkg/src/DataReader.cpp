@@ -21,7 +21,7 @@ bool DataReader::readData(Mat &cameraMat, Mat &distCoeff) {
         (*fileStorage)["Distortion_Coefficients_MV"] >> distCoeff;
         return true;
     } else {
-        cout << "Data file root wrong!" << endl;
+//        cout << "Data file root wrong!" << endl;
         return false;
     }
 }

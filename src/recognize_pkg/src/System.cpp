@@ -76,6 +76,7 @@ void System::Start() {
     while (true) {
         auto start = chrono::system_clock::now();
         capture >> pThis->demo;
+        Mat ROINeeded = pThis->demo.clone();
         //判空以及判定结束
         if (pThis->demo.empty()) {
             cout << "Picture read failed" << endl;
@@ -93,7 +94,7 @@ void System::Start() {
             Ranger check(pThis->cameraMatrix, pThis->disCoeffs);
             check.start(pThis->matchA, pThis->matchB, pThis->demo);
             //获取并发送装甲板ROI区域给数字识别模块
-            Mat ROI = check.getROI(pThis->demo);
+            Mat ROI = check.getROI(ROINeeded);
             pThis->imgPublisher->publish(ROI);
         }
         //数据归零
