@@ -161,11 +161,11 @@ Mat Ranger::getROI(Mat& demo) {
     pointsOfROI[3] = points[8];
     //指定输出图像的四个角点 (注意顺序与上面的数组对应)
     pointsOfNumber[0] = Point2f(0, 0);
-    pointsOfNumber[1] = Point2f(1000, 0);
-    pointsOfNumber[2] = Point2f(1000, 1000);
-    pointsOfNumber[3] = Point2f(0, 1000);
+    pointsOfNumber[1] = Point2f(20, 0);
+    pointsOfNumber[2] = Point2f(20, 20);
+    pointsOfNumber[3] = Point2f(20, 20);
     //获取透视变换矩阵
     Mat tranMat = getPerspectiveTransform(pointsOfROI, pointsOfNumber);
-    warpPerspective(demo, RegionOfInterest, tranMat, Size(1000, 1000));
+    warpPerspective(demo, RegionOfInterest, tranMat, Size(20, 20));
     return RegionOfInterest;
 }

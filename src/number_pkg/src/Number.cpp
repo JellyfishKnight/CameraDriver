@@ -4,6 +4,7 @@
 #include "number_pkg/Number.h"
 #include "opencv2/core.hpp"
 #include "opencv2/highgui/highgui.hpp"
+#include "opencv2/imgproc.hpp"
 #include "opencv2/imgcodecs.hpp"
 #include "opencv2/ml.hpp"
 
@@ -43,7 +44,6 @@ void Number::LoadData(const string &data_path) {
             Mat image;
             // 转成能训练的格式，1.0/255为缩放因子
             input.convertTo(image, CV_32F, 1.0 / 255);
-
             images.push_back(image);
             labels.push_back(i);
             file_names.push_back(filename);
@@ -121,14 +121,23 @@ float Number::EvaluateModel(vector<float> output) {
 
 void Number::start(Mat numberImage) {
     //格式转换
-    numberImage.convertTo(numberImage, CV_32F, 1.0 / 255);
-    numberImage.reshape(0, 1);
-    numberImage = numberImage.t();
-    Ptr<SVM> svm;
-    svm = Algorithm::load<SVM>(pThis->readRoot);
-    vector<float> svm_output;
-    svm->predict(numberImage, svm_output);
-    cout << "Number: " << svm_output[0] << endl;
+    Mat maskOfReshape;
+    Mat channels[3];
+    split(numberImage, channels);
+    numberImage = channels[2] - channels[0];
+    threshold(numberImage, numberImage, 30, 255, THRESH_BINARY);
+    numberImage.reshape(0, 1).convertTo(maskOfReshape, CV_32F, 1.0 / 255);
+    Mat testImage;
+    maskOfReshape.convertTo(testImage, CV_32F, 1.0 / 255);
+    //使用未经初始化的实例载入模型
+    Ptr<SVM> svm = StatModel::load<SVM>(pThis->readRoot);
+    //判空
+    if (svm.empty()) {
+        cout << "SVM load failed!" << endl;
+        return ;
+    }
+    int number = lround(svm->predict(maskOfReshape));
+    cout << "Number: " << number << endl;
 }
 
 void Number::start() {
@@ -140,19 +149,15 @@ void Number::start() {
         // 分割训练集测试集
         pThis->SplitTrainTest();
         // 合并成一个图片使API能Predict
-        Mat train_image, test_image;
-        vconcat(pThis->train_images, train_image);
+        Mat test_image;
         vconcat(pThis->test_images, test_image);
         // SVM参数设置和训练
-        Ptr<SVM> svm;
-        svm = SVM::create();
-        svm->setType(SVM::C_SVC);
-        svm->setKernel(SVM::RBF);
-        svm->setGamma(0.025);
-        svm->setC(7);
-        svm->train(train_image, ml::ROW_SAMPLE, pThis->train_labels);
-        svm->save("../svm.xml");
-        // 预测和评估模型
+        Ptr<SVM> svm = Algorithm::load<SVM>(pThis->saveRoot);
+        //判空
+        if (svm.empty()) {
+            cout << "SVM load failed!" << endl;
+            return ;
+        }
         vector<float> svm_output;
         svm->predict(test_image, svm_output);
         double temp_correct_rate = pThis->EvaluateModel(svm_output);
@@ -162,15 +167,5 @@ void Number::start() {
         printf("Average number of wrong predictions on class %d is %.0f.\n", i, round((float)pThis->wrong_result[i] / test_num));
     }
     cout << "Correct rate of SVM on test set is: " << correct_rate * 100 << "%." << endl;
-
-
-//    // kNN方法
-//    Ptr<KNearest> kNN;
-//    kNN = KNearest::create();
-//    kNN->train(train_image, ml::ROW_SAMPLE, train_labels);
-//    vector<float> kNN_output;
-//    kNN->findNearest(test_image, 5, kNN_output);
-//    correct_rate = EvaluateModel(kNN_output, test_labels, test_names);
-//    cout << "Correct rate of kNN on test set is: " << correct_rate * 100 << "%." << endl;
 }
 
