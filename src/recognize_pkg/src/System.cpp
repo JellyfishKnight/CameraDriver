@@ -6,7 +6,7 @@
 #include "recognize_pkg/Ranger.h"
 #include "recognize_pkg/DataReader.h"
 #include "iostream"
-#include <string>
+#include "string"
 #include "chrono"
 #include "opencv2/core.hpp"
 #include "opencv2/highgui.hpp"
@@ -36,6 +36,7 @@ void System::Start(Mat demo) {
         cout << "Picture read failed" << endl;
         return;
     }
+    pThis->ROINeeded = demo.clone();
     //相机数据读取
     Mat mask = demo.clone();
     //预处理(返回一个二值化图)
@@ -48,9 +49,10 @@ void System::Start(Mat demo) {
         //单目测距
         Ranger check(pThis->cameraMatrix, pThis->disCoeffs);
         check.start(pThis->matchA, pThis->matchB, demo);
+        //获取并发送装甲板ROI区域给数字识别模块
+        Mat ROI = check.getROI(pThis->ROINeeded);
+        pThis->imgPublisher->publish(ROI);
     }
-    //查找数字
-    //(待神经网络实现)
     //数据归零
     pThis->center.x = pThis->center.y = 0;
     cout << "------------------------------------------------" << endl;
@@ -76,7 +78,7 @@ void System::Start() {
     while (true) {
         auto start = chrono::system_clock::now();
         capture >> pThis->demo;
-        Mat ROINeeded = pThis->demo.clone();
+        pThis->ROINeeded = pThis->demo.clone();
         //判空以及判定结束
         if (pThis->demo.empty()) {
             cout << "Picture read failed" << endl;
@@ -94,7 +96,7 @@ void System::Start() {
             Ranger check(pThis->cameraMatrix, pThis->disCoeffs);
             check.start(pThis->matchA, pThis->matchB, pThis->demo);
             //获取并发送装甲板ROI区域给数字识别模块
-            Mat ROI = check.getROI(ROINeeded);
+            Mat ROI = check.getROI(pThis->ROINeeded);
             pThis->imgPublisher->publish(ROI);
         }
         //数据归零

@@ -66,11 +66,13 @@ vector<Point3f> Ranger::getObjPoints() {
             minUp = points[i].y;
         }
     }
+    //计算图像中装甲板的长宽
     float imageWidth = maxRight - minLeft;
     float imageHeight = maxDown - minUp;
     vector<Point3f> objPoints;
     Point3f temp(0, 0, 0);
     objPoints.push_back(temp);
+    //解算每个点在世界坐标系中的坐标
     for (int i = 1; i < 9; i++) {
         temp.x = (points[i].x - points[0].x) / imageWidth * boardWidth;
         temp.y = (points[i].y - points[0].y) / imageHeight * boardHeight;

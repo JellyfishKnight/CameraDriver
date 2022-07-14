@@ -47,6 +47,8 @@ private:
     static float FPS;
     //发布器
     ImgPublisher* imgPublisher{};
+    //传给ROI区域获取的原图
+    Mat ROINeeded;
     /**
      * @brief 数据读取
      * @return true 成功读取
