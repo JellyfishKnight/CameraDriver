@@ -44,9 +44,11 @@
 
    ```bash
    #在第二个终端中运行
-   $ rosrun driver_pkg driver_pkg_node
+   $ rosrun driver_pkg driver_pkg_node 
    #在第三个终端中运行
    $ rosrun recognize_pkg recognize_pkg_node
+   #在第四个终端中运行
+   $ rosrun number_pkg number_pkg_node
    ```
 
    **或者直接**
@@ -63,17 +65,23 @@
    
 **项目说明:**
 
+
 工作台中包含以下包:
 
 - _**cv_bridge**_     
    >此包在ros系统内是内置的,但是由于gtk版本原因重新下载编译
+- _**publish_pkg**_
+   >此包内容主要为一个发送类,作为发送器,目前仅有OpenCV图片发送器,无可执行文件,为一个静态库
 - _**driver_pkg**_  
    >此包的内容主要为相机的驱动以及发送相关的信息
 - _**receive_pkg**_ 
-   >此包的内容主要为一个接收类,作为接收器,使用函数指针向回调函数外传出数据,并且被编译为静态库,无可运行程序
+   >此包的内容主要为一个接收类,作为接收器,使用函数指针向回调函数外传出数据,并且被编译为静态库,无可运行程序(目前只有OpenCV图像接收器)
 - **_recognize_pkg_**
-   >此包的内容主要为识别器,将receive_pkg作为其依赖,实现识别加上单目测距以及姿态解算,但是目前姿态解算部分并未完全得到解决
-
+   >此包的内容主要为识别器,将receive_pkg作为其依赖,实现识别加上单目测距以及姿态解算还有发送图片给数字识别器
+   >>但是目前姿态解算部分并未完全得到解决,并且有可能出现误识别情况
+- **_number_pkg_** 
+   >此包的内容主要为装甲板数字识别,接受receive_pkg传送过来的装甲板图像,使用OpenCV自带的SVM进行检测
+   >>目前由于二值化不是特别好所以数字识别可能会有误差
 <hr>   
    
 **其他被依赖但是工程中没有的包:**
@@ -90,4 +98,81 @@
 
 - roscpp
 - sensor_msgs
+
+<hr>
+
+
+**文件目录结构:**
+
+<pre>
+├── Datas
+│   ├── CameraData.xml
+│   └── SVM.xml
+├── driver_pkg
+│   ├── CMakeLists.txt
+│   ├── include
+│   │   └── driver_pkg
+│   │       ├── BaseDriver.h
+│   │       ├── CameraApi.h
+│   │       ├── CameraDefine.h
+│   │       ├── CameraStatus.h
+│   │       ├── lib
+│   │       │   └── libMVSDK.so
+│   │       └── MindVision.h
+│   ├── launch
+│   │   └── CameraTest.launch
+│   ├── package.xml
+│   └── src
+│       ├── BaseDriver.cpp
+│       ├── driver_pkg_node.cpp
+│       └── MindVision.cpp
+├── number_pkg
+│   ├── CMakeLists.txt
+│   ├── include
+│   │   └── number_pkg
+│   │       └── Number.h
+│   ├── package.xml
+│   └── src
+│       ├── Number.cpp
+│       └── number_pkg_node.cpp
+├── publish_pkg
+│   ├── CMakeLists.txt
+│   ├── include
+│   │   └── publish_pkg
+│   │       ├── BasePublisher.h
+│   │       └── ImgPublisher.h
+│   ├── package.xml
+│   └── src
+│       ├── BasePublisher.cpp
+│       └── ImgPublisher.cpp
+├── receive_pkg
+│   ├── CMakeLists.txt
+│   ├── include
+│   │   └── receive_pkg
+│   │       ├── BaseReceiver.h
+│   │       └── ImgReceiver.h
+│   ├── package.xml
+│   └── src
+│       ├── BaseReceiver.cpp
+│       └── ImgReceiver.cpp
+├── recognize_pkg
+│   ├── CMakeLists.txt
+│   ├── include
+│   │   └── recognize_pkg
+│   │       ├── DataReader.h
+│   │       ├── PreProcess.h
+│   │       ├── Ranger.h
+│   │       └── System.h
+│   ├── package.xml
+│   └── src
+│       ├── DataReader.cpp
+│       ├── PreProcess.cpp
+│       ├── Ranger.cpp
+│       ├── recognize_pkg_node.cpp
+│       └── System.cpp
+└── TestVideo
+    └── sample_red.avi
+</pre>
+
+<hr>
 
