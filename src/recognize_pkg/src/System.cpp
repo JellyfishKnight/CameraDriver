@@ -12,6 +12,19 @@
 #include "opencv2/highgui.hpp"
 #include "opencv2/imgproc.hpp"
 
+#define maxLenRatio 10
+
+#define minLenRatio 6
+
+#define maxAngleError 5
+
+#define maxAreaRation 2
+
+#define minImageRatio 0.666
+
+#define maxImageRatio 1.5
+
+
 using namespace std;
 using namespace cv;
 
@@ -44,7 +57,7 @@ void System::ContoursFind(const Mat &frame) {             /*调试完毕*/
 }
 
 /*选择条件待优化,目前误识别依然存在*/
-void System::RectFit(Mat& demo) {
+void System::RectFit(Mat &demo) {
     allRects.clear();
     //使用椭圆拟合
     for (auto &contour: selectedContours) {
@@ -61,63 +74,80 @@ void System::RectFit(Mat& demo) {
 //            line(demo, point_i[l], point_i[(l + 1) % 4], Scalar(0, 255, 255), 2);
 //        }
 //    }
+    float angleI, angleJ;
     for (int i = 0; i < allRects.size(); i++) {
         //角度调整
-        float angleI;
         if (allRects[i].angle > 90) {
             angleI = -allRects[i].angle + 90;
         } else {
             angleI = allRects[i].angle;
         }
+        //对灯条I的单独筛选
+        //对灯条角度筛选
+        if (abs(angleI) <= 70 && abs(angleI) >= 10)
+            continue;
+        //对矩形长宽比进行筛选
+        if (allRects[i].size.height / allRects[i].size.width >= maxLenRatio
+            && allRects[i].size.height / allRects[i].size.width <= minLenRatio)
+            continue;
         for (int j = i + 1; j < allRects.size(); j++) {
             //角度调整
-            float angleJ;
             if (allRects[j].angle > 90) {
                 angleJ = -allRects[j].angle + 90;
             } else {
                 angleJ = allRects[j].angle;
             }
+            //对两个灯条的配对筛选
             /*************************施工区域****************************/
+            //对两个灯条的倾斜角度进行筛选
+            if (abs(angleJ) <= 70 && abs(angleJ) >= 10)
+                continue;
+            //对矩形的角度进行筛选
+            if (angleI * angleJ <= 0)
+                continue;
+            if (abs(abs(angleI) - abs(angleJ)) > maxAngleError)
+                continue;
+            cout << angleI << " " << angleJ << endl;
+            //两个矩形的中心点高度之差不能大
+            if (abs(allRects[i].center.y - allRects[j].center.y) >=
+                (allRects[i].size.height + allRects[j].size.height) / 8)
+                continue;
             //对矩形长宽比进行筛选(灯条长宽比也许是主要影响)
-            if (allRects[i].size.height / allRects[i].size.width >= 5
-                && allRects[i].size.height / allRects[i].size.width <= 10
-                && allRects[j].size.height / allRects[j].size.width >= 5
-                && allRects[j].size.height / allRects[j].size.width <= 10)
-                //对两个矩形的角度进行筛选 (考虑从倾斜角度做一个约束?)
-                if (angleI * angleJ > 0 && abs(abs(angleI) - abs(angleJ)) < 5)
-//                    && (angleI > -50 && angleI < 50) && (angleJ > -50 && angleJ < 50))
-                    //对两个矩形的面积进行配对
-                    if ((allRects[i].size.area() / allRects[j].size.area() >= 0.5
-                        || allRects[j].size.area() / allRects[i].size.area() >= 0.5
-                        && (allRects[i].size.area() / allRects[j].size.area() <= 2
-                        || allRects[j].size.area() / allRects[i].size.area() <= 2)))
-                        //两个矩形的中心点高度之差不能大
-                        if (abs(allRects[i].center.y - allRects[j].center.y) <=
-                            (allRects[i].size.height + allRects[j].size.height) / 8) {
-                            /*************************施工区域****************************/
-                            Point2f point_i[4], point_j[4];
-                            //得到两个矩形的角点
-                            allRects[i].points(point_i);
-                            allRects[j].points(point_j);
-                            //规范两个矩形的相对位置以便后续解算
-                            if (allRects[i].center.x > allRects[j].center.x) {
-                                //赋值给成员变量储存起来
-                                matchA = allRects[j];
-                                matchB = allRects[i];
-                            } else {
-                                matchA = allRects[i];
-                                matchB = allRects[j];
-                            }
-                            center = Point((matchA.center.x + matchB.center.x) / 2,
-                                           (matchB.center.y + matchA.center.y) / 2);
-                            //画出匹配上的矩形
-                            for (int l = 0; l < 4; l++) {
-                                line(demo, point_i[l], point_i[(l + 1) % 4], Scalar(0, 255, 255), 2);
-                                line(demo, point_j[l], point_j[(l + 1) % 4], Scalar(0, 255, 255), 2);
-                            }
-                            //画出装甲板中心
-                            circle(demo, center, 4, Scalar(0, 255, 255), -1);
-                        }
+            if (allRects[j].size.height / allRects[j].size.width >= maxLenRatio
+                && allRects[j].size.height / allRects[j].size.width <= minLenRatio)
+                continue;
+            //对两个矩形的面积比进行筛选
+            if (allRects[i].size.area() / allRects[j].size.area() >= maxAreaRation
+                 || allRects[j].size.area() / allRects[i].size.area() >= maxAreaRation)
+                continue;
+            //对选出的矩形的长宽比进行筛选
+            float imageWidth = abs(sqrt(pow(allRects[i].center.x - allRects[j].center.y, 2) + pow(allRects[i].center.y - allRects[j].center.y, 2)));
+            float imageHeight = (allRects[i].size.height + allRects[j].size.height) / 2;
+            if (imageHeight / imageWidth < minImageRatio && imageHeight / imageWidth > maxImageRatio)
+                continue;
+            /*************************施工区域****************************/
+            Point2f point_i[4], point_j[4];
+            //得到两个矩形的角点
+            allRects[i].points(point_i);
+            allRects[j].points(point_j);
+            //规范两个矩形的相对位置以便后续解算
+            if (allRects[i].center.x > allRects[j].center.x) {
+                //赋值给成员变量储存起来
+                matchA = allRects[j];
+                matchB = allRects[i];
+            } else {
+                matchA = allRects[i];
+                matchB = allRects[j];
+            }
+            center = Point((matchA.center.x + matchB.center.x) / 2,
+                           (matchB.center.y + matchA.center.y) / 2);
+            //画出匹配上的矩形
+            for (int l = 0; l < 4; l++) {
+                line(demo, point_i[l], point_i[(l + 1) % 4], Scalar(0, 255, 255), 2);
+                line(demo, point_j[l], point_j[(l + 1) % 4], Scalar(0, 255, 255), 2);
+            }
+            //画出装甲板中心
+            circle(demo, center, 4, Scalar(0, 255, 255), -1);
         }
     }
 }
@@ -133,7 +163,7 @@ void System::Start(Mat demo) {
     //相机数据读取
     Mat mask = demo.clone();
     //预处理(返回一个二值化图)
-    Mat frame = PreProcess::start(pThis->color,pThis->cameraMatrix,pThis->disCoeffs, mask).clone();
+    Mat frame = PreProcess::start(pThis->color, pThis->cameraMatrix, pThis->disCoeffs, mask).clone();
     //轮廓查找以及筛选
     pThis->ContoursFind(frame);
     //寻找匹配的矩形
@@ -152,9 +182,9 @@ void System::Start(Mat demo) {
     //帧率计算
     auto end = chrono::system_clock::now();
     auto duration = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
-    FPS = (double)(duration.count()) * std::chrono::microseconds::period::num / std::chrono::microseconds::period::den;
+    FPS = (double) (duration.count()) * std::chrono::microseconds::period::num / std::chrono::microseconds::period::den;
     double s = 1.0 / FPS;
-    putText(demo, to_string(s).substr(0, 4),Point(10,50),FONT_HERSHEY_SIMPLEX,1,Scalar(255,0,0),2);
+    putText(demo, to_string(s).substr(0, 4), Point(10, 50), FONT_HERSHEY_SIMPLEX, 1, Scalar(255, 0, 0), 2);
     namedWindow("mask", WINDOW_NORMAL);
     imshow("mask", demo);
     waitKey(1);
@@ -198,9 +228,10 @@ void System::Start() {
         //帧率计算
         auto end = chrono::system_clock::now();
         auto duration = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
-        FPS = (double)(duration.count()) * std::chrono::microseconds::period::num / std::chrono::microseconds::period::den;
+        FPS = (double) (duration.count()) * std::chrono::microseconds::period::num /
+              std::chrono::microseconds::period::den;
         double s = 1.0 / FPS;
-        putText(pThis->demo, to_string(s).substr(0, 4),Point(10,50),FONT_HERSHEY_SIMPLEX,1,Scalar(255,0,0),2);
+        putText(pThis->demo, to_string(s).substr(0, 4), Point(10, 50), FONT_HERSHEY_SIMPLEX, 1, Scalar(255, 0, 0), 2);
         //图片显示
         namedWindow("demo", WINDOW_NORMAL);
         imshow("demo", pThis->demo);
