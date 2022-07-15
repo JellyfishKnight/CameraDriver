@@ -117,7 +117,6 @@ void Ranger::distanceSolver(Mat &demo) {     //将旋转向量转化为
 }
 
 void Ranger::eulerSolver(Mat &demo) {
-    /********************施工区域********************/
     //俯仰角,水平转动角
     float pitch, yaw;
 //    pitch = asin(tvecCamera2Obj.at<double>(1) / distObj2Camera);
@@ -131,7 +130,6 @@ void Ranger::eulerSolver(Mat &demo) {
     pitch *= 180.0 / CV_PI;
     cout << "Yaw: " << yaw << endl;
     cout << "Pitch: " << pitch << endl;
-    /********************施工区域********************/
     putText(demo, "yaw" + to_string(yaw).substr(0, 4), points[1], FONT_HERSHEY_SIMPLEX, 0.5, Scalar(0, 0,255), 2);
     putText(demo, "pitch:" + to_string(pitch).substr(0, 4), points[8], FONT_HERSHEY_SIMPLEX, 0.5, Scalar(0,0,255), 2);
 }
@@ -171,6 +169,7 @@ Mat Ranger::getROI(Mat& demo) {
 //    pointsOfNumber[2] = Point2f(20, 20);
 //    pointsOfNumber[3] = Point2f(20, 20);
     /**不知道为什么透视变换会导致图片不能正确地被变换,但是实测发现不用透视变换也能够识别到数字**/
+    waitKey(0);
     Mat ROI = demo.colRange(pointsOfROI[0].x, pointsOfROI[1].x);
     ROI = ROI.rowRange(pointsOfROI[0].y, pointsOfROI[3].y);
     //规范数据发送格式,使其能够被预测
