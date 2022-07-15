@@ -28,8 +28,8 @@ private:
     float tx, ty, tz;
     //相机到目标点的距离
     float distObj2Camera;
-    //装甲板ROI区域
-    Mat RegionOfInterest;
+    //透视变换所需要的角点
+    Point2f pointsOfROI[4], pointsOfNumber[4];
     /**
      * @brief 初始化成员变量
      */
