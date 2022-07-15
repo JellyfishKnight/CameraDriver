@@ -18,7 +18,7 @@ int main(int argc, char* argv[]) {
         System system;
         mvReceiver.subscribe(System::Start);
     } else {   //ÊÓÆµµ÷ÊÔ
-        System system("/home/wjy/Projects/RMlearning/CameraDriverWS/src/TestVideo/sample_red1.avi", BLUE);
+        System system("/home/wjy/Projects/RMlearning/CameraDriverWS/src/TestVideo/sample_red1.avi", RED);
         System::Start();
     }
     return 0;

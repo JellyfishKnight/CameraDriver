@@ -118,13 +118,11 @@ void Ranger::distanceSolver(Mat &demo) {     //将旋转向量转化为
 
 void Ranger::eulerSolver(Mat &demo) {
     //俯仰角,水平转动角
-    float pitch, yaw;
+    double pitch, yaw;
 //    pitch = asin(tvecCamera2Obj.at<double>(1) / distObj2Camera);
 //    yaw = asin(tvecCamera2Obj.at<double>(0) / (distObj2Camera * sqrt(1 - pow(tvecCamera2Obj.at<double>(1) / distObj2Camera, 2))));
     yaw = atan2(tvecCamera2Obj.at<double>(0), tvecCamera2Obj.at<double>(2));
-    pitch = -atan2(tvecCamera2Obj.at<double>(1),
-            sqrt(tvecCamera2Obj.at<double>(0) * tvecCamera2Obj.at<double>(0) +
-                    tvecCamera2Obj.at<double>(2) * tvecCamera2Obj.at<double>(2)));
+    pitch = -atan2(tvecCamera2Obj.at<double>(1),sqrt(tvecCamera2Obj.at<double>(0) * tvecCamera2Obj.at<double>(0) + tvecCamera2Obj.at<double>(2) * tvecCamera2Obj.at<double>(2)));
     //从弧度转化为角度
     yaw *= 180.0 / CV_PI;
     pitch *= 180.0 / CV_PI;
@@ -156,31 +154,25 @@ void Ranger::start(const RotatedRect& a, const RotatedRect& b, Mat& demo) {     
 }
 
 Mat Ranger::getROI(Mat& demo) {
-    Point2f pointsOfROI[4];
-//    Point2f pointsOfNumber[4];
+    Point2f pointsOfROI[4], pointsOfNumber[4];
     //指定ROI区域的四个角点
     pointsOfROI[0] = Point2f(points[1].x + 10, points[1].y - 10);
     pointsOfROI[1] = Point2f(points[4].x - 10, points[4].y - 10);
     pointsOfROI[2] = Point2f(points[5].x - 10, points[5].y + 10);
     pointsOfROI[3] = Point2f(points[8].x + 10, points[8].y + 10);
-//    //指定输出图像的四个角点 (注意顺序与上面的数组对应)
-//    pointsOfNumber[0] = Point2f(0, 0);
-//    pointsOfNumber[1] = Point2f(20, 0);
-//    pointsOfNumber[2] = Point2f(20, 20);
-//    pointsOfNumber[3] = Point2f(20, 20);
-    /**不知道为什么透视变换会导致图片不能正确地被变换,但是实测发现不用透视变换也能够识别到数字**/
-    waitKey(0);
-    Mat ROI = demo.colRange(pointsOfROI[0].x, pointsOfROI[1].x);
-    ROI = ROI.rowRange(pointsOfROI[0].y, pointsOfROI[3].y);
+    //保证数据的对齐
+    pointsOfNumber[0] = Point2f(0, 0);
+    pointsOfNumber[1] = Point2f(demo.cols, 0);
+    pointsOfNumber[2] = Point2f(demo.cols, demo.rows);
+    pointsOfNumber[3] = Point2f(0, demo.rows);
+    Mat ROI;
+    //获取透视变换矩阵
+    Mat tranMat = getPerspectiveTransform(pointsOfROI, pointsOfNumber);
+    warpPerspective(demo, ROI, tranMat, ROI.size());
     //规范数据发送格式,使其能够被预测
     resize(ROI, ROI, Size(20, 20));
-//    Mat tranMat = getPerspectiveTransform(pointsOfROI, pointsOfNumber);
-//    warpPerspective(demo, RegionOfInterest, tranMat, Size(20, 20));
-//    //获取透视变换矩阵
-//    Mat tranMat = getPerspectiveTransform(pointsOfROI, pointsOfNumber);
-//    warpPerspective(demo, RegionOfInterest, tranMat, Size(20, 20));
-//    namedWindow("Number",WINDOW_NORMAL);
-//    imshow("Number", RegionOfInterest);
-//    waitKey(1);
+    namedWindow("debug", WINDOW_NORMAL);
+    imshow("debug", ROI);
+    waitKey(1);
     return ROI;
 }
