@@ -1,0 +1,8 @@
+prefix=/usr/local
+
+Name: publish_pkg
+Description: Description of publish_pkg
+Version: 0.0.0
+Cflags: -I${prefix}/include
+Libs: -L${prefix}/lib -lpublish_pkg
+Requires: 
