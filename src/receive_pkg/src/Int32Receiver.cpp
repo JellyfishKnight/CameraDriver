@@ -18,4 +18,5 @@ void Int32Receiver::callBack(const std_msgs::Int32::ConstPtr& inputNumber, void 
 void Int32Receiver::subscribe(void (*p)(int out)) {
     //¶©ÔÄ½Úµã
     subscriber = nodeHandle.subscribe<std_msgs::Int32>(topic, 1, bind(&callBack, _1, p));
+    spinOnce();
 }

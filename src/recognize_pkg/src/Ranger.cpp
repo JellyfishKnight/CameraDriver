@@ -15,6 +15,8 @@ using namespace std;
 using namespace cv;
 
 
+Ranger* Ranger::pThis = nullptr;
+
 /*调试完毕*/
 void Ranger::init(const RotatedRect& a, const RotatedRect& b) {
     //标定的数据读取
@@ -129,8 +131,6 @@ void Ranger::distanceSolver(Mat &demo) {     //将旋转向量转化为
 void Ranger::eulerSolver(Mat &demo) {
     //俯仰角,水平转动角
     double pitch, yaw;
-//    pitch = asin(tvecCamera2Obj.at<double>(1) / distObj2Camera);
-//    yaw = asin(tvecCamera2Obj.at<double>(0) / (distObj2Camera * sqrt(1 - pow(tvecCamera2Obj.at<double>(1) / distObj2Camera, 2))));
     yaw = atan2(tvecCamera2Obj.at<double>(0), tvecCamera2Obj.at<double>(2));
     pitch = -atan2(tvecCamera2Obj.at<double>(1),sqrt(tvecCamera2Obj.at<double>(0) * tvecCamera2Obj.at<double>(0) + tvecCamera2Obj.at<double>(2) * tvecCamera2Obj.at<double>(2)));
     //从弧度转化为角度
@@ -140,6 +140,59 @@ void Ranger::eulerSolver(Mat &demo) {
     cout << "Pitch: " << pitch << endl;
     putText(demo, "yaw" + to_string(yaw).substr(0, 4), points[1], FONT_HERSHEY_SIMPLEX, 0.5, Scalar(0, 0,255), 2);
     putText(demo, "pitch:" + to_string(pitch).substr(0, 4), points[8], FONT_HERSHEY_SIMPLEX, 0.5, Scalar(0,0,255), 2);
+}
+
+/**
+ * @brief 通过接收数字识别器传回的数字规范装甲板尺寸
+ * @param number 装甲板编号
+ */
+void Ranger::setBoardSize(int number) {
+    switch (number) {
+        case 1:
+            pThis->boardWidth = 230;
+            pThis->boardHeight = 127;
+            break;
+        case 2:
+        case 3:
+        case 4:
+            pThis->boardWidth = 135;
+            pThis->boardHeight = 125;
+            break;
+        case 5:
+        case 6:
+        case 7:
+            pThis->boardWidth = 230;
+            pThis->boardHeight = 127;
+        default:
+            pThis->boardWidth = 135;
+            pThis->boardHeight = 125;
+            break;
+    }
+}
+
+void Ranger::ReceiverNumber() {
+    int32Receiver.subscribe(Ranger::setBoardSize);
+    cout << boardWidth << endl;
+}
+
+Mat Ranger::getROI(Mat& demo) {
+    //指定ROI区域的四个角点
+    pointsOfROI[0] = Point2f(points[1].x + 10, points[1].y - 10);
+    pointsOfROI[1] = Point2f(points[4].x - 10, points[4].y - 10);
+    pointsOfROI[2] = Point2f(points[5].x - 10, points[5].y + 10);
+    pointsOfROI[3] = Point2f(points[8].x + 10, points[8].y + 10);
+    //保证数据的对齐
+    pointsOfNumber[0] = Point2f(0, 0);
+    pointsOfNumber[1] = Point2f(demo.cols, 0);
+    pointsOfNumber[2] = Point2f(demo.cols, demo.rows);
+    pointsOfNumber[3] = Point2f(0, demo.rows);
+    Mat ROI;
+    //获取透视变换矩阵
+    Mat tranMat = getPerspectiveTransform(pointsOfROI, pointsOfNumber);
+    warpPerspective(demo, ROI, tranMat, ROI.size());
+    //规范数据发送格式,使其能够被预测
+    resize(ROI, ROI, Size(20, 20));
+    return ROI;
 }
 
 void Ranger::start(const RotatedRect& a, const RotatedRect& b, Mat& demo) {        /**剩余的解算欧拉角暂时没有解决**/
@@ -163,25 +216,3 @@ void Ranger::start(const RotatedRect& a, const RotatedRect& b, Mat& demo) {     
     eulerSolver(demo);
 }
 
-Mat Ranger::getROI(Mat& demo) {
-    //指定ROI区域的四个角点
-    pointsOfROI[0] = Point2f(points[1].x + 10, points[1].y - 10);
-    pointsOfROI[1] = Point2f(points[4].x - 10, points[4].y - 10);
-    pointsOfROI[2] = Point2f(points[5].x - 10, points[5].y + 10);
-    pointsOfROI[3] = Point2f(points[8].x + 10, points[8].y + 10);
-    //保证数据的对齐
-    pointsOfNumber[0] = Point2f(0, 0);
-    pointsOfNumber[1] = Point2f(demo.cols, 0);
-    pointsOfNumber[2] = Point2f(demo.cols, demo.rows);
-    pointsOfNumber[3] = Point2f(0, demo.rows);
-    Mat ROI;
-    //获取透视变换矩阵
-    Mat tranMat = getPerspectiveTransform(pointsOfROI, pointsOfNumber);
-    warpPerspective(demo, ROI, tranMat, ROI.size());
-    //规范数据发送格式,使其能够被预测
-    resize(ROI, ROI, Size(20, 20));
-//    namedWindow("debug", WINDOW_NORMAL);
-//    imshow("debug", ROI);
-//    waitKey(1);
-    return ROI;
-}

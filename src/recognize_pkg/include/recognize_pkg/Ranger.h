@@ -6,6 +6,7 @@
 #define SRC_RANGER_H
 
 #include "opencv2/core.hpp"
+#include "receive_pkg/Int32Receiver.h"
 
 using namespace std;
 using namespace cv;
@@ -13,26 +14,30 @@ using namespace cv;
 //工具类:解算PnP,不可被实例化
 class Ranger {
 private:
+    //指向当前对象的静态指针
+    static Ranger* pThis;
     //相机内参矩阵
     Mat cameraMatrix;
     //畸变矩阵
     Mat disCoeffs;
     //装甲板灯条的点以及中心点
-    Point2f *points;
+    Point2f *points{};
     //装甲板的宽高
-    float imageWidth;
-    float imageHeight;
+    float imageWidth{};
+    float imageHeight{};
     //装甲板的实际宽度和高度
     float boardWidth = 135;
     float boardHeight = 125;
     //从solvePnP返回的旋转向量和平移向量
     Mat rvecCamera2Obj, tvecCamera2Obj;
     //平移矩阵的三个数
-    float tx, ty, tz;
+    float tx{}, ty{}, tz{};
     //相机到目标点的距离
-    float distObj2Camera;
+    float distObj2Camera{};
     //透视变换所需要的角点
     Point2f pointsOfROI[4], pointsOfNumber[4];
+    //接收器
+    Int32Receiver int32Receiver;
     /**
      * @brief 初始化成员变量
      */
@@ -73,6 +78,15 @@ private:
      * @param demo 原图
      */
     void eulerSolver(Mat& demo);
+    /**
+     * @brief 设置装甲板尺寸
+     * @param number 装甲板数字
+     */
+    static void setBoardSize(int number = 4);
+    /**
+     * @brief 接收从number传回的数据
+     */
+    void ReceiverNumber();
 public:
     /**
      * @brief 开始解算PnP
@@ -87,8 +101,12 @@ public:
      * @return 装甲板ROI区域
      */
     Mat getROI(Mat& demo);
-
-    Ranger(Mat& CM, Mat& DC) : cameraMatrix(CM), disCoeffs(DC) {};
+    /**
+     * @brief 构造器
+     * @param CM 相机内参矩阵
+     * @param DC 相机畸变矩阵
+     */
+    Ranger(Mat& CM, Mat& DC) : cameraMatrix(CM), disCoeffs(DC) ,int32Receiver("NumberBack") {};
 
     ~Ranger() = default;
 };

@@ -14,7 +14,8 @@ using namespace cv;
 
 class BaseReceiver {                //Ðé»ùÀà
 public:
-    virtual void subscribe(void (*p)(Mat mask)) = 0;
+    virtual void subscribe(void (*p)(Mat mask));
+    virtual void subscribe(void (*p)(int number));
 };
 
 

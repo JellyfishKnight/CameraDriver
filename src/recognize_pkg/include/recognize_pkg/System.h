@@ -8,6 +8,7 @@
 #include <utility>
 #include "publish_pkg/ImgPublisher.h"
 #include "PreProcess.h"
+#include "Ranger.h"
 #include "opencv2/core.hpp"
 #include "opencv2/highgui.hpp"
 #include "vector"

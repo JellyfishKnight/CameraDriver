@@ -167,10 +167,10 @@ void System::Start(Mat demo) {
     pThis->RectFit(demo);
     if (pThis->center.x != 0 && pThis->center.y != 0) {
         //单目测距
-        Ranger check(pThis->cameraMatrix, pThis->disCoeffs);
-        check.start(pThis->matchA, pThis->matchB, demo);
+        Ranger ranger(pThis->cameraMatrix, pThis->disCoeffs);
+        ranger.start(pThis->matchA, pThis->matchB, demo);
         //获取并发送装甲板ROI区域给数字识别模块
-        Mat ROI = check.getROI(pThis->ROINeeded);
+        Mat ROI = ranger.getROI(pThis->ROINeeded);
         pThis->imgPublisher->publish(ROI);
     }
     //数据归零
