@@ -12,6 +12,19 @@
 #include "opencv2/highgui.hpp"
 #include "vector"
 
+#define maxLenRatio 10
+
+#define minLenRatio 3
+
+#define maxAngleError 5
+
+#define maxAreaRation 2
+
+#define minImageRatio 0.5
+
+#define maxImageRatio 2
+
+
 using namespace std;
 using namespace cv;
 
@@ -43,6 +56,8 @@ private:
     RotatedRect matchA, matchB;
     //装甲板中心
     Point center;
+    //经过调整后的灯条角度
+    float angleI, angleJ;
     //帧率
     static float FPS;
     //发布器
@@ -65,6 +80,22 @@ private:
      * @brief 拟合矩形并且进行匹配
      */
     void RectFit(Mat& demo);
+
+    /**
+     * @brief 调整角度以方便运算
+     * @param a 旋转矩形
+     * @return 调整后的角度
+     */
+    float adjustAngle(const RotatedRect& a);
+
+    /**
+     * @brief 筛选装甲板区域
+     * @param a
+     * @param b
+     * @return true 通过筛选
+     * @return false 不通过筛选
+     */
+    bool selectRects(const RotatedRect& a, const RotatedRect& b);
 public:
     /**
      * @brief 构造器
