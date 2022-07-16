@@ -19,6 +19,9 @@ private:
     Mat disCoeffs;
     //装甲板灯条的点以及中心点
     Point2f *points;
+    //装甲板的宽高
+    float imageWidth;
+    float imageHeight;
     //装甲板的实际宽度和高度
     float boardWidth = 135;
     float boardHeight = 125;
@@ -48,6 +51,12 @@ private:
      * @return 世界坐标
      */
     vector<Point3f> getObjPoints();
+
+    /**
+     * @brief 计算装甲板图片的长宽
+     */
+    void calculateTheSizeOfImage();
+
     /**
      * @brief 误差计算
      */

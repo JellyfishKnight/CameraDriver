@@ -55,6 +55,21 @@ void Ranger::adjustTheOrderOfPoints(float angle, Point2f pointsA[4], Point2f poi
 
 /*调试完毕*/
 vector<Point3f> Ranger::getObjPoints() {
+    //规范边界,防止数值越界
+    calculateTheSizeOfImage();
+    vector<Point3f> objPoints;
+    Point3f temp(0, 0, 0);
+    objPoints.push_back(temp);
+    //解算每个点在世界坐标系中的坐标
+    for (int i = 1; i < 9; i++) {
+        temp.x = (points[i].x - points[0].x) / imageWidth * boardWidth;
+        temp.y = (points[i].y - points[0].y) / imageHeight * boardHeight;
+        objPoints.push_back(temp);
+    }
+    return objPoints;
+}
+
+void Ranger::calculateTheSizeOfImage() {
     float maxRight = 0, minLeft = INFINITY, maxDown = 0, minUp = INFINITY;
     //规范边界,防止数值越界
     for (int i = 0; i < 9; i++) {
@@ -72,19 +87,10 @@ vector<Point3f> Ranger::getObjPoints() {
         }
     }
     //计算图像中装甲板的长宽
-    float imageWidth = maxRight - minLeft;
-    float imageHeight = maxDown - minUp;
-    vector<Point3f> objPoints;
-    Point3f temp(0, 0, 0);
-    objPoints.push_back(temp);
-    //解算每个点在世界坐标系中的坐标
-    for (int i = 1; i < 9; i++) {
-        temp.x = (points[i].x - points[0].x) / imageWidth * boardWidth;
-        temp.y = (points[i].y - points[0].y) / imageHeight * boardHeight;
-        objPoints.push_back(temp);
-    }
-    return objPoints;
+    imageWidth = maxRight - minLeft;
+    imageHeight = maxDown - minUp;
 }
+
 
 /*调试完毕*/
 void Ranger::caculateError() {
@@ -118,7 +124,6 @@ void Ranger::distanceSolver(Mat &demo) {     //将旋转向量转化为
     distObj2Camera = sqrt(tx * tx + ty * ty + tz * tz);
     //在图上标出装甲板的距离
     putText(demo,"Dist:" + to_string(distObj2Camera).substr(0, 6), points[4], FONT_HERSHEY_SIMPLEX,0.5, Scalar(0,255,0),2);
-
 }
 
 void Ranger::eulerSolver(Mat &demo) {
