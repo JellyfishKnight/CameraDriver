@@ -79,7 +79,7 @@ private:
     /**
      * @brief 拟合矩形并且进行匹配
      */
-    void RectFit(Mat& demo);
+    void RectFit(Mat& src);
 
     /**
      * @brief 调整角度以方便运算
@@ -95,7 +95,8 @@ private:
      * @return true 通过筛选
      * @return false 不通过筛选
      */
-    bool selectRects(const RotatedRect& a, const RotatedRect& b);
+    bool selectionOfRects(const RotatedRect& a, const RotatedRect& b);
+
 public:
     /**
      * @brief 构造器

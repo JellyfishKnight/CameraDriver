@@ -47,7 +47,7 @@ void System::ContoursFind(const Mat &frame) {             /*调试完毕*/
 }
 
 /*选择条件待优化,目前误识别依然存在*/
-void System::RectFit(Mat &demo) {
+void System::RectFit(Mat &src) {
     allRects.clear();
     //使用椭圆拟合
     for (auto &contour: selectedContours) {
@@ -70,7 +70,7 @@ void System::RectFit(Mat &demo) {
         for (int j = i + 1; j < allRects.size(); j++) {
             //角度调整
             angleJ = adjustAngle(allRects[j]);
-            if (selectRects(allRects[i], allRects[j])) {
+            if (selectionOfRects(allRects[i], allRects[j])) {
                 Point2f point_i[4], point_j[4];
                 //得到两个矩形的角点
                 allRects[i].points(point_i);
@@ -88,11 +88,11 @@ void System::RectFit(Mat &demo) {
                                (matchB.center.y + matchA.center.y) / 2);
                 //画出匹配上的矩形
                 for (int l = 0; l < 4; l++) {
-                    line(demo, point_i[l], point_i[(l + 1) % 4], Scalar(0, 255, 255), 2);
-                    line(demo, point_j[l], point_j[(l + 1) % 4], Scalar(0, 255, 255), 2);
+                    line(src, point_i[l], point_i[(l + 1) % 4], Scalar(0, 255, 255), 2);
+                    line(src, point_j[l], point_j[(l + 1) % 4], Scalar(0, 255, 255), 2);
                 }
                 //画出装甲板中心
-                circle(demo, center, 4, Scalar(0, 255, 255), -1);
+                circle(src, center, 4, Scalar(0, 255, 255), -1);
             }
         }
     }
@@ -108,7 +108,7 @@ float System::adjustAngle(const RotatedRect &a) {
     return adjustedAngle;
 }
 
-bool System::selectRects(const RotatedRect &a, const RotatedRect &b) {
+bool System::selectionOfRects(const RotatedRect &a, const RotatedRect &b) {
     //对灯条I的单独筛选
     //对灯条角度筛选
     if (abs(angleI) <= 80 && abs(angleI) >= 10)
@@ -147,6 +147,7 @@ bool System::selectRects(const RotatedRect &a, const RotatedRect &b) {
 //                return false;
     return true;
 }
+
 
 void System::Start(Mat demo) {
     auto start = chrono::system_clock::now();
