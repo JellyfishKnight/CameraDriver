@@ -1,4 +1,4 @@
-/snap/clion/198/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/snap/clion/198/bin/ninja/linux/ninja -G Ninja -S /home/wjy/Projects/RMlearning/CameraDriverWS/src -B /home/wjy/Projects/RMlearning/CameraDriverWS/build
+/snap/clion/198/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" -S /home/wjy/Projects/RMlearning/CameraDriverWS/src -B /home/wjy/Projects/RMlearning/CameraDriverWS/build
 -- Using CATKIN_DEVEL_PREFIX: /home/wjy/Projects/RMlearning/CameraDriverWS/build/devel
 -- Using CMAKE_PREFIX_PATH: /home/wjy/Projects/RMlearning/CameraDriverWS/devel;/opt/ros/noetic
 -- This workspace overlays: /home/wjy/Projects/RMlearning/CameraDriverWS/devel;/opt/ros/noetic
@@ -67,15 +67,5 @@ CMake Deprecation Warning at /usr/src/googletest/googletest/CMakeLists.txt:56 (c
 -- +++ processing catkin package: 'recognize_pkg'
 -- ==> add_subdirectory(recognize_pkg)
 -- Configuring done
-CMake Warning (dev) at driver_pkg/CMakeLists.txt:30 (add_executable):
-  Policy CMP0115 is not set: Source file extensions must be explicit.  Run
-  "cmake --help-policy CMP0115" for policy details.  Use the cmake_policy
-  command to set the policy and suppress this warning.
-
-  File:
-
-    /home/wjy/Projects/RMlearning/CameraDriverWS/src/driver_pkg/src/driver_pkg_node.cpp
-This warning is for project developers.  Use -Wno-dev to suppress it.
-
 -- Generating done
 -- Build files have been written to: /home/wjy/Projects/RMlearning/CameraDriverWS/build

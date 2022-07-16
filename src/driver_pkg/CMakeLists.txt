@@ -27,7 +27,7 @@ set(TargetClass src/BaseDriver.cpp src/MindVision.cpp)
          ${TargetClass}
  )
 
-add_executable(${PROJECT_NAME}_node src/driver_pkg_node)
+add_executable(${PROJECT_NAME}_node src/driver_pkg_node.cpp)
 
 
 target_link_libraries(

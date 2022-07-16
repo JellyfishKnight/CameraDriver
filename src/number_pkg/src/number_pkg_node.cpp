@@ -19,7 +19,7 @@ int main(int argc, char* argv[]) {
     init(argc, argv, "number_pkg");
     string dataRoot = "/home/wjy/Projects/RMlearning/CameraDriverWS/src/Datas/SVM.xml";
     ImgReceiver imgReceiver("Number");
-    Number number(dataRoot, dataRoot);
+    Number number(dataRoot);
     imgReceiver.subscribe(Number::start);
     return 0;
 }

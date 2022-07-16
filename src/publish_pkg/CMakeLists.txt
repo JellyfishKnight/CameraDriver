@@ -14,6 +14,7 @@ find_package(catkin REQUIRED COMPONENTS
         roscpp
         cv_bridge
         sensor_msgs
+        std_msgs
         )
 
 find_package(OpenCV 4 REQUIRED)
@@ -36,6 +37,7 @@ add_library(
         ${PROJECT_NAME} STATIC
         src/BasePublisher.cpp
         src/ImgPublisher.cpp
+        src/Int32Publisher.cpp
 )
 
 target_link_libraries(

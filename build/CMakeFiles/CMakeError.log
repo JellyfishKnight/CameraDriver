@@ -1,17 +1,22 @@
 Performing C SOURCE FILE Test CMAKE_HAVE_LIBC_PTHREAD failed with the following output:
 Change Dir: /home/wjy/Projects/RMlearning/CameraDriverWS/build/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/snap/clion/198/bin/ninja/linux/ninja cmTC_bc233 && [1/2] Building C object CMakeFiles/cmTC_bc233.dir/src.c.o
-[2/2] Linking C executable cmTC_bc233
-FAILED: cmTC_bc233 
-: && /usr/bin/cc  -rdynamic CMakeFiles/cmTC_bc233.dir/src.c.o -o cmTC_bc233   && :
-/usr/bin/ld: CMakeFiles/cmTC_bc233.dir/src.c.o: in function `main':
+Run Build Command(s):/usr/bin/make -f Makefile cmTC_bbf1d/fast && /usr/bin/make  -f CMakeFiles/cmTC_bbf1d.dir/build.make CMakeFiles/cmTC_bbf1d.dir/build
+make[1]: Entering directory '/home/wjy/Projects/RMlearning/CameraDriverWS/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_bbf1d.dir/src.c.o
+/usr/bin/cc -DCMAKE_HAVE_LIBC_PTHREAD   -o CMakeFiles/cmTC_bbf1d.dir/src.c.o -c /home/wjy/Projects/RMlearning/CameraDriverWS/build/CMakeFiles/CMakeTmp/src.c
+Linking C executable cmTC_bbf1d
+/snap/clion/198/bin/cmake/linux/bin/cmake -E cmake_link_script CMakeFiles/cmTC_bbf1d.dir/link.txt --verbose=1
+/usr/bin/cc -rdynamic CMakeFiles/cmTC_bbf1d.dir/src.c.o -o cmTC_bbf1d 
+/usr/bin/ld: CMakeFiles/cmTC_bbf1d.dir/src.c.o: in function `main':
 src.c:(.text+0x46): undefined reference to `pthread_create'
 /usr/bin/ld: src.c:(.text+0x52): undefined reference to `pthread_detach'
 /usr/bin/ld: src.c:(.text+0x5e): undefined reference to `pthread_cancel'
 /usr/bin/ld: src.c:(.text+0x6f): undefined reference to `pthread_join'
 collect2: error: ld returned 1 exit status
-ninja: build stopped: subcommand failed.
+make[1]: *** [CMakeFiles/cmTC_bbf1d.dir/build.make:99: cmTC_bbf1d] Error 1
+make[1]: Leaving directory '/home/wjy/Projects/RMlearning/CameraDriverWS/build/CMakeFiles/CMakeTmp'
+make: *** [Makefile:127: cmTC_bbf1d/fast] Error 2
 
 
 Source file was:
@@ -38,13 +43,18 @@ int main(void)
 Determining if the function pthread_create exists in the pthreads failed with the following output:
 Change Dir: /home/wjy/Projects/RMlearning/CameraDriverWS/build/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/snap/clion/198/bin/ninja/linux/ninja cmTC_d5f1f && [1/2] Building C object CMakeFiles/cmTC_d5f1f.dir/CheckFunctionExists.c.o
-[2/2] Linking C executable cmTC_d5f1f
-FAILED: cmTC_d5f1f 
-: && /usr/bin/cc -DCHECK_FUNCTION_EXISTS=pthread_create -rdynamic CMakeFiles/cmTC_d5f1f.dir/CheckFunctionExists.c.o -o cmTC_d5f1f  -lpthreads && :
+Run Build Command(s):/usr/bin/make -f Makefile cmTC_e4521/fast && /usr/bin/make  -f CMakeFiles/cmTC_e4521.dir/build.make CMakeFiles/cmTC_e4521.dir/build
+make[1]: Entering directory '/home/wjy/Projects/RMlearning/CameraDriverWS/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_e4521.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create -o CMakeFiles/cmTC_e4521.dir/CheckFunctionExists.c.o -c /snap/clion/198/bin/cmake/linux/share/cmake-3.22/Modules/CheckFunctionExists.c
+Linking C executable cmTC_e4521
+/snap/clion/198/bin/cmake/linux/bin/cmake -E cmake_link_script CMakeFiles/cmTC_e4521.dir/link.txt --verbose=1
+/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=pthread_create -rdynamic CMakeFiles/cmTC_e4521.dir/CheckFunctionExists.c.o -o cmTC_e4521  -lpthreads 
 /usr/bin/ld: cannot find -lpthreads
 collect2: error: ld returned 1 exit status
-ninja: build stopped: subcommand failed.
+make[1]: *** [CMakeFiles/cmTC_e4521.dir/build.make:99: cmTC_e4521] Error 1
+make[1]: Leaving directory '/home/wjy/Projects/RMlearning/CameraDriverWS/build/CMakeFiles/CMakeTmp'
+make: *** [Makefile:127: cmTC_e4521/fast] Error 2
 
 
 
