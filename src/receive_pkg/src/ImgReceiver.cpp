@@ -25,5 +25,5 @@ void ImgReceiver::callBack(const sensor_msgs::Image::ConstPtr &imgInfo, void (*p
 void ImgReceiver::subscribe(void (*p)(Mat mask)) {
     //¶©ÔÄ»°Ìâ
     subscriber = nodeHandle.subscribe<sensor_msgs::Image>(topic, 1, bind(&callBack, _1, p));
-    spin();
+    spinOnce();
 }

@@ -8,6 +8,8 @@
 using namespace std;
 using namespace ros;
 
+Int32Receiver* Int32Receiver::pThis = nullptr;
+
 void Int32Receiver::callBack(const std_msgs::Int32::ConstPtr& inputNumber, void (*p)(int)) {
     //转换数据类型
     pThis->number = inputNumber->data;

@@ -45,5 +45,10 @@ public:
      */
     void subscribe(void (*p)(int out)) override;
 
+    ~Int32Receiver() {
+        cout << "Int32Receiver" << endl;
+    }
 };
+
+
 #endif //SRC_INT32RECEIVER_H

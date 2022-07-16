@@ -14,6 +14,7 @@ find_package(catkin REQUIRED COMPONENTS
         roscpp
         cv_bridge
         sensor_msgs
+        std_msgs
         )
 
 ###########

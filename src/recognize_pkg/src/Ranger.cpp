@@ -17,6 +17,10 @@ using namespace cv;
 
 Ranger* Ranger::pThis = nullptr;
 
+float Ranger::boardWidth = 135;
+
+float Ranger::boardHeight = 125;
+
 /*调试完毕*/
 void Ranger::init(const RotatedRect& a, const RotatedRect& b) {
     //标定的数据读取
@@ -149,30 +153,25 @@ void Ranger::eulerSolver(Mat &demo) {
 void Ranger::setBoardSize(int number) {
     switch (number) {
         case 1:
-            pThis->boardWidth = 230;
-            pThis->boardHeight = 127;
+            Ranger::boardWidth = 230;
+            Ranger::boardHeight = 127;
             break;
         case 2:
         case 3:
         case 4:
-            pThis->boardWidth = 135;
-            pThis->boardHeight = 125;
+            Ranger::boardWidth = 135;
+            Ranger::boardHeight = 125;
             break;
         case 5:
         case 6:
         case 7:
-            pThis->boardWidth = 230;
-            pThis->boardHeight = 127;
+            Ranger::boardWidth = 230;
+            Ranger::boardHeight = 127;
         default:
-            pThis->boardWidth = 135;
-            pThis->boardHeight = 125;
+            Ranger::boardWidth = 135;
+            Ranger::boardHeight = 125;
             break;
     }
-}
-
-void Ranger::ReceiverNumber() {
-    int32Receiver.subscribe(Ranger::setBoardSize);
-    cout << boardWidth << endl;
 }
 
 Mat Ranger::getROI(Mat& demo) {

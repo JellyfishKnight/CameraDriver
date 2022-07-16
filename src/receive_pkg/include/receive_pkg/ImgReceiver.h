@@ -29,8 +29,7 @@ protected:
      */
     static void callBack(const sensor_msgs::Image::ConstPtr& imgInfo, void (*p)(Mat mask));
 public:
-
-    ImgReceiver(string t) : topic(move(t)) {
+    explicit ImgReceiver(string t) : topic(move(t)) {
         pThis = this;
     }
     /**
@@ -38,8 +37,6 @@ public:
      * @param 函数指针,用于传参
      */
     void subscribe(void (*p)(Mat mask)) override;
-
-    ~ImgReceiver() = default;
 };
 
 

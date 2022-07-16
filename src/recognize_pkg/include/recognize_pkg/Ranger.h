@@ -26,8 +26,8 @@ private:
     float imageWidth{};
     float imageHeight{};
     //装甲板的实际宽度和高度
-    float boardWidth = 135;
-    float boardHeight = 125;
+    static float boardWidth;
+    static float boardHeight;
     //从solvePnP返回的旋转向量和平移向量
     Mat rvecCamera2Obj, tvecCamera2Obj;
     //平移矩阵的三个数
@@ -78,15 +78,6 @@ private:
      * @param demo 原图
      */
     void eulerSolver(Mat& demo);
-    /**
-     * @brief 设置装甲板尺寸
-     * @param number 装甲板数字
-     */
-    static void setBoardSize(int number = 4);
-    /**
-     * @brief 接收从number传回的数据
-     */
-    void ReceiverNumber();
 public:
     /**
      * @brief 开始解算PnP
@@ -106,6 +97,13 @@ public:
      * @param CM 相机内参矩阵
      * @param DC 相机畸变矩阵
      */
+
+    /**
+    * @brief 设置装甲板尺寸
+    * @param number 装甲板数字
+    */
+    static void setBoardSize(int number = 4);
+
     Ranger(Mat& CM, Mat& DC) : cameraMatrix(CM), disCoeffs(DC) ,int32Receiver("NumberBack") {};
 
     ~Ranger() = default;
