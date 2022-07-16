@@ -4,9 +4,11 @@
 
 #ifndef SRC_NUMBER_H
 #define SRC_NUMBER_H
+
 #include "opencv2/core.hpp"
 #include "opencv2/imgcodecs.hpp"
 #include "opencv2/ml.hpp"
+#include "publish_pkg/Int32Publisher.h"
 
 #include <algorithm>
 #include <iostream>
@@ -33,13 +35,15 @@ private:
     Mat testImage;
     //SVM指针
     Ptr<SVM> svm;
+    //发布器
+    Int32Publisher int32Publisher;
 public:
     /**
      * @brief 构造器
      * @param saveroot SVM训练数据路径
      */
     explicit Number(string saveroot) :
-        saveRoot(move(saveroot)) {
+        saveRoot(move(saveroot)), int32Publisher("NumberBack", 10000) {
         pThis = this;
         //使用未经初始化的实例载入模型
         svm = StatModel::load<SVM>(pThis->saveRoot);

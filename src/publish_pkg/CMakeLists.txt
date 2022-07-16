@@ -33,15 +33,14 @@ include_directories(
         ${OpenCV_INCLUDE_DIRS}
 )
 
+aux_source_directory(src/ DIRS)
+
 add_library(
         ${PROJECT_NAME} STATIC
-        src/BasePublisher.cpp
-        src/ImgPublisher.cpp
-        src/Int32Publisher.cpp
+        ${DIRS}
 )
 
 target_link_libraries(
         ${PROJECT_NAME}
         ${catkin_LIBRARIRES}
-        ${OpenCV_LIBS}
         )

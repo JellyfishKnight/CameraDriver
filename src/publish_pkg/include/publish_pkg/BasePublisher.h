@@ -9,9 +9,11 @@
 
 class BasePublisher {   //Ðé»ùÀà
 protected:
-    virtual bool imgConvert(cv::Mat cvImg) = 0;
+    virtual bool imgConvert(cv::Mat cvImg);
+    virtual bool NumberConvert(int inputNumber);
 public:
-    virtual void publish(cv::Mat& inputImg) = 0;
+    virtual void publish(cv::Mat& inputImg);
+    virtual void publish(int number);
 };
 
 

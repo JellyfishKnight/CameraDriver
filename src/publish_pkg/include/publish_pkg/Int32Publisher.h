@@ -5,7 +5,7 @@
 #ifndef SRC_INT32PUBLISHER_H
 #define SRC_INT32PUBLISHER_H
 
-
+#include "BasePublisher.h"
 #include "std_msgs/Int32.h"
 #include "ros/ros.h"
 #include "string"
@@ -14,7 +14,7 @@ using namespace std;
 using namespace ros;
 
 
-class Int32Publisher {
+class Int32Publisher : public BasePublisher {
 private:
     //ª∞Ã‚√˚≥∆
     string topic;

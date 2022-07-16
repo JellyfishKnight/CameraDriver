@@ -8,8 +8,9 @@ project(number_pkg)
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
-  receive_pkg
-  roscpp
+        receive_pkg
+        publish_pkg
+        roscpp
 )
 
 find_package(OpenCV 4 REQUIRED)

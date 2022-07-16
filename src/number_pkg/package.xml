@@ -51,10 +51,13 @@
   <buildtool_depend>catkin</buildtool_depend>
   <build_depend>receive_pkg</build_depend>
   <build_depend>roscpp</build_depend>
+  <build_depend>publish_pkg</build_depend>
   <build_export_depend>receive_pkg</build_export_depend>
   <build_export_depend>roscpp</build_export_depend>
+  <build_export_depend>publish_pkg</build_export_depend>
   <exec_depend>receive_pkg</exec_depend>
   <exec_depend>roscpp</exec_depend>
+  <exec_depend>publish_pkg</exec_depend>
 
 
   <!-- The export tag contains other, unspecified, tags -->

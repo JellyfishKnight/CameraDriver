@@ -7,7 +7,6 @@
 #include "opencv2/imgproc.hpp"
 
 #include <iostream>
-#include <random>
 
 using namespace std;
 using namespace cv;
@@ -36,5 +35,5 @@ void Number::start(Mat numberImage) {
         return ;
     }
     int number = lround(pThis->svm->predict(pThis->maskOfReshape));
-    cout << "Number: " << number << endl;
+    pThis->int32Publisher.publish(number);
 }
