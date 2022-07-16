@@ -26,27 +26,32 @@ void Ranger::init(const RotatedRect& a, const RotatedRect& b) {
     points = new Point2f[9];
     Point2f center((a.center.x + b.center.x) / 2.0, (a.center.y + b.center.y) / 2.0);
     points[0] = center;
+    adjustTheOrderOfPoints(a.angle, pointA, pointB);
+}
+
+void Ranger::adjustTheOrderOfPoints(float angle, Point2f pointsA[4], Point2f pointsB[4]) {
     //保证数据的对齐
-    if (a.angle > 90) {
-        points[1] = pointA[3];
-        points[2] = pointA[0];
-        points[3] = pointB[3];
-        points[4] = pointB[0];
-        points[5] = pointB[1];
-        points[6] = pointB[2];
-        points[7] = pointA[1];
-        points[8] = pointA[2];
+    if (angle > 90) {
+        points[1] = pointsA[3];
+        points[2] = pointsA[0];
+        points[3] = pointsB[3];
+        points[4] = pointsB[0];
+        points[5] = pointsB[1];
+        points[6] = pointsB[2];
+        points[7] = pointsA[1];
+        points[8] = pointsA[2];
     } else {
-        points[1] = pointA[1];
-        points[2] = pointA[2];
-        points[3] = pointB[1];
-        points[4] = pointB[2];
-        points[5] = pointB[3];
-        points[6] = pointB[0];
-        points[7] = pointA[3];
-        points[8] = pointA[0];
+        points[1] = pointsA[1];
+        points[2] = pointsA[2];
+        points[3] = pointsB[1];
+        points[4] = pointsB[2];
+        points[5] = pointsB[3];
+        points[6] = pointsB[0];
+        points[7] = pointsA[3];
+        points[8] = pointsA[0];
     }
 }
+
 
 /*调试完毕*/
 vector<Point3f> Ranger::getObjPoints() {

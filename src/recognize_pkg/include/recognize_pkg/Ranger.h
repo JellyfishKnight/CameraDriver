@@ -34,6 +34,15 @@ private:
      * @brief 初始化成员变量
      */
     void init(const RotatedRect& a, const RotatedRect& b);
+
+    /**
+     * @brief 调整点的顺序
+     * @param angle 左灯条角度
+     * @param pointsA 左灯条四个点
+     * @param pointsB 右灯条四个点
+     */
+    void adjustTheOrderOfPoints(float angle, Point2f pointsA[4], Point2f pointsB[4]);
+
     /**
      * @brief 计算世界坐标
      * @return 世界坐标
