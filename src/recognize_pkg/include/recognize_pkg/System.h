@@ -58,9 +58,11 @@ private:
     //装甲板中心
     Point center;
     //经过调整后的灯条角度
-    float angleI, angleJ;
+    float angleI{}, angleJ{};
     //帧率
     static float FPS;
+    //接收器
+//    Int32Receiver* int32Receiver{};
     //发布器
     ImgPublisher* imgPublisher{};
     //传给ROI区域获取的原图
@@ -109,6 +111,7 @@ public:
         pThis = this;
         DataRead();
         imgPublisher = new ImgPublisher("Number", 10000);
+//        int32Receiver = new Int32Receiver("NumberBack");
     }
 
     /**
@@ -120,7 +123,13 @@ public:
      */
     static void Start();
 
-    ~System() = default;
+    /**
+     * @brief 析构器,释放内存
+     */
+    ~System() {
+        delete imgPublisher;
+//        delete int32Receiver;
+    }
 
 };
 

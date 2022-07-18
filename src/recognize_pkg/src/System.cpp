@@ -157,14 +157,19 @@ void System::Start(Mat demo) {
         return;
     }
     pThis->ROINeeded = demo.clone();
+
     //相机数据读取
     Mat mask = demo.clone();
+
     //预处理(返回一个二值化图)
     Mat frame = PreProcess::start(pThis->color, pThis->cameraMatrix, pThis->disCoeffs, mask).clone();
+
     //轮廓查找以及筛选
     pThis->ContoursFind(frame);
+
     //寻找匹配的矩形
     pThis->RectFit(demo);
+
     if (pThis->center.x != 0 && pThis->center.y != 0) {
         //单目测距
         Ranger ranger(pThis->cameraMatrix, pThis->disCoeffs);
@@ -173,9 +178,11 @@ void System::Start(Mat demo) {
         Mat ROI = ranger.getROI(pThis->ROINeeded);
         pThis->imgPublisher->publish(ROI);
     }
+
     //数据归零
     pThis->center.x = pThis->center.y = 0;
     cout << "------------------------------------------------" << endl;
+
     //帧率计算
     auto end = chrono::system_clock::now();
     auto duration = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
@@ -195,22 +202,28 @@ void System::Start() {
         return;
     }
     cout << "Started!" << endl;
+//    pThis->int32Receiver->subscribe(Ranger::setBoardSize);
     while (true) {
         auto start = chrono::system_clock::now();
         capture >> pThis->demo;
         pThis->ROINeeded = pThis->demo.clone();
+
         //判空以及判定结束
         if (pThis->demo.empty()) {
             cout << "Picture read failed" << endl;
             return;
         }
         Mat mask = pThis->demo.clone();
+
         //预处理(返回一个二值化图)
         Mat frame = PreProcess::start(pThis->color, pThis->cameraMatrix, pThis->disCoeffs, mask).clone();
+
         //轮廓查找以及筛选
         pThis->ContoursFind(frame);
+
         //寻找匹配的矩形
         pThis->RectFit(pThis->demo);
+
         if (pThis->center.x != 0 && pThis->center.y != 0) {
             //单目测距
             Ranger check(pThis->cameraMatrix, pThis->disCoeffs);
@@ -219,9 +232,11 @@ void System::Start() {
             Mat ROI = check.getROI(pThis->ROINeeded);
             pThis->imgPublisher->publish(ROI);
         }
+
         //数据归零
         pThis->center.x = pThis->center.y = 0;
         cout << "------------------------------------------------" << endl;
+
         //帧率计算
         auto end = chrono::system_clock::now();
         auto duration = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
@@ -229,12 +244,14 @@ void System::Start() {
               std::chrono::microseconds::period::den;
         double s = 1.0 / FPS;
         putText(pThis->demo, to_string(s).substr(0, 4), Point(10, 50), FONT_HERSHEY_SIMPLEX, 1, Scalar(255, 0, 0), 2);
+
         //图片显示
         namedWindow("demo", WINDOW_NORMAL);
         imshow("demo", pThis->demo);
         if (waitKey(1) == 27) {
             break;
         }
+        spinOnce();
     }
     capture.release();
     cout << "Finished!" << endl;

@@ -18,14 +18,12 @@ int main(int argc, char* argv[]) {
         System system;
         ImgReceiver mvReceiver("Driver_Node");
         mvReceiver.subscribe(System::Start);
-        Int32Receiver int32Receiver("NumberBack");
-        int32Receiver.subscribe(Ranger::setBoardSize);
         while (ok()) {
             spinOnce();
         }
     } else {   //ÊÓÆµµ÷ÊÔ
+        Int32Receiver int32Receiver("NumberBack");
         System system("/home/wjy/Projects/RMlearning/CameraDriverWS/src/TestVideo/sample_red.avi", RED);
-        System::Start();
     }
     return 0;
 }

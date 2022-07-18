@@ -19,7 +19,7 @@ protected:
 
 public:
     BaseReceiver() {
-        cout << "Base Receiver1" << endl;
+        cout << "Base Receiver" << endl;
     };
     ~BaseReceiver() {
         cout << "Base Receiver" << endl;
