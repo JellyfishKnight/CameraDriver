@@ -17,10 +17,11 @@ int main(int argc, char* argv[]) {
     if (choice == 1) {   //相机调试
         System system;
         ImgReceiver mvReceiver("Driver_Node");
+        mvReceiver.subscribe(System::Start);
         Int32Receiver int32Receiver("NumberBack");
+        int32Receiver.subscribe(Ranger::setBoardSize);
         while (ok()) {
-            mvReceiver.subscribe(System::Start);
-            int32Receiver.subscribe(Ranger::setBoardSize);
+            spinOnce();
         }
     } else {   //视频调试
         System system("/home/wjy/Projects/RMlearning/CameraDriverWS/src/TestVideo/sample_red.avi", RED);
