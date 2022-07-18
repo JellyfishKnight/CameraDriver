@@ -13,7 +13,6 @@
 #include "opencv2/imgproc.hpp"
 
 
-
 using namespace std;
 using namespace cv;
 
@@ -108,7 +107,7 @@ float System::adjustAngle(const RotatedRect &a) {
     return adjustedAngle;
 }
 
-bool System::selectionOfRects(const RotatedRect &a, const RotatedRect &b) {
+bool System::selectionOfRects(const RotatedRect &a, const RotatedRect &b) const {
     //对灯条I的单独筛选
     //对灯条角度筛选
     if (abs(angleI) <= 80 && abs(angleI) >= 10)
@@ -195,65 +194,52 @@ void System::Start(Mat demo) {
 }
 
 
-void System::Start() {
-    VideoCapture capture(pThis->root);
-    if (!capture.isOpened()) {
-        cout << "Filename is wrong!" << endl;
+void System::Start(int number) {
+    auto start = chrono::system_clock::now();
+    pThis->capture >> pThis->demo;
+    pThis->ROINeeded = pThis->demo.clone();
+    //判空以及判定结束
+    if (pThis->demo.empty()) {
+        cout << "Picture read failed" << endl;
         return;
     }
-    cout << "Started!" << endl;
-//    pThis->int32Receiver->subscribe(Ranger::setBoardSize);
-    while (true) {
-        auto start = chrono::system_clock::now();
-        capture >> pThis->demo;
-        pThis->ROINeeded = pThis->demo.clone();
+    Mat mask = pThis->demo.clone();
 
-        //判空以及判定结束
-        if (pThis->demo.empty()) {
-            cout << "Picture read failed" << endl;
-            return;
-        }
-        Mat mask = pThis->demo.clone();
+    //预处理(返回一个二值化图)
+    Mat frame = PreProcess::start(pThis->color, pThis->cameraMatrix, pThis->disCoeffs, mask).clone();
 
-        //预处理(返回一个二值化图)
-        Mat frame = PreProcess::start(pThis->color, pThis->cameraMatrix, pThis->disCoeffs, mask).clone();
+    //轮廓查找以及筛选
+    pThis->ContoursFind(frame);
 
-        //轮廓查找以及筛选
-        pThis->ContoursFind(frame);
+    //寻找匹配的矩形
+    pThis->RectFit(pThis->demo);
 
-        //寻找匹配的矩形
-        pThis->RectFit(pThis->demo);
-
-        if (pThis->center.x != 0 && pThis->center.y != 0) {
-            //单目测距
-            Ranger check(pThis->cameraMatrix, pThis->disCoeffs);
-            check.start(pThis->matchA, pThis->matchB, pThis->demo);
-            //获取并发送装甲板ROI区域给数字识别模块
-            Mat ROI = check.getROI(pThis->ROINeeded);
-            pThis->imgPublisher->publish(ROI);
-        }
-
-        //数据归零
-        pThis->center.x = pThis->center.y = 0;
-        cout << "------------------------------------------------" << endl;
-
-        //帧率计算
-        auto end = chrono::system_clock::now();
-        auto duration = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
-        FPS = (double) (duration.count()) * std::chrono::microseconds::period::num /
-              std::chrono::microseconds::period::den;
-        double s = 1.0 / FPS;
-        putText(pThis->demo, to_string(s).substr(0, 4), Point(10, 50), FONT_HERSHEY_SIMPLEX, 1, Scalar(255, 0, 0), 2);
-
-        //图片显示
-        namedWindow("demo", WINDOW_NORMAL);
-        imshow("demo", pThis->demo);
-        if (waitKey(1) == 27) {
-            break;
-        }
-        spinOnce();
+    if (pThis->center.x != 0 && pThis->center.y != 0) {
+        //单目测距
+        Ranger check(pThis->cameraMatrix, pThis->disCoeffs);
+        check.start(pThis->matchA, pThis->matchB, pThis->demo);
+        //获取并发送装甲板ROI区域给数字识别模块
+        Mat ROI = check.getROI(pThis->ROINeeded);
+        pThis->imgPublisher->publish(ROI);
+        Ranger::setBoardSize(number);
     }
-    capture.release();
-    cout << "Finished!" << endl;
+
+    //数据归零
+    pThis->center.x = pThis->center.y = 0;
+    cout << "------------------------------------------------" << endl;
+
+    //帧率计算
+    auto end = chrono::system_clock::now();
+    auto duration = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
+    FPS = (double) (duration.count()) * std::chrono::microseconds::period::num /
+          std::chrono::microseconds::period::den;
+    double s = 1.0 / FPS;
+    putText(pThis->demo, to_string(s).substr(0, 4), Point(10, 50), FONT_HERSHEY_SIMPLEX, 1, Scalar(255, 0, 0), 2);
+
+    //图片显示
+    namedWindow("demo", WINDOW_NORMAL);
+    imshow("demo", pThis->demo);
+    spinOnce();
+    pThis->capture.release();
     waitKey(0);
 }
