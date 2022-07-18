@@ -7,6 +7,7 @@
 
 #include <utility>
 #include "publish_pkg/ImgPublisher.h"
+#include "receive_pkg/Int32Receiver.h"
 #include "PreProcess.h"
 #include "Ranger.h"
 #include "opencv2/core.hpp"
@@ -41,8 +42,6 @@ private:
     Color color;
     //相机内参矩阵以及畸变距阵
     Mat cameraMatrix, disCoeffs;
-    //视频读取器
-    VideoCapture capture;
     //原图
     Mat demo;
     //二值化输出
@@ -63,6 +62,8 @@ private:
     float angleI{}, angleJ{};
     //帧率
     static float FPS;
+    //接收器
+    Int32Receiver* int32Receiver{};
     //发布器
     ImgPublisher* imgPublisher{};
     //传给ROI区域获取的原图
@@ -98,7 +99,7 @@ private:
      * @return true 通过筛选
      * @return false 不通过筛选
      */
-    bool selectionOfRects(const RotatedRect& a, const RotatedRect& b) const;
+    bool selectionOfRects(const RotatedRect& a, const RotatedRect& b);
 
 public:
     /**
@@ -111,14 +112,7 @@ public:
         pThis = this;
         DataRead();
         imgPublisher = new ImgPublisher("Number", 10000);
-        capture.open(root);
-        //判断是否打开
-        if (!pThis->capture.isOpened()) {
-            //保险措施
-            while (true) {
-                cout << "Filename is wrong!" << endl;
-            }
-        }
+        int32Receiver = new Int32Receiver("NumberBack");
     }
 
     /**
@@ -128,14 +122,14 @@ public:
     /**
      * @brief 重载函数,用于视频调试
      */
-    static void Start(int number);
+    static void Start();
 
     /**
      * @brief 析构器,释放内存
      */
     ~System() {
         delete imgPublisher;
-//        delete int32Receiver;
+        delete int32Receiver;
     }
 
 };
