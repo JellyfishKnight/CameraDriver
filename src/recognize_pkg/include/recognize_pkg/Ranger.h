@@ -14,8 +14,6 @@ using namespace cv;
 //工具类:解算PnP,不可被实例化
 class Ranger {
 private:
-    //指向当前对象的静态指针
-    static Ranger* pThis;
     //相机内参矩阵
     Mat cameraMatrix;
     //畸变矩阵
@@ -78,14 +76,26 @@ private:
      * @param demo 原图
      */
     void eulerSolver(Mat& demo);
+
 public:
+    /**
+     * @brief 构造器
+     * @param CM 相机内参矩阵
+     * @param DC 相机畸变矩阵
+     */
+    Ranger(Mat& CM, Mat& DC) : cameraMatrix(CM), disCoeffs(DC), int32Receiver("NumberBack") {}
+
     /**
      * @brief 开始解算PnP
      * @param a 矩形a
      * @param b 矩形b
      */
     void start(const RotatedRect& a, const RotatedRect& b, Mat& demo);
-
+    /**
+     * @brief 设置装甲板尺寸
+     * @param number 装甲板数字
+     */
+    static void setBoardSize(int number = 4);
     /**
      * @brief 获取装甲板ROI图像
      * @param demo 原图
@@ -93,20 +103,19 @@ public:
      */
     Mat getROI(Mat& demo);
     /**
-     * @brief 构造器
-     * @param CM 相机内参矩阵
-     * @param DC 相机畸变矩阵
+     * @brief 相机内参矩阵的setter
+     * @param cameraMatrix 相机内参矩阵
      */
-
+    void setCameraMatrix(Mat CM);
     /**
-    * @brief 设置装甲板尺寸
-    * @param number 装甲板数字
-    */
-    static void setBoardSize(int number = 4);
-
-    Ranger(Mat& CM, Mat& DC) : cameraMatrix(CM), disCoeffs(DC) ,int32Receiver("NumberBack") {};
+     * @brief 相机畸变矩阵的setter
+     * @param disCoeffs 相机畸变矩阵
+     */
+    void setDisCoeffs(Mat DC);
 
     ~Ranger() = default;
+
+
 };
 
 

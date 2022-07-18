@@ -53,8 +53,6 @@ public:
      * @param numberImage ×°¼×°åÊı×ÖÍ¼Æ¬
      */
     static void start(Mat numberImage);
-
-    ~Number() = default;
 };
 
 

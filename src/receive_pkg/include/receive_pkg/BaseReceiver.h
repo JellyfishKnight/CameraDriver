@@ -15,6 +15,8 @@ using namespace cv;
 using namespace std;
 
 class BaseReceiver {                //Ðé»ùÀà
+protected:
+
 public:
     BaseReceiver() {
         cout << "Base Receiver1" << endl;

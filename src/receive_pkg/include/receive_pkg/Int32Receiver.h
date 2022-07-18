@@ -31,6 +31,8 @@ protected:
     * @param p 函数指针
     */
     static void callBack(const std_msgs::Int32::ConstPtr& inputNumber, void (*p)(int out));
+
+
 public:
     /**
      * @brief 构造器

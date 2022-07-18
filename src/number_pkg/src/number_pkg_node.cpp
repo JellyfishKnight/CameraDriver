@@ -10,7 +10,6 @@
 #include <string>
 
 using namespace std;
-using namespace cv;
 using namespace ml;
 using namespace ros;
 
@@ -21,5 +20,8 @@ int main(int argc, char* argv[]) {
     ImgReceiver imgReceiver("Number");
     Number number(dataRoot);
     imgReceiver.subscribe(Number::start);
+    while (ok()) {
+        spinOnce();
+    }
     return 0;
 }

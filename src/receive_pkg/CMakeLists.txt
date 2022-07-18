@@ -32,7 +32,7 @@ add_library(
         src/BaseReceiver.cpp
         src/ImgReceiver.cpp
         src/Int32Receiver.cpp
-        )
+)
 
 
 target_link_libraries(${PROJECT_NAME}

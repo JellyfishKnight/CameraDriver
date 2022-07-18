@@ -15,8 +15,6 @@ using namespace std;
 using namespace cv;
 
 
-Ranger* Ranger::pThis = nullptr;
-
 float Ranger::boardWidth = 135;
 
 float Ranger::boardHeight = 125;
@@ -122,7 +120,7 @@ void Ranger::distanceSolver(Mat &demo) {     //将旋转向量转化为
     cv2eigen(tvecCamera2Obj, TMatrix);
     Eigen::Vector3f cameraPoint;
     //求解相机在世界坐标系中的坐标
-    cameraPoint = -RMatrix.inverse() * TMatrix;
+    //cameraPoint = -RMatrix.inverse() * TMatrix;
     //算出相机到装甲板中心的距离
     tx = tvecCamera2Obj.at<double>(0);
     ty = tvecCamera2Obj.at<double>(1);
@@ -172,6 +170,7 @@ void Ranger::setBoardSize(int number) {
             Ranger::boardHeight = 125;
             break;
     }
+    cout << number << endl;
 }
 
 Mat Ranger::getROI(Mat& demo) {
@@ -213,5 +212,13 @@ void Ranger::start(const RotatedRect& a, const RotatedRect& b, Mat& demo) {     
 
     //解算欧拉角
     eulerSolver(demo);
+}
+
+void Ranger::setCameraMatrix(Mat CM) {
+    cameraMatrix = move(CM);
+}
+
+void Ranger::setDisCoeffs(Mat DC) {
+    disCoeffs = move(DC);
 }
 
