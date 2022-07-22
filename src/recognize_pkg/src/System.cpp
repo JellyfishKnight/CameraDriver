@@ -12,8 +12,6 @@
 #include "opencv2/highgui.hpp"
 #include "opencv2/imgproc.hpp"
 
-
-
 using namespace std;
 using namespace cv;
 
@@ -159,6 +157,8 @@ void System::Start(Mat demo) {
     //相机数据读取
     Mat mask = demo.clone();
 
+    Mat forNumber = demo.clone();
+
     //预处理(返回一个二值化图)
     Mat frame = PreProcess::start(pThis->color, pThis->cameraMatrix, pThis->disCoeffs, mask).clone();
 
@@ -169,10 +169,14 @@ void System::Start(Mat demo) {
     pThis->RectFit(demo);
 
     if (pThis->center.x != 0 && pThis->center.y != 0) {
+
         //单目测距
         Ranger ranger(pThis->cameraMatrix, pThis->disCoeffs);
         ranger.start(pThis->matchA, pThis->matchB, demo);
+
         //获取并发送装甲板ROI区域给数字识别模块
+        //从而回调装甲板的尺寸大小
+        Ranger::setBoardSize(pThis->number.start(ranger.getROI(forNumber)));
     }
 
     //数据归零
@@ -222,10 +226,13 @@ void System::Start() {
         pThis->RectFit(pThis->demo);
 
         if (pThis->center.x != 0 && pThis->center.y != 0) {
+
             //单目测距
             Ranger check(pThis->cameraMatrix, pThis->disCoeffs);
             check.start(pThis->matchA, pThis->matchB, pThis->demo);
+
             //获取并发送装甲板ROI区域给数字识别模块
+            //从而回调装甲板的尺寸大小
             Ranger::setBoardSize(pThis->number.start(check.getROI(forNumber)));
 
         }
