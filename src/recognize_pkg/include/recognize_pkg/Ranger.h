@@ -6,7 +6,6 @@
 #define SRC_RANGER_H
 
 #include "opencv2/core.hpp"
-#include "receive_pkg/Int32Receiver.h"
 
 using namespace std;
 using namespace cv;
@@ -34,8 +33,6 @@ private:
     float distObj2Camera{};
     //透视变换所需要的角点
     Point2f pointsOfROI[4], pointsOfNumber[4];
-    //接收器
-    Int32Receiver int32Receiver;
     /**
      * @brief 初始化成员变量
      */
@@ -83,7 +80,7 @@ public:
      * @param CM 相机内参矩阵
      * @param DC 相机畸变矩阵
      */
-    Ranger(Mat& CM, Mat& DC) : cameraMatrix(CM), disCoeffs(DC), int32Receiver("NumberBack") {}
+    Ranger(Mat& CM, Mat& DC) : cameraMatrix(CM), disCoeffs(DC) {}
 
     /**
      * @brief 开始解算PnP

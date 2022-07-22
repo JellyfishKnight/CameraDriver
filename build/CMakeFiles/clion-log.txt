@@ -1,10 +1,23 @@
 /snap/clion/198/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" -S /home/wjy/Projects/RMlearning/CameraDriverWS/src -B /home/wjy/Projects/RMlearning/CameraDriverWS/build
+-- The C compiler identification is GNU 9.4.0
+-- The CXX compiler identification is Clang 10.0.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
 -- Using CATKIN_DEVEL_PREFIX: /home/wjy/Projects/RMlearning/CameraDriverWS/build/devel
 -- Using CMAKE_PREFIX_PATH: /home/wjy/Projects/RMlearning/CameraDriverWS/devel;/opt/ros/noetic
 -- This workspace overlays: /home/wjy/Projects/RMlearning/CameraDriverWS/devel;/opt/ros/noetic
 -- Found PythonInterp: /usr/bin/python3 (found suitable version "3.8.10", minimum required is "3") 
 -- Using PYTHON_EXECUTABLE: /usr/bin/python3
 -- Using Debian Python package layout
+-- Found PY_em: /usr/lib/python3/dist-packages/em.py  
 -- Using empy: /usr/lib/python3/dist-packages/em.py
 -- Using CATKIN_ENABLE_TESTING: ON
 -- Call enable_testing()
@@ -37,6 +50,7 @@ CMake Deprecation Warning at /usr/src/googletest/googletest/CMakeLists.txt:56 (c
 
 
 -- Found PythonInterp: /usr/bin/python3 (found version "3.8.10") 
+-- Found Threads: TRUE  
 -- Using Python nosetests: /usr/bin/nosetests3
 -- catkin 0.8.10
 -- BUILD_SHARED_LIBS is on
@@ -53,6 +67,7 @@ CMake Deprecation Warning at /usr/src/googletest/googletest/CMakeLists.txt:56 (c
 -- +++ processing catkin package: 'cv_bridge'
 -- ==> add_subdirectory(cv_bridge)
 -- Found PythonLibs: /usr/lib/x86_64-linux-gnu/libpython3.8.so (found version "3.8.10") 
+-- Found Boost: /usr/lib/x86_64-linux-gnu/cmake/Boost-1.71.0/BoostConfig.cmake (found version "1.71.0") found components: python 
 -- Found OpenCV: /usr/local (found suitable version "4.5.4", minimum required is "4") found components: opencv_core opencv_imgproc opencv_imgcodecs 
 -- Found PythonLibs: /usr/lib/x86_64-linux-gnu/libpython3.8.so (found suitable version "3.8.10", minimum required is "3.8") 
 -- +++ processing catkin package: 'publish_pkg'

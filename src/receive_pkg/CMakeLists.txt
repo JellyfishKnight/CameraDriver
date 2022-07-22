@@ -31,7 +31,6 @@ add_library(
         ${PROJECT_NAME} STATIC
         src/BaseReceiver.cpp
         src/ImgReceiver.cpp
-        src/Int32Receiver.cpp
 )
 
 

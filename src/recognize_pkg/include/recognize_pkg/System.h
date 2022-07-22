@@ -7,7 +7,6 @@
 
 #include <utility>
 #include "publish_pkg/ImgPublisher.h"
-#include "receive_pkg/Int32Receiver.h"
 #include "PreProcess.h"
 #include "Ranger.h"
 #include "opencv2/core.hpp"
@@ -62,8 +61,6 @@ private:
     float angleI{}, angleJ{};
     //帧率
     static float FPS;
-    //接收器
-    Int32Receiver* int32Receiver{};
     //发布器
     ImgPublisher* imgPublisher{};
     //传给ROI区域获取的原图
@@ -112,7 +109,6 @@ public:
         pThis = this;
         DataRead();
         imgPublisher = new ImgPublisher("Number", 10000);
-        int32Receiver = new Int32Receiver("NumberBack");
     }
 
     /**
@@ -129,7 +125,6 @@ public:
      */
     ~System() {
         delete imgPublisher;
-        delete int32Receiver;
     }
 
 };

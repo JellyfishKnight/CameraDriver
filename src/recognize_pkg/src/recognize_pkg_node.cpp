@@ -4,7 +4,6 @@
 #include "recognize_pkg/System.h"
 #include "ros/ros.h"
 #include "receive_pkg/ImgReceiver.h"
-#include "receive_pkg/Int32Receiver.h"
 
 using namespace ros;
 
@@ -22,8 +21,8 @@ int main(int argc, char* argv[]) {
             spinOnce();
         }
     } else {   //ÊÓÆµµ÷ÊÔ
-        Int32Receiver int32Receiver("NumberBack");
         System system("/home/wjy/Projects/RMlearning/CameraDriverWS/src/TestVideo/sample_red.avi", RED);
+        system.Start();
     }
     return 0;
 }

@@ -202,8 +202,7 @@ void System::Start() {
         return;
     }
     cout << "Started!" << endl;
-    pThis->int32Receiver->subscribe(Ranger::setBoardSize);
-    while (ok()) {
+    while (true) {
         auto start = chrono::system_clock::now();
         capture >> pThis->demo;
         pThis->ROINeeded = pThis->demo.clone();
@@ -251,7 +250,6 @@ void System::Start() {
         if (waitKey(1) == 27) {
             break;
         }
-        spinOnce();
     }
     capture.release();
     cout << "Finished!" << endl;
