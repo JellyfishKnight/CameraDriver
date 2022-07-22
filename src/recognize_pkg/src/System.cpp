@@ -156,8 +156,6 @@ void System::Start(Mat demo) {
         cout << "Picture read failed" << endl;
         return;
     }
-    pThis->ROINeeded = demo.clone();
-
     //相机数据读取
     Mat mask = demo.clone();
 
@@ -175,8 +173,6 @@ void System::Start(Mat demo) {
         Ranger ranger(pThis->cameraMatrix, pThis->disCoeffs);
         ranger.start(pThis->matchA, pThis->matchB, demo);
         //获取并发送装甲板ROI区域给数字识别模块
-        Mat ROI = ranger.getROI(pThis->ROINeeded);
-        pThis->imgPublisher->publish(ROI);
     }
 
     //数据归零
@@ -202,10 +198,12 @@ void System::Start() {
         return;
     }
     cout << "Started!" << endl;
+    Mat forNumber;
     while (true) {
         auto start = chrono::system_clock::now();
         capture >> pThis->demo;
-        pThis->ROINeeded = pThis->demo.clone();
+
+        forNumber = pThis->demo.clone();
 
         //判空以及判定结束
         if (pThis->demo.empty()) {
@@ -228,8 +226,8 @@ void System::Start() {
             Ranger check(pThis->cameraMatrix, pThis->disCoeffs);
             check.start(pThis->matchA, pThis->matchB, pThis->demo);
             //获取并发送装甲板ROI区域给数字识别模块
-            Mat ROI = check.getROI(pThis->ROINeeded);
-            pThis->imgPublisher->publish(ROI);
+            Ranger::setBoardSize(pThis->number.start(check.getROI(forNumber)));
+
         }
 
         //数据归零

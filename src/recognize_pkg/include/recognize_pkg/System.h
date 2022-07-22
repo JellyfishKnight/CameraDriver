@@ -7,6 +7,7 @@
 
 #include <utility>
 #include "publish_pkg/ImgPublisher.h"
+#include "Number.h"
 #include "PreProcess.h"
 #include "Ranger.h"
 #include "opencv2/core.hpp"
@@ -32,7 +33,7 @@ using namespace cv;
 class System {
 private:
     //静态指针指向当前对象
-    static System* pThis;
+    static System *pThis;
     //视频路径 (也可以从相机接收)
     string root;
     //相机数据文件路径
@@ -61,33 +62,33 @@ private:
     float angleI{}, angleJ{};
     //帧率
     static float FPS;
-    //发布器
-    ImgPublisher* imgPublisher{};
-    //传给ROI区域获取的原图
-    Mat ROINeeded;
+    //数字识别
+    Number number;
+
     /**
      * @brief 数据读取
      * @return true 成功读取
      * @return false 读取失败
      */
     static bool DataRead();
+
     /**
      * @brief 找到轮廓并且进行筛选
      * @param frame 输入图像,应当为二值化图像
      */
-    void ContoursFind(const Mat& frame);
+    void ContoursFind(const Mat &frame);
 
     /**
      * @brief 拟合矩形并且进行匹配
      */
-    void RectFit(Mat& src);
+    void RectFit(Mat &src);
 
     /**
      * @brief 调整角度以方便运算
      * @param a 旋转矩形
      * @return 调整后的角度
      */
-    float adjustAngle(const RotatedRect& a);
+    float adjustAngle(const RotatedRect &a);
 
     /**
      * @brief 筛选装甲板区域
@@ -96,7 +97,7 @@ private:
      * @return true 通过筛选
      * @return false 不通过筛选
      */
-    bool selectionOfRects(const RotatedRect& a, const RotatedRect& b);
+    bool selectionOfRects(const RotatedRect &a, const RotatedRect &b);
 
 public:
     /**
@@ -104,31 +105,30 @@ public:
      * @param r 视频输入路径
      * @param c 敌方装甲板颜色
      */
-    explicit System(string  fr = "NULL", Color c = BLUE, string dr = "/home/wjy/Projects/RMlearning/CameraDriverWS/src/Datas/CameraData.xml") :
-    root(std::move(fr)), dataRoot(move(dr)), color(c) {
+    explicit System(string fr = "NULL", Color c = BLUE,
+                    string dr = "/home/wjy/Projects/RMlearning/CameraDriverWS/src/Datas/CameraData.xml",
+                    string svmRoot = "/home/wjy/Projects/RMlearning/CameraDriverWS/src/Datas/SVM.xml") :
+            root(move(fr)), dataRoot(move(dr)), color(c), number(move(svmRoot)) {
         pThis = this;
         DataRead();
-        imgPublisher = new ImgPublisher("Number", 10000);
     }
 
     /**
      * @brief 启动识别系统
      */
     static void Start(Mat demo);
+
     /**
      * @brief 重载函数,用于视频调试
      */
     static void Start();
 
     /**
-     * @brief 析构器,释放内存
+     * @brief 默认析构器
      */
-    ~System() {
-        delete imgPublisher;
-    }
+    ~System() = default;
 
 };
-
 
 
 #endif //SRC_SYSTEM_H

@@ -34,6 +34,7 @@ include_directories(
         src/Ranger.cpp
         src/System.cpp
         src/DataReader.cpp
+         src/Number.cpp
          )
 ## Add cmake target dependencies of the library
 ## as an example, code may need to be generated before libraries

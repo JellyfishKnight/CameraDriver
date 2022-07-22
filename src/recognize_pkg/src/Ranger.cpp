@@ -170,7 +170,6 @@ void Ranger::setBoardSize(int number) {
             Ranger::boardHeight = 125;
             break;
     }
-    cout << number << endl;
 }
 
 Mat Ranger::getROI(Mat& demo) {
@@ -212,13 +211,5 @@ void Ranger::start(const RotatedRect& a, const RotatedRect& b, Mat& demo) {     
 
     //½âËãÅ·À­½Ç
     eulerSolver(demo);
-}
-
-void Ranger::setCameraMatrix(Mat CM) {
-    cameraMatrix = move(CM);
-}
-
-void Ranger::setDisCoeffs(Mat DC) {
-    disCoeffs = move(DC);
 }
 

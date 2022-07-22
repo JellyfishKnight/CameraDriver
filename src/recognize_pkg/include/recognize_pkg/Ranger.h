@@ -99,16 +99,6 @@ public:
      * @return 装甲板ROI区域
      */
     Mat getROI(Mat& demo);
-    /**
-     * @brief 相机内参矩阵的setter
-     * @param cameraMatrix 相机内参矩阵
-     */
-    void setCameraMatrix(Mat CM);
-    /**
-     * @brief 相机畸变矩阵的setter
-     * @param disCoeffs 相机畸变矩阵
-     */
-    void setDisCoeffs(Mat DC);
 
     ~Ranger() = default;
 

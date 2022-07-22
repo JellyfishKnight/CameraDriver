@@ -1,14 +1,12 @@
 //
-// Created by wjy on 22-7-11.
+// Created by wjy on 22-7-22.
 //
 
 #ifndef SRC_NUMBER_H
 #define SRC_NUMBER_H
-
 #include "opencv2/core.hpp"
 #include "opencv2/imgcodecs.hpp"
 #include "opencv2/ml.hpp"
-#include "publish_pkg/Int32Publisher.h"
 
 #include <algorithm>
 #include <iostream>
@@ -23,8 +21,6 @@ using namespace ml;
 
 class Number {
 private:
-    //指向当前对象的静态指针
-    static Number* pThis;
     //数据保存路径
     string saveRoot;
     //用于大小转换的掩码
@@ -35,26 +31,20 @@ private:
     Mat testImage;
     //SVM指针
     Ptr<SVM> svm;
-    //发布器
-    Int32Publisher int32Publisher;
 public:
     /**
      * @brief 构造器
      * @param saveroot SVM训练数据路径
      */
-    explicit Number(string saveroot) :
-        saveRoot(move(saveroot)), int32Publisher("NumberBack", 10000) {
-        pThis = this;
+    explicit Number(string saveroot) : saveRoot(move(saveroot)) {
         //使用未经初始化的实例载入模型
-        svm = StatModel::load<SVM>(pThis->saveRoot);
+        svm = StatModel::load<SVM>(saveRoot);
     }
     /**
      * @brief 开始识别
      * @param numberImage 装甲板数字图片
      */
-    static void start(Mat numberImage);
+    int start(Mat numberImage);
 };
-
-
 
 #endif //SRC_NUMBER_H
