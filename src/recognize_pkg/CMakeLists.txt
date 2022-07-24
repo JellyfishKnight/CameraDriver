@@ -45,7 +45,8 @@ include_directories(
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
 # add_executable(${PROJECT_NAME}_node src/recognize_pkg_node.cpp)
-add_executable(${PROJECT_NAME}_node src/recognize_pkg_node.cpp)
+add_executable(SubscribeDriver src/SubscribeDriver.cpp)
+add_executable(VideoDebug src/VideoDebug.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -60,11 +61,16 @@ add_executable(${PROJECT_NAME}_node src/recognize_pkg_node.cpp)
 # target_link_libraries(${PROJECT_NAME}_node
 #   ${catkin_LIBRARIES}
 # )
-target_link_libraries(${PROJECT_NAME}_node
+target_link_libraries(SubscribeDriver
         ${catkin_LIBRARIES}
         ${OpenCV_LIBS}
         ${PROJECT_NAME}
  )
+target_link_libraries(VideoDebug
+        ${catkin_LIBRARIES}
+        ${OpenCV_LIBS}
+        ${PROJECT_NAME}
+        )
 
 #############
 ## Install ##
