@@ -1,0 +1,3 @@
+<launch>
+    <node pkg="recognize_pkg" type="VideoDebug" name="recognize_pkg_node"/>
+</launch>

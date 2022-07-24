@@ -46,13 +46,19 @@
    #在第二个终端中运行
    $ rosrun driver_pkg driver_pkg_node 
    #在第三个终端中运行
-   $ rosrun recognize_pkg recognize_pkg_node
+      #相机模式
+   $ rosrun recognize_pkg SubscribeDriver
+      #视频调试模式
+   $ rosrun recognize_pkg VideoDebug
    ```
 
    **或者直接**
    
    ```bash
-   $ roslaunch driver_pkg CameraTest.launch
+   #相机模式
+   $ roslaunch launch CameraMode.launch
+   #视频调试模式
+   $ roslaunch launch DebugMode.launch
    ```
    <hr>
   
@@ -77,6 +83,8 @@
 - **_recognize_pkg_**
    >此包的内容主要为识别器,将receive_pkg作为其依赖,实现识别加上单目测距以及姿态解算还有利用OpenCV自带的SVM装甲板数字的识别
    >>但是目前有可能出现误识别情况
+- **__launch__**
+   >此包的内容主要为装载了两个launch文件用于一键启动
 <hr>   
    
 **其他被依赖但是工程中没有的包:**
@@ -114,8 +122,6 @@
 │   │       ├── lib
 │   │       │   └── libMVSDK.so
 │   │       └── MindVision.h
-│   ├── launch
-│   │   └── CameraTest.launch
 │   ├── package.xml
 │   └── src
 │       ├── BaseDriver.cpp
@@ -141,6 +147,14 @@
 │   └── src
 │       ├── BaseReceiver.cpp
 │       └── ImgReceiver.cpp
+├── launch
+│   ├── CMakeLists.txt
+│   ├── include
+│   ├── package.xml
+│   ├── launch
+│   │   ├── CameraMode.launch
+│   │   └── DebugMode.launch
+│   └── src
 ├── recognize_pkg
 │   ├── CMakeLists.txt
 │   ├── include
